@@ -17,7 +17,6 @@ main.append(about);
 main.append(app);
 footer.append(Footer);
 
-// import { calc } from "./test";
-// console.log(calc(200, 733));
-
-console.log("Add styles to Home page (except for some interactivity)");
+console.log(
+  `Здравствуй! Ещё не разобралась, как собрать вебпаком menu страницу (она сейчас дублирует домашнюю). Если есть возможность вернуться к проверке в среду - буду очень благодарна. Надеюсь, успею за вторник доделать. Спасибо большое заранее! `
+);
