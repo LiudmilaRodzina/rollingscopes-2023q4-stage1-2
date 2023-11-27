@@ -1,0 +1,28 @@
+.section__app {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10rem;
+
+  .heading-dark {
+    text-align: start;
+  }
+}
+.app__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+
+  &_text {
+    @include text(1.6rem, 400, 150%, $color-text-dark);
+  }
+}
+
+.app__buttons {
+  display: flex;
+  gap: 2rem;
+
+  .button {
+    border: 1px solid $color-secondary;
+  }
+}

@@ -1,0 +1,32 @@
+.section__hero_image {
+  position: relative;
+  background: url("./../../../assets/images/img-hero.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 64.4rem;
+  padding: 10rem;
+  border-radius: 4rem;
+}
+
+.section__hero_content {
+  position: absolute;
+  display: flex;
+  max-width: 53rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+.heading-light {
+  @include text(7.2rem, 600, 105%, $color-text-light);
+
+  span {
+    font-style: italic;
+    color: $color-text-accent;
+  }
+}
+
+.paragraph {
+  @include text(1.6rem, 400, 150%, $color-text-light);
+}

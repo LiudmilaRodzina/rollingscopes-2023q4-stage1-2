@@ -1,0 +1,34 @@
+.section__about {
+  .heading-dark {
+    width: 137rem;
+    text-align: start;
+  }
+}
+
+.images__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+
+  img {
+    border-radius: 2rem;
+    object-fit: cover;
+    width: 66rem;
+  }
+
+  .image {
+    height: 59rem;
+  }
+
+  .image-small {
+    height: 43rem;
+  }
+}
+.column-1,
+.column-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
