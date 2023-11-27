@@ -3,8 +3,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
+  align-items: center;
   padding: 10rem;
   border-radius: 4rem;
+  gap: 10rem;
 
   .heading-light {
     @include text(6rem, 600, 125%, $color-text-light);
@@ -13,20 +15,54 @@
 .footer__contacts {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.7rem;
 
   &_title {
     @include text(2.4rem, 600, 125%, $color-text-light);
-    padding-bottom: 2.4rem;
+    padding-bottom: 2rem;
   }
   &_address {
     @include text(1.6rem, 600, 150%, $color-text-light);
+    position: relative;
+
+    img {
+      padding-right: 0.8rem;
+    }
+
+    a:hover::after {
+      content: "";
+      border-bottom: 2px solid $color-text-light;
+      width: 18.2rem;
+      height: 2px;
+      position: absolute;
+      bottom: -0.1rem;
+      left: 9rem;
+      transform: translateX(-50%);
+    }
   }
   &_phone {
     @include text(1.6rem, 600, 150%, $color-text-light);
+    position: relative;
+    img {
+      padding-right: 0.8rem;
+    }
+    a:hover::after {
+      content: "";
+      border-bottom: 2px solid $color-text-light;
+      width: 18.2rem;
+      height: 2px;
+      position: absolute;
+      bottom: -0.1rem;
+      left: 9rem;
+      transform: translateX(-50%);
+    }
   }
   &_schedule {
     @include text(1.6rem, 600, 150%, $color-text-light);
+
+    img {
+      padding-right: 0.8rem;
+    }
   }
 }
 
@@ -36,8 +72,12 @@
   height: 6rem;
   border-radius: 50%;
   border: 1px solid $color-primary;
-  margin-right: 1.2rem;
+  margin-right: 1rem;
   margin-top: 4rem;
+
+  &:hover {
+    background-color: $color-primary;
+  }
 }
 .icon {
   width: 2.4rem;

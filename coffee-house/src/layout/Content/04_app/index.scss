@@ -1,13 +1,13 @@
 .section__app {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 10rem;
+  padding-bottom: 10rem;
 
   .heading-dark {
     text-align: start;
   }
 }
-.app__column {
+.app__column-1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,7 +22,24 @@
   display: flex;
   gap: 2rem;
 
-  .button {
+  .button-app {
+    display: flex;
+    justify-content: space-evenly;
     border: 1px solid $color-secondary;
+    padding: 1.2rem 2rem;
+    transition: all 0.5s ease-in-out;
+    &:hover {
+      background-color: $color-secondary;
+    }
+    &_text {
+      text-align: start;
+      width: 20rem;
+      span {
+        @include text(1rem, 600, 140%, $color-text-dark);
+      }
+      p {
+        @include text(1.6rem, 600, 150%, $color-text-dark);
+      }
+    }
   }
 }

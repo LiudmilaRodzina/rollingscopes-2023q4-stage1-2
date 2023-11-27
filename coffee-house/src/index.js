@@ -20,4 +20,4 @@ footer.append(Footer);
 // import { calc } from "./test";
 // console.log(calc(200, 733));
 
-console.log("Add basic layout of Home page");
+console.log("Add styles to Home page (except for some interactivity)");

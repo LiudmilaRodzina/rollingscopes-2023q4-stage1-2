@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Young+Serif&display=swap");
+@import url("https://fonts.cdnfonts.com/css/inter");
 
 *,
 *::before,
@@ -14,26 +14,35 @@ html {
 body {
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
-  background-color: $color-secondary;
+  background-color: $color-primary;
 }
 
 .wrapper {
-  max-width: 144rem;
+  width: 144rem;
   padding: 0 4rem 4rem 4rem;
   margin: 0 auto;
   background-color: $color-primary;
 }
+
+a {
+  transition: all 0.5s ease-in-out;
+}
+a:hover,
+a:active {
+  transition: all 0.5s ease-in-out;
+}
+
 a:link,
 a:visited {
   text-decoration: none;
-  color: $color-text-dark;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
-// a:hover,
-// a:active {
-// }
 
 button {
   border: none;
+  cursor: pointer;
 }
 .button {
   display: flex;
@@ -45,8 +54,8 @@ button {
   height: 6.4rem;
   background-color: $color-primary;
   border-radius: 10rem;
-  transition: all 0.3s ease-in;
 }
+
 .button-text {
   @include text(1.6rem, 600, 150%, $color-text-dark);
 }

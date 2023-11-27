@@ -6,14 +6,33 @@
   padding: 2rem 0;
 }
 
-.header__nav-list {
+.navigation__list {
   display: flex;
   justify-content: space-between;
   gap: 4rem;
-  li {
+
+  &_link {
+    @include text(1.6rem, 600, 150%, $color-text-dark);
     list-style: none;
   }
 }
+
+.header__menu {
+  @include text(1.6rem, 600, 150%, $color-text-dark);
+  position: relative;
+
+  a:hover::after {
+    content: "";
+    border-bottom: 2px solid $color-text-dark;
+    width: 6rem;
+    height: 2px;
+    position: absolute;
+    bottom: -0.1rem;
+    left: 2.9rem;
+    transform: translateX(-50%);
+  }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
