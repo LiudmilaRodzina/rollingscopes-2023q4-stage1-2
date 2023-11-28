@@ -1,9 +1,7 @@
 .section__hero_image {
   position: relative;
-  background: url("./../../../assets/images/img-hero.jpg");
+  background: url("./../../../assets/images/img-hero.jpg") no-repeat center;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
   min-height: 64.4rem;
   padding: 10rem;
   border-radius: 4rem;

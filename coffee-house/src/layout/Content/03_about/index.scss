@@ -23,35 +23,27 @@
   .image-1 {
     height: 59rem;
     background-size: cover;
-    background-position: center center;
-    background: url("./../../../assets/images/about-1.png");
-    background-position: center;
+    background: url("./../../../assets/images/about-1.png") no-repeat center;
     border-radius: 2rem;
   }
 
   .image-2 {
     height: 59rem;
     background-size: cover;
-    background-position: center center;
-    background: url("./../../../assets/images/about-4.png");
-    background-position: center;
+    background: url("./../../../assets/images/about-4.png") no-repeat center;
     border-radius: 2rem;
   }
 
   .image-small-1 {
     height: 43rem;
     background-size: cover;
-    background-position: center center;
-    background: url("./../../../assets/images/about-2.png");
-    background-position: center;
+    background: url("./../../../assets/images/about-2.png") no-repeat center;
     border-radius: 2rem;
   }
   .image-small-2 {
     height: 43rem;
     background-size: cover;
-    background-position: center center;
-    background: url("./../../../assets/images/about-3.png");
-    background-position: center;
+    background: url("./../../../assets/images/about-3.png") no-repeat center;
     border-radius: 2rem;
   }
 }

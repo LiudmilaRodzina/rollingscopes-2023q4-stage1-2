@@ -21,25 +21,61 @@
 .app__buttons {
   display: flex;
   gap: 2rem;
+}
+.app__button {
+  display: flex;
+  background-color: $color-primary;
+  border: 1px solid $color-secondary;
+  gap: 0.8rem;
+  width: 20rem;
+  height: 6.4rem;
+  border-radius: 10rem;
+  padding: 1.2rem 2rem;
+  transition: all 0.5s ease-in-out;
+}
 
-  .button-app {
-    display: flex;
-    justify-content: space-evenly;
-    border: 1px solid $color-secondary;
-    padding: 1.2rem 2rem;
+.button__icon {
+  display: inline-block;
+  width: 3.6rem;
+  height: 3.6rem;
+  transition: all 0.5s ease-in-out;
+}
+.button__icon_ios {
+  background: url(./../../../assets/icons/ios.svg);
+}
+.button__icon_android {
+  background: url(./../../../assets/icons/android.svg);
+}
+
+.button__text_sm {
+  @include text(1rem, 600, 140%, $color-text-dark);
+  text-align: start;
+  transition: all 0.5s ease-in-out;
+}
+
+.button__text_l {
+  @include text(1.6rem, 600, 150%, $color-text-dark);
+  display: block;
+  text-align: start;
+  transition: all 0.5s ease-in-out;
+}
+
+.app__button {
+  &:hover {
+    background-color: $color-secondary;
     transition: all 0.5s ease-in-out;
-    &:hover {
-      background-color: $color-secondary;
+
+    .button__icon_ios {
+      background: url(./../../../assets/icons/ios-hover.svg);
     }
-    &_text {
-      text-align: start;
-      width: 20rem;
-      span {
-        @include text(1rem, 600, 140%, $color-text-dark);
-      }
-      p {
-        @include text(1.6rem, 600, 150%, $color-text-dark);
-      }
+    .button__icon_android {
+      background: url(./../../../assets/icons/android-hover.svg);
+    }
+    .button__text_sm {
+      color: $color-primary;
+    }
+    .button__text_l {
+      color: $color-primary;
     }
   }
 }
