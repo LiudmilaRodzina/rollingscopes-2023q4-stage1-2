@@ -10,8 +10,7 @@
     color: $color-text-accent;
   }
 }
-.arrow-left,
-.arrow-right {
+.arrow {
   background-color: $color-primary;
   border: 1px solid $color-border-dark;
   border-radius: 50%;
@@ -20,13 +19,29 @@
   margin: 0 0.4rem 4.4rem;
   transition: all 0.5s ease-in-out;
 
-  img {
+  span {
+    display: inline-block;
     width: 2.4rem;
     height: 2.4rem;
+  }
+  &-left__icon {
+    background: url(./../../../assets/icons/arrow-left.svg);
+    transition: all 0.5s ease-in-out;
+  }
+  &-right__icon {
+    background: url(./../../../assets/icons/arrow-right.svg);
+    transition: all 0.5s ease-in-out;
   }
 
   &:hover {
     background-color: $color-secondary;
+
+    .arrow-left__icon {
+      background: url(./../../../assets/icons/arrow-left-hover.svg);
+    }
+    .arrow-right__icon {
+      background: url(./../../../assets/icons/arrow-right-hover.svg);
+    }
   }
 }
 

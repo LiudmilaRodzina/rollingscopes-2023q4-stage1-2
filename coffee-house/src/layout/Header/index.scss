@@ -14,6 +14,22 @@
   &_link {
     @include text(1.6rem, 600, 150%, $color-text-dark);
     list-style: none;
+    position: relative;
+
+    &:after {
+      content: "";
+      width: 100%;
+      height: 2px;
+      background-color: $color-text-dark;
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      transform: scale(0);
+    }
+    &:hover:after {
+      transform: scale(1);
+      transition: all 0.5s ease-in-out;
+    }
   }
 }
 
@@ -21,15 +37,19 @@
   @include text(1.6rem, 600, 150%, $color-text-dark);
   position: relative;
 
-  a:hover::after {
+  &:after {
     content: "";
-    border-bottom: 2px solid $color-text-dark;
-    width: 6rem;
+    width: 100%;
     height: 2px;
+    background-color: $color-text-dark;
     position: absolute;
-    bottom: -0.1rem;
-    left: 2.9rem;
-    transform: translateX(-50%);
+    left: 0;
+    bottom: -2px;
+    transform: scale(0);
+  }
+  &:hover:after {
+    transform: scale(1);
+    transition: all 0.5s ease-in-out;
   }
 }
 
