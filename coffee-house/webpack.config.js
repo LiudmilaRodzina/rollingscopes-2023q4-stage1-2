@@ -2,10 +2,13 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    index: ["./src/index.js", "./src/index.scss"],
+    menu: ["./src/menu.js", "./src/menu.scss", "./src/index.scss"],
+  },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
+    filename: "[name].js",
     clean: true,
   },
   mode: "development",
@@ -47,10 +50,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "./index.html",
+      chunks: ["index"],
     }),
     new HtmlWebpackPlugin({
       template: "./src/menu.html",
       filename: "./menu.html",
+      chunks: ["menu"],
     }),
   ],
   devtool: "inline-cheap-module-source-map",

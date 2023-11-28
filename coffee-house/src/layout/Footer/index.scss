@@ -12,6 +12,13 @@
     @include text(6rem, 600, 125%, $color-text-light);
   }
 }
+.heading-light {
+  span {
+    font-style: italic;
+    color: $color-text-accent;
+  }
+}
+
 .footer__contacts {
   display: flex;
   flex-direction: column;
@@ -29,21 +36,6 @@
     img {
       padding-right: 0.8rem;
     }
-
-    // &:after {
-    //   content: "";
-    //   width: 100%;
-    //   height: 2px;
-    //   background-color: $color-text-light;
-    //   position: absolute;
-    //   left: 0;
-    //   bottom: -5px;
-    //   transform: scale(0);
-    // }
-    // &:hover:after {
-    //   transform: scale(1);
-    //   transition: all 0.5s ease-in-out;
-    // }
   }
   &_phone {
     @include text(1.6rem, 600, 150%, $color-text-light);
@@ -51,16 +43,6 @@
     img {
       padding-right: 0.8rem;
     }
-    // a:hover::after {
-    //   content: "";
-    //   border-bottom: 2px solid $color-text-light;
-    //   width: 18.2rem;
-    //   height: 2px;
-    //   position: absolute;
-    //   bottom: -0.1rem;
-    //   left: 9rem;
-    //   transform: translateX(-50%);
-    // }
   }
   &_schedule {
     @include text(1.6rem, 600, 150%, $color-text-light);

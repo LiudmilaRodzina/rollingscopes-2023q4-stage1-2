@@ -1,0 +1,52 @@
+// @import url("https://fonts.cdnfonts.com/css/inter");
+
+// *,
+// *::before,
+// *::after {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: inherit;
+// }
+// html {
+//   font-size: 62.5%;
+//   scroll-behavior: smooth;
+// }
+// body {
+//   font-family: "Inter", sans-serif;
+//   box-sizing: border-box;
+//   background-color: $color-primary;
+// }
+
+// .wrapper {
+//   width: 144rem;
+//   padding: 0 4rem 4rem 4rem;
+//   margin: 0 auto;
+//   background-color: $color-primary;
+// }
+
+// a:link,
+// a:visited {
+//   text-decoration: none;
+//   color: inherit;
+//   cursor: pointer;
+// }
+
+// button {
+//   border: none;
+//   cursor: pointer;
+// }
+// .button {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+//   gap: 0.8rem;
+//   width: 20rem;
+//   height: 6.4rem;
+//   background-color: $color-primary;
+//   border-radius: 10rem;
+// }
+
+// .button-text {
+//   @include text(1.6rem, 600, 150%, $color-text-dark);
+// }
