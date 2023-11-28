@@ -47,13 +47,13 @@
   background: url(./../../../assets/icons/android.svg);
 }
 
-.button__text_sm {
+.button__text_small {
   @include text(1rem, 600, 140%, $color-text-dark);
   text-align: start;
   transition: all 0.5s ease-in-out;
 }
 
-.button__text_l {
+.button__text_large {
   @include text(1.6rem, 600, 150%, $color-text-dark);
   display: block;
   text-align: start;
@@ -71,10 +71,10 @@
     .button__icon_android {
       background: url(./../../../assets/icons/android-hover.svg);
     }
-    .button__text_sm {
+    .button__text_small {
       color: $color-primary;
     }
-    .button__text_l {
+    .button__text_large {
       color: $color-primary;
     }
   }

@@ -6,50 +6,67 @@
   }
 }
 
-.images__container {
+.images__wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  justify-content: space-between;
-  align-items: center;
   gap: 4rem;
   padding-top: 4rem;
+}
+
+.image__container {
+  position: relative;
+  width: 66rem;
+  border-radius: 2rem;
+  overflow: hidden;
 
   img {
-    border-radius: 2rem;
-    object-fit: cover;
-    width: 66rem;
-  }
+    position: absolute;
+    transition: all 0.5s ease-in-out;
 
-  .image-1 {
-    height: 59rem;
-    background-size: cover;
-    background: url("./../../../assets/images/about-1.png") no-repeat center;
-    border-radius: 2rem;
-  }
-
-  .image-2 {
-    height: 59rem;
-    background-size: cover;
-    background: url("./../../../assets/images/about-4.png") no-repeat center;
-    border-radius: 2rem;
-  }
-
-  .image-small-1 {
-    height: 43rem;
-    background-size: cover;
-    background: url("./../../../assets/images/about-2.png") no-repeat center;
-    border-radius: 2rem;
-  }
-  .image-small-2 {
-    height: 43rem;
-    background-size: cover;
-    background: url("./../../../assets/images/about-3.png") no-repeat center;
-    border-radius: 2rem;
+    &:hover {
+      transform: scale(0.9);
+    }
   }
 }
-.column-1,
-.column-2 {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
+
+.image-large {
+  height: 59rem;
+  grid-row: span 2;
+}
+.image-small {
+  height: 43rem;
+  grid-row: span 1;
+}
+.image-1 {
+  order: 1;
+}
+.image-2 {
+  order: 5;
+}
+.image-3 {
+  order: 2;
+}
+.image-4 {
+  order: 4;
+}
+
+.img-1 {
+  top: -6.8rem;
+  right: -3.4rem;
+  transform: scale(1);
+}
+.img-2 {
+  top: -15.3rem;
+  right: -3.4rem;
+  transform: scale(1);
+}
+.img-3 {
+  top: -15.3rem;
+  right: -32px;
+  transform: scale(1);
+}
+.img-4 {
+  top: -6.8rem;
+  right: -3.4rem;
+  transform: scale(1);
 }
