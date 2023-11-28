@@ -6,9 +6,23 @@
 }
 
 .header__menu {
+  span {
+    display: block;
+  }
+  a {
+    display: none;
+    cursor: default;
+  }
   &:after {
     transform: scale(1);
   }
+}
+
+.navigation__list_link.menu {
+  display: block;
+}
+.navigation__list_link.home {
+  display: none;
 }
 
 .heading-dark {
