@@ -19,4 +19,4 @@ main.append(Menu);
 // main.append(app);
 footer.append(Footer);
 
-console.log(`MENU PAGE`);
+console.log(`Menu page - week 2`);
