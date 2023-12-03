@@ -11,6 +11,10 @@
   justify-content: space-between;
   gap: 4rem;
 
+  @include media-tablet-port {
+    display: none;
+  }
+
   &_link {
     @include text(1.6rem, 600, 150%, $color-text-dark);
     list-style: none;

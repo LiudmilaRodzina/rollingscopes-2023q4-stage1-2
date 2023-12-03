@@ -6,6 +6,12 @@
   .heading-dark {
     text-align: start;
   }
+
+  @include media-tablet-port {
+    display: flex;
+    flex-direction: column;
+    // max-width: 63rem;
+  }
 }
 .app__column-1 {
   display: flex;
@@ -77,5 +83,11 @@
     .button__text_large {
       color: $color-primary;
     }
+  }
+}
+.app__column-2 {
+  @include media-tablet-port {
+    max-width: 63rem;
+    align-self: center;
   }
 }

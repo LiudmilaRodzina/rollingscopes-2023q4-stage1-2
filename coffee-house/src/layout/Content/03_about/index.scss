@@ -3,6 +3,10 @@
   .heading-dark {
     width: 137rem;
     text-align: start;
+
+    @include media-tablet-port {
+      width: 68.8rem;
+    }
   }
 }
 
@@ -11,6 +15,10 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 4rem;
   padding-top: 4rem;
+
+  @include media-tablet-port {
+    grid-template-columns: 1fr;
+  }
 }
 
 .image__container {
@@ -28,6 +36,10 @@
       transform: scale(0.9);
     }
   }
+
+  @include media-tablet-port {
+    width: 68.6rem;
+  }
 }
 
 .image-large {
@@ -43,9 +55,15 @@
 }
 .image-2 {
   order: 5;
+  @include media-tablet-port {
+    display: none;
+  }
 }
 .image-3 {
   order: 2;
+  @include media-tablet-port {
+    display: none;
+  }
 }
 .image-4 {
   order: 4;
@@ -55,6 +73,10 @@
   top: -6.8rem;
   right: -3.4rem;
   transform: scale(1);
+
+  @include media-tablet-port {
+    right: -2.2rem;
+  }
 }
 .img-2 {
   top: -14.9rem;
@@ -68,6 +90,10 @@
 }
 .img-4 {
   top: -6.7rem;
-  right: -3.3rem;
+  right: -3.4rem;
   transform: scale(1);
+
+  @include media-tablet-port {
+    right: -2.2rem;
+  }
 }

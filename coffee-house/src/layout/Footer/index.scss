@@ -8,6 +8,11 @@
   border-radius: 4rem;
   gap: 10rem;
 
+  @include media-tablet-port {
+    grid-template-columns: 1fr;
+    padding: 10rem 6rem;
+  }
+
   .heading-light {
     @include text(6rem, 600, 125%, $color-text-light);
   }

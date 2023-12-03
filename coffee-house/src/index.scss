@@ -22,6 +22,10 @@ body {
   padding: 0 4rem 4rem 4rem;
   margin: 0 auto;
   background-color: $color-primary;
+
+  @include media-tablet-port {
+    width: 76.8rem;
+  }
 }
 
 a:link,

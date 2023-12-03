@@ -5,6 +5,10 @@
   min-height: 64.4rem;
   padding: 10rem;
   border-radius: 4rem;
+
+  @include media-tablet-port {
+    padding: 10rem 6rem;
+  }
 }
 
 .section__hero_content {
