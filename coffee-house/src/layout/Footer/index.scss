@@ -12,9 +12,17 @@
     grid-template-columns: 1fr;
     padding: 10rem 6rem;
   }
+  @include media-mobile {
+    padding: 6rem 1.6rem;
+    gap: 4rem;
+  }
 
   .heading-light {
     @include text(6rem, 600, 125%, $color-text-light);
+
+    @include media-mobile {
+      @include text(3.15rem, 600, 125%, $color-text-light);
+    }
   }
 }
 .heading-light {

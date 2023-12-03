@@ -26,6 +26,11 @@ body {
   @include media-tablet-port {
     width: 76.8rem;
   }
+
+  @include media-mobile {
+    width: 38rem;
+    padding: 0 1.6rem 4rem;
+  }
 }
 
 a:link,

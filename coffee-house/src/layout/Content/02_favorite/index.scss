@@ -5,6 +5,10 @@
   @include text(6rem, 600, 125%, $color-text-dark);
   text-align: center;
 
+  @include media-mobile {
+    @include text(3.2rem, 600, 125%, $color-text-dark);
+  }
+
   span {
     font-style: italic;
     color: $color-text-accent;
@@ -18,6 +22,10 @@
   height: 6rem;
   margin: 0 0.4rem 4.4rem;
   transition: all 0.5s ease-in-out;
+
+  @include media-mobile {
+    display: none;
+  }
 
   span {
     display: inline-block;
@@ -56,6 +64,10 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  @include media-mobile {
+    max-width: 34.8rem;
+  }
 }
 .slider__card {
   display: flex;
@@ -64,6 +76,10 @@
   text-align: center;
   max-width: 48rem;
   gap: 1.8rem;
+
+  @include media-mobile {
+    max-width: 34.8rem;
+  }
 
   &_title {
     @include text(2.4rem, 600, 125%, $color-text-dark);

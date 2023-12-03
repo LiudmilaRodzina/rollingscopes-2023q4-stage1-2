@@ -10,7 +10,9 @@
   @include media-tablet-port {
     display: flex;
     flex-direction: column;
-    // max-width: 63rem;
+  }
+  @include media-mobile {
+    gap: 4rem;
   }
 }
 .app__column-1 {
@@ -27,6 +29,10 @@
 .app__buttons {
   display: flex;
   gap: 2rem;
+
+  @include media-mobile {
+    flex-direction: column;
+  }
 }
 .app__button {
   display: flex;
@@ -89,5 +95,11 @@
   @include media-tablet-port {
     max-width: 63rem;
     align-self: center;
+  }
+
+  @include media-mobile {
+    img {
+      max-width: 34.8rem;
+    }
   }
 }

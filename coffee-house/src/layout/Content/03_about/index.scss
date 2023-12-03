@@ -7,6 +7,9 @@
     @include media-tablet-port {
       width: 68.8rem;
     }
+    @include media-mobile {
+      width: 34.8rem;
+    }
   }
 }
 
@@ -45,6 +48,10 @@
 .image-large {
   height: 59rem;
   grid-row: span 2;
+
+  @include media-mobile {
+    max-width: 34.8rem;
+  }
 }
 .image-small {
   height: 43rem;
@@ -77,6 +84,10 @@
   @include media-tablet-port {
     right: -2.2rem;
   }
+
+  @include media-mobile {
+    right: -19rem;
+  }
 }
 .img-2 {
   top: -14.9rem;
@@ -95,5 +106,9 @@
 
   @include media-tablet-port {
     right: -2.2rem;
+  }
+
+  @include media-mobile {
+    right: -19rem;
   }
 }
