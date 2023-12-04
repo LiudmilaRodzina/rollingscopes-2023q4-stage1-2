@@ -18,5 +18,3 @@ main.append(Menu);
 // main.append(about);
 // main.append(app);
 footer.append(Footer);
-
-console.log(`Menu page - week 2`);

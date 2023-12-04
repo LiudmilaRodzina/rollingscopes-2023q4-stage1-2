@@ -7,11 +7,12 @@
     text-align: start;
   }
 
-  @include media-tablet-port {
+  @include media-desktop {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
-  @include media-mobile {
+  @include media-mobile-large {
     gap: 4rem;
   }
 }
@@ -92,11 +93,16 @@
   }
 }
 .app__column-2 {
-  @include media-tablet-port {
+  @include media-tablet-land {
     max-width: 63rem;
     align-self: center;
   }
 
+  @include media-mobile-large {
+    img {
+      max-width: 40rem;
+    }
+  }
   @include media-mobile {
     img {
       max-width: 34.8rem;

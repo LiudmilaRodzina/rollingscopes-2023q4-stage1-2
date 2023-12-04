@@ -18,18 +18,21 @@ body {
 }
 
 .wrapper {
-  width: 144rem;
+  max-width: 144rem;
   padding: 0 4rem 4rem 4rem;
   margin: 0 auto;
   background-color: $color-primary;
 
   @include media-tablet-port {
-    width: 76.8rem;
+    max-width: 76.8rem;
+  }
+
+  @include media-mobile-large {
+    padding: 0 1.6rem 4rem;
   }
 
   @include media-mobile {
-    width: 38rem;
-    padding: 0 1.6rem 4rem;
+    max-width: 38rem;
   }
 }
 

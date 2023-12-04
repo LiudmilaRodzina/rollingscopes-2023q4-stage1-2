@@ -30,6 +30,12 @@
   text-align: center;
   max-width: 80rem;
 
+  @include media-mobile-large {
+    @include text(5rem, 600, 115%, $color-text-dark);
+  }
+  @include media-mobile {
+    @include text(4.2rem, 600, 115%, $color-text-dark);
+  }
   @include media-mobile {
     @include text(3.2rem, 600, 125%, $color-text-dark);
   }
@@ -117,12 +123,14 @@
   margin-top: -2px;
   padding-bottom: 6rem;
 
-  @include media-tablet-port {
+  @include media-desktop {
     grid-template-columns: repeat(2, 1fr);
     padding-bottom: 10rem;
   }
-  @include media-mobile {
+  @include media-mobile-large {
     grid-template-columns: 1fr;
+  }
+  @include media-mobile {
     row-gap: 3.8rem;
   }
 }
@@ -135,7 +143,12 @@
   max-width: 31rem;
   transition: all 0.5s ease-in-out;
 
-  @include media-tablet-port {
+  @include media-desktop {
+    &:nth-child(n + 7):nth-child(-n + 8) {
+      display: none;
+    }
+  }
+  @include media-tablet-land {
     &:nth-child(n + 5):nth-child(-n + 8) {
       display: none;
     }
@@ -179,7 +192,7 @@
   margin: auto 0 0 0;
 }
 
-@include media-tablet-port {
+@include media-desktop {
   .refresh-btn {
     display: flex;
     justify-content: space-around;

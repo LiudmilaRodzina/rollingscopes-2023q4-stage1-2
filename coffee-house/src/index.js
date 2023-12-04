@@ -17,4 +17,4 @@ main.append(about);
 main.append(app);
 footer.append(Footer);
 
-console.log(`Home page - week 2`);
+console.log(`Week 2`);
