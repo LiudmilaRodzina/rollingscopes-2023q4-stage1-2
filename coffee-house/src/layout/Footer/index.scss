@@ -120,8 +120,10 @@
   border-radius: 50%;
   transition: all 0.5s ease-in-out;
 
-  &:hover {
-    background-color: $color-primary;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $color-primary;
+    }
   }
 
   span {
@@ -133,26 +135,30 @@
   &__twitter {
     background: url(../../assets/icons/twitter.svg) no-repeat center;
     transition: all 0.5s ease-in-out;
-    &:hover {
-      background: url(../../assets/icons/twitter-hover.svg) no-repeat center;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(../../assets/icons/twitter-hover.svg) no-repeat center;
+      }
     }
   }
 
   &__instagram {
     background: url(../../assets/icons/instagram.svg) no-repeat center;
     transition: all 0.5s ease-in-out;
-
-    &:hover {
-      background: url(../../assets/icons/instagram-hover.svg) no-repeat center;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(../../assets/icons/instagram-hover.svg) no-repeat center;
+      }
     }
   }
 
   &__facebook {
     background: url(../../assets/icons/facebook.svg) no-repeat center;
     transition: all 0.5s ease-in-out;
-
-    &:hover {
-      background: url(../../assets/icons/facebook-hover.svg) no-repeat center;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(../../assets/icons/facebook-hover.svg) no-repeat center;
+      }
     }
   }
 }

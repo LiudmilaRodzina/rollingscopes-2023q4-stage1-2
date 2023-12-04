@@ -4,7 +4,7 @@
 .heading-dark {
   @include text(6rem, 600, 125%, $color-text-dark);
   text-align: center;
-  
+
   @include media-mobile-large {
     @include text(4.2rem, 600, 125%, $color-text-dark);
   }
@@ -43,15 +43,15 @@
     background: url(./../../../assets/icons/arrow-right.svg);
     transition: all 0.5s ease-in-out;
   }
-
-  &:hover {
-    background-color: $color-secondary;
-
-    .arrow-left__icon {
-      background: url(./../../../assets/icons/arrow-left-hover.svg);
-    }
-    .arrow-right__icon {
-      background: url(./../../../assets/icons/arrow-right-hover.svg);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $color-secondary;
+      .arrow-left__icon {
+        background: url(./../../../assets/icons/arrow-left-hover.svg);
+      }
+      .arrow-right__icon {
+        background: url(./../../../assets/icons/arrow-right-hover.svg);
+      }
     }
   }
 }

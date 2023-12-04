@@ -59,16 +59,17 @@
 }
 
 .menu-button {
-  &:hover {
-    .button-image {
-      opacity: 1;
-    }
+    &:hover {
+      .button-image {
+        opacity: 1;
+      }
 
-    .button-text {
-      margin-left: 0rem;
+      .button-text {
+        margin-left: 0rem;
+      }
     }
   }
-}
+
 
 .button-text {
   margin-left: 2rem;

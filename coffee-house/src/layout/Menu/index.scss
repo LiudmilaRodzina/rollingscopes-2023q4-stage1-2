@@ -99,16 +99,19 @@
 .tab--active .tab_text {
   color: $color-primary;
 }
-.tab:hover {
-  cursor: pointer;
-  background-color: $color-secondary;
+@media (hover: hover) and (pointer: fine) {
+  .tab:hover {
+    cursor: pointer;
+    background-color: $color-secondary;
+  }
+  .tab:hover .tab_icon {
+    background-color: $color-primary;
+  }
+  .tab:hover .tab_text {
+    color: $color-primary;
+  }
 }
-.tab:hover .tab_icon {
-  background-color: $color-primary;
-}
-.tab:hover .tab_text {
-  color: $color-primary;
-}
+
 .tab:disabled,
 .tab button[disabled] {
   cursor: default;
@@ -154,9 +157,15 @@
     }
   }
 }
-.article:hover {
-  cursor: pointer;
+@media (hover: hover) and (pointer: fine) {
+  .article:hover {
+    cursor: pointer;
+  }
+  .article:hover .image {
+    transform: scale(0.9);
+  }
 }
+
 .image__container {
   position: relative;
   overflow: hidden;
@@ -170,9 +179,6 @@
   transition: all 0.5s ease-in-out;
 }
 
-.article:hover .image {
-  transform: scale(0.9);
-}
 .info__container {
   @include text(2.4rem, 600, 125%, $color-text-dark);
   display: flex;
