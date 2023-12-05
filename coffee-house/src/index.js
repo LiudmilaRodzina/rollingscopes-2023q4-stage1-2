@@ -17,6 +17,4 @@ main.append(about);
 main.append(app);
 footer.append(Footer);
 
-console.log(
-  `Добрый день! Вроде бы все требования выполнены. Спасибо большое за ожидание! `
-);
+console.log(`Week 2`);

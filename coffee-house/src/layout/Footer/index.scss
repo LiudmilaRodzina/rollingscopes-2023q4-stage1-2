@@ -8,8 +8,24 @@
   border-radius: 4rem;
   gap: 10rem;
 
+  @include media-tablet-land {
+    grid-template-columns: 1fr;
+    padding: 10rem 6rem;
+  }
+  @include media-mobile-large {
+    padding: 6rem 1.6rem;
+    gap: 4rem;
+  }
+
   .heading-light {
     @include text(6rem, 600, 125%, $color-text-light);
+
+    @include media-mobile-large {
+      @include text(4.2rem, 600, 125%, $color-text-light);
+    }
+    @include media-mobile {
+      @include text(3.15rem, 600, 125%, $color-text-light);
+    }
   }
 }
 .heading-light {
@@ -64,9 +80,11 @@
     bottom: -2px;
     transform: scale(0);
   }
-  &:hover:after {
-    transform: scale(1);
-    transition: all 0.5s ease-in-out;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover:after {
+      transform: scale(1);
+      transition: all 0.5s ease-in-out;
+    }
   }
 }
 .footer__contacts_phone a {
@@ -80,9 +98,11 @@
     bottom: -2px;
     transform: scale(0);
   }
-  &:hover:after {
-    transform: scale(1);
-    transition: all 0.5s ease-in-out;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover:after {
+      transform: scale(1);
+      transition: all 0.5s ease-in-out;
+    }
   }
 }
 
@@ -104,8 +124,10 @@
   border-radius: 50%;
   transition: all 0.5s ease-in-out;
 
-  &:hover {
-    background-color: $color-primary;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $color-primary;
+    }
   }
 
   span {
@@ -117,26 +139,30 @@
   &__twitter {
     background: url(../../assets/icons/twitter.svg) no-repeat center;
     transition: all 0.5s ease-in-out;
-    &:hover {
-      background: url(../../assets/icons/twitter-hover.svg) no-repeat center;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(../../assets/icons/twitter-hover.svg) no-repeat center;
+      }
     }
   }
 
   &__instagram {
     background: url(../../assets/icons/instagram.svg) no-repeat center;
     transition: all 0.5s ease-in-out;
-
-    &:hover {
-      background: url(../../assets/icons/instagram-hover.svg) no-repeat center;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(../../assets/icons/instagram-hover.svg) no-repeat center;
+      }
     }
   }
 
   &__facebook {
     background: url(../../assets/icons/facebook.svg) no-repeat center;
     transition: all 0.5s ease-in-out;
-
-    &:hover {
-      background: url(../../assets/icons/facebook-hover.svg) no-repeat center;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: url(../../assets/icons/facebook-hover.svg) no-repeat center;
+      }
     }
   }
 }

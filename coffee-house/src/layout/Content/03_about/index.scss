@@ -1,8 +1,14 @@
 .section__about {
   padding-bottom: 10rem;
   .heading-dark {
-    width: 137rem;
+    font-size: 59.9px;
     text-align: start;
+    @include media-mobile-large {
+      @include text(4.2rem, 600, 125%, $color-text-dark);
+    }
+    @include media-mobile {
+      @include text(3.2rem, 600, 125%, $color-text-dark);
+    }
   }
 }
 
@@ -11,11 +17,21 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 4rem;
   padding-top: 4rem;
+
+  @include media-tablet-land {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 15%;
+  }
+  @include media-tablet-port {
+    width: 100%;
+    margin: 0;
+  }
 }
 
 .image__container {
   position: relative;
-  width: 66rem;
   border-radius: 2rem;
   overflow: hidden;
   cursor: pointer;
@@ -23,9 +39,14 @@
   img {
     position: absolute;
     transition: all 0.5s ease-in-out;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: scale(0.92);
 
-    &:hover {
-      transform: scale(0.9);
+        @include media-tablet-port {
+          transform: scale(0.96);
+        }
+      }
     }
   }
 }
@@ -43,9 +64,15 @@
 }
 .image-2 {
   order: 5;
+  @include media-tablet-land {
+    display: none;
+  }
 }
 .image-3 {
   order: 2;
+  @include media-tablet-land {
+    display: none;
+  }
 }
 .image-4 {
   order: 4;
@@ -55,6 +82,14 @@
   top: -6.8rem;
   right: -3.4rem;
   transform: scale(1);
+
+  @include media-tablet-port {
+    right: -2.2rem;
+  }
+
+  @include media-mobile {
+    right: -19rem;
+  }
 }
 .img-2 {
   top: -14.9rem;
@@ -68,6 +103,14 @@
 }
 .img-4 {
   top: -6.7rem;
-  right: -3.3rem;
+  right: -3.4rem;
   transform: scale(1);
+
+  @include media-tablet-port {
+    right: -2.2rem;
+  }
+
+  @include media-mobile {
+    right: -19rem;
+  }
 }
