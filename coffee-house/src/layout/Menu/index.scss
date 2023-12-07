@@ -16,6 +16,19 @@
   &:after {
     transform: scale(1);
   }
+
+  @include media-tablet-port {
+    span {
+      display: none;
+    }
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.6rem;
+      cursor: pointer;
+    }
+  }
 }
 
 .navigation__list_link.menu {

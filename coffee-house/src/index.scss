@@ -23,6 +23,10 @@ body {
   margin: 0 auto;
   background-color: $color-primary;
 
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
   @include media-tablet-port {
     max-width: 76.8rem;
   }
