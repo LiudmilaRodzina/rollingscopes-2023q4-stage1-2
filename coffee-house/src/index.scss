@@ -22,7 +22,6 @@ body {
   padding: 0 4rem 4rem 4rem;
   margin: 0 auto;
   background-color: $color-primary;
-
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -44,7 +43,6 @@ a:link,
 a:visited {
   text-decoration: none;
   color: inherit;
-  // cursor: pointer;
 }
 
 button {
