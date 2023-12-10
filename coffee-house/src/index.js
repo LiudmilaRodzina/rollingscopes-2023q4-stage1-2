@@ -17,4 +17,7 @@ main.append(about);
 main.append(app);
 footer.append(Footer);
 
-console.log(`Week 2`);
+console.log(`Burger: +22;
+Carousel: +14 (progress bar effects are not implemented);
+Video: +8;
+Total: 44`);

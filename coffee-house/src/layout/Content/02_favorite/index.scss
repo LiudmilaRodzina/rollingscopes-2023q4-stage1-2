@@ -23,7 +23,6 @@
   border-radius: 50%;
   width: 6rem;
   height: 6rem;
-  margin: 0 0.4rem 4.4rem;
   transition: all 0.5s ease-in-out;
 
   @include media-mobile-large {
@@ -63,18 +62,20 @@
   padding-top: 4rem;
 
   @include media-mobile-large {
-    display: block;
+    justify-content: center;
   }
 }
 .slider__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  overflow: hidden;
+  max-width: 48rem;
 
-  @include media-mobile {
+  @include media-mobile-large {
     max-width: 34.8rem;
   }
+}
+.slider-line {
+  display: flex;
+  transition: all 0.5s ease-in-out;
 }
 .slider__card {
   display: flex;
@@ -98,8 +99,19 @@
     @include text(2.4rem, 600, 125%, $color-text-dark);
   }
 }
+
 .slider__controls {
   display: flex;
+  justify-content: center;
   gap: 1.2rem;
   padding-top: 3.8rem;
+}
+.control {
+  width: 4rem;
+  height: 0.4rem;
+  background-color: $color-border-light;
+  border-radius: 10rem;
+}
+.active {
+  background-color: $color-border-dark;
 }
