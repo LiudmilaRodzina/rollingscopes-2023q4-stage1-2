@@ -17,7 +17,13 @@ main.append(about);
 main.append(app);
 footer.append(Footer);
 
-console.log(`Burger: +22;
-Carousel: +14 (progress bar effects are not implemented);
-Video: +8;
-Total: 44`);
+console.log(`1. Burger: +22;
+2. Carousel: +14 (not implemented: progress bar effects);
+3. Categories of products: +2 (products of the selected category are displayed, the rest is not done)
+4. Modal: 0;
+5. Video: +8;
+Total: 46`);
+
+alert(
+  `Привет! Извини, не успела выполнить требования для страницы меню. Если есть возможность подождать с проверкой, буду очень благодарна. Спасибо!`
+);
