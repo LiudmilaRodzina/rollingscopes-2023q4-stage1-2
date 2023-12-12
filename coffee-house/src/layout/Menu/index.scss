@@ -55,7 +55,7 @@
     color: $color-text-accent;
   }
 }
-// Tabs
+
 .tabs__container {
   display: flex;
   justify-content: center;
@@ -65,7 +65,6 @@
     gap: 0.8rem;
   }
 }
-
 .tab {
   @include text(1.6rem, 600, 150%, $color-text-dark);
   text-transform: capitalize;
@@ -205,6 +204,7 @@
   padding: 1.9rem;
   min-height: 19.6rem;
 }
+
 .info__title {
   font-size: 2.4rem;
 }
@@ -214,7 +214,9 @@
 .info__price {
   margin: auto 0 0 0;
 }
-
+.info__container .tab {
+  display: none;
+}
 @include media-desktop {
   .refresh-btn {
     display: flex;
@@ -242,25 +244,139 @@
 // Modal
 .overlay {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: $color-backdrop;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
 .modal {
   position: relative;
   background-color: $color-primary;
   overflow: auto;
-  border-radius: 4rem;
-  width: 80rem;
+  max-width: 80rem;
   min-height: 50.4rem;
-}
+  border-radius: 4rem;
+  padding: 1.6rem;
 
-.info__container .tab {
-  display: none;
+  &__wrapper {
+    display: flex;
+    gap: 2rem;
+  }
+  &__image {
+    border-radius: 4rem;
+    max-width: 31rem;
+
+    &_container {
+      max-width: 34rem;
+      height: 34rem;
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  &__info_container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  &__title {
+    @include text(2.4rem, 600, 125%, $color-text-dark);
+
+    &_size,
+    &_add {
+      @include text(1.6rem, 400, 150%, $color-text-dark);
+      margin-bottom: -1.2rem;
+    }
+  }
+  &__price_total {
+    @include text(2.4rem, 600, 125%, $color-text-dark);
+    padding-bottom: 1.8rem;
+  }
+  &__description {
+    @include text(1.6rem, 400, 150%, $color-text-dark);
+  }
+
+  &__price {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-border-light;
+  }
+
+  &__legend {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: -0.8rem;
+  }
+
+  &__close {
+    display: block;
+    width: 100%;
+    border: 1px solid $color-border-dark;
+    background-color: $color-primary;
+    border-radius: 10rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 1.8rem;
+  }
+
+  &__size input,
+  &__add input {
+    display: none;
+  }
+
+  &__size,
+  &__add {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    align-self: stretch;
+
+    &_option {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      padding: 0.7rem 1.5rem 0.7rem 0.7rem;
+      gap: 0.8rem;
+      border-radius: 10rem;
+      border: 1px solid $color-border-light;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+
+      & > .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.6rem;
+        border-radius: 50%;
+        text-transform: uppercase;
+        background-color: $color-border-light;
+        color: $color-text-dark;
+        transition: all 0.3s ease-in-out;
+      }
+      & > .size_title {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+.checked {
+  color: $color-text-light;
+  background-color: $color-secondary;
+  border: 1px solid $color-secondary;
+  cursor: default;
+}
+.icon-info {
+  width: 16px;
+  height: 16px;
+  background: url(./../../assets/icons/info-empty.svg) center no-repeat;
 }

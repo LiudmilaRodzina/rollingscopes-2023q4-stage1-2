@@ -2,6 +2,7 @@ import htmlToElement from "../../utils/htmlToElement";
 import Menu from "./index.html";
 import * as images from "../../assets/images/menu-images.js";
 import { Article } from "./Article.js";
+import { Modal } from "./Modal.js";
 
 import "./index.scss";
 
@@ -772,6 +773,7 @@ document.addEventListener("DOMContentLoaded", () => {
     articlesContainer.innerHTML = "";
     return articlesContainer;
   };
+
   const generateArticles = (data) => {
     let articles = [];
     data.forEach((article) => {
@@ -783,44 +785,27 @@ document.addEventListener("DOMContentLoaded", () => {
   if (data) {
     renderArticlesToDom();
   }
-  // TABS
-  // const addTabsClickHandler = () => {
-  //   document
-  //     .querySelector(".tabs__container")
-  //     .addEventListener("click", (e) => {
-  //       if (e.target.classList.contains("tab")) {
-  //         let clickedTab = e.target;
-  //         console.log(clickedTab);
 
-  //         removeSelectedTabs();
-  //         selectClickedTab(clickedTab);
-  //         filterMenuBySelectedTab(clickedTab.innerText);
-  //       }
-  //     });
-  // };
   const addTabsClickHandler = () => {
     document
       .querySelector(".tabs__container")
       .addEventListener("click", (e) => {
-        if (e.target.closest(".tab")) {
-          let clickedTab = e.target.closest(".tab");
-          console.log(clickedTab);
-
+        if (e.target.classList.contains("tab")) {
+          let clickedTab = e.target;
           removeSelectedTabs();
           selectClickedTab(clickedTab);
-          filterMenuBySelectedTab(clickedTab.innerHTML);
+          filterMenuBySelectedTab(clickedTab.innerText.toLowerCase());
         }
       });
   };
-
   addTabsClickHandler();
+
   const removeSelectedTabs = () => {
     let tabs = document.querySelectorAll(".tabs__container .tab");
     tabs.forEach((tab) => {
       tab.classList.remove("tab--active");
     });
   };
-
   const selectClickedTab = (clickedTab) => {
     clickedTab.classList.add("tab--active");
   };
@@ -831,10 +816,36 @@ document.addEventListener("DOMContentLoaded", () => {
       article.classList.add("article_hidden");
       article.querySelectorAll(".tab").forEach((tab) => {
         if (tab.innerHTML === clickedTab) {
+          console.log(true);
           article.classList.remove("article_hidden");
         }
       });
     });
+  };
+
+  const addArticleClickHandler = () => {
+    document
+      .querySelector(".articles__container")
+      .addEventListener("click", (e) => {
+        if (e.target.closest(".article")) {
+          let clickedArticleId = e.target
+            .closest(".article")
+            .getAttribute("data-id");
+          let clickedArticleData = getClickedData(clickedArticleId);
+
+          renderArticleModalWindow(clickedArticleData);
+        }
+      });
+  };
+  addArticleClickHandler();
+
+  const getClickedData = (id) => {
+    return data.find((article) => article.id == id);
+  };
+
+  const renderArticleModalWindow = (content) => {
+    let modal = new Modal("modal__wrapper", content);
+    modal.renderModal();
   };
 });
 

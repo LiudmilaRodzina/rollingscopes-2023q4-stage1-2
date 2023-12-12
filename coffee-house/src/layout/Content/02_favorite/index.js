@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(() => {
     nextSlide();
-  }, 5000);
+  }, 7000);
 });
 
 export default content;

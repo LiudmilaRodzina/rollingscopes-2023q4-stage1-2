@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   burgerBtn.addEventListener("click", () => {
     burgerBtn.classList.toggle("open");
     menu.classList.toggle("open");
-
     body.classList.toggle("no-scroll");
   });
 
