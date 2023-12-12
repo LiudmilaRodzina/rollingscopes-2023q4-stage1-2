@@ -65,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
       article.classList.add("article_hidden");
       article.querySelectorAll(".tab").forEach((tab) => {
         if (tab.innerHTML === clickedTab) {
-          console.log(true);
           article.classList.remove("article_hidden");
         }
       });

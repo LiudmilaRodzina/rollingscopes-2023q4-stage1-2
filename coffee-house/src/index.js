@@ -28,16 +28,17 @@ console.log(`1. Burger: +22;
   + For mobile devices, manual switching in the corresponding direction is additionally implemented by swiping left or right: +2
   + When switching to the right after the third element, it returns to the first. When switching to the left after the first element, it returns to the third: +2
 );
-3. Categories of products: +2 (
-  When switching categories, the products of the selected category are displayed: +2
+3. Categories of products: +6 (
+  + When switching categories, the products of the selected category are displayed: +2;
+  + For screens with a width of 768px or less, when opening/reloading the page or switching categories, only 4 products are displayed. If there are more than 4 products in the displayed category, a Load More button is displayed below: +4;
 )
-4. Modal: 10;
+4. Modal: +12;
   + The Modal with the description of a specific product opens when clicking on any part of a card of product: +2
   + The part of the page outside the Modal is darkened: +2
   + When the Modal is open, the vertical scroll of the page becomes inactive; when closed, it becomes active again: +2
   + Clicking on the area around the Modal and Close button closes it: +2
-  + The Modal is centered on both axes, sizes of modal elements and their layout match the design: +1 (only on large screens)
+  + The Modal is centered on both axes, sizes of modal elements and their layout match the design: +2
   + After the Modal is opened, the 'Size' option 'S' is selected, and no option in the 'Additives' section is selected. The product's final price is the same as in the card: +2
 5. Video: +8;
 
-Total: 57`);
+Total: 62`);

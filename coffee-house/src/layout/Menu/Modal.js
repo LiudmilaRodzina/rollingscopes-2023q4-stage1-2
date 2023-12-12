@@ -64,19 +64,19 @@ export class Modal {
     <form class="modal__size">
       <input type="radio" name="size" value="0.00" id="size-s" checked />
       <label for="size-s" class="modal__size_option checked">
-        <span class="icon">${Object.keys(this.sizes)[0].toUpperCase()}</span>
+        <span class="icon">${Object.keys(this.sizes)[0]}</span>
         <span class="size_title">${Object.values(this.sizes)[0].size}</span>
       </label>
 
       <input type="radio" name="size" value="0.50" id="size-m" />
       <label for="size-m" class="modal__size_option">
-        <span class="icon">${Object.keys(this.sizes)[1].toUpperCase()}</span>
+        <span class="icon">${Object.keys(this.sizes)[1]}</span>
         <span class="size_title">${Object.values(this.sizes)[1].size}</span>
       </label>
 
       <input type="radio" name="size" value="1.00" id="size-l" />
       <label for="size-l" class="modal__size_option">
-        <span class="icon">${Object.keys(this.sizes)[2].toUpperCase()}</span>
+        <span class="icon">${Object.keys(this.sizes)[2]}</span>
         <span class="size_title">${Object.values(this.sizes)[2].size}</span>
       </label>
     </form>
@@ -108,7 +108,7 @@ export class Modal {
       <span class="icon-info"></span>
       <p class="modal__legend_text">
         The cost is not final. Download our mobile app to see the final
-        price and place your <br />order. Earn loyalty points and enjoy
+        price and place your order. Earn loyalty points and enjoy
         your favorite coffee with up to 20% discount.
       </p>
     </div>
