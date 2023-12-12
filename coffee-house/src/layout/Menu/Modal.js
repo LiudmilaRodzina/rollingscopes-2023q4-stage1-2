@@ -59,41 +59,45 @@ export class Modal {
       ${this.description}
       </p>
     </div>
-
     <p class="modal__title_size">Size</p>
+
     <form class="modal__size">
       <input type="radio" name="size" value="0.00" id="size-s" checked />
       <label for="size-s" class="modal__size_option checked">
-        <span class="icon">S</span>
-        <span class="size_title">200 ml</span>
+        <span class="icon">${Object.keys(this.sizes)[0].toUpperCase()}</span>
+        <span class="size_title">${Object.values(this.sizes)[0].size}</span>
       </label>
+
       <input type="radio" name="size" value="0.50" id="size-m" />
       <label for="size-m" class="modal__size_option">
-        <span class="icon">M</span>
-        <span class="size_title">300 ml</span>
+        <span class="icon">${Object.keys(this.sizes)[1].toUpperCase()}</span>
+        <span class="size_title">${Object.values(this.sizes)[1].size}</span>
       </label>
+
       <input type="radio" name="size" value="1.00" id="size-l" />
       <label for="size-l" class="modal__size_option">
-        <span class="icon">L</span>
-        <span class="size_title">400 ml</span>
+        <span class="icon">${Object.keys(this.sizes)[2].toUpperCase()}</span>
+        <span class="size_title">${Object.values(this.sizes)[2].size}</span>
       </label>
     </form>
+
     <p class="modal__title_add">Additives</p>
+    
     <form class="modal__add">
       <input type="radio" name="add" value="0.50" id="add-1" />
-      <label for="sadd-1" class="modal__add_option">
+      <label for="add-1" class="modal__add_option">
         <span class="icon">1</span>
-        <span class="size_title">Sugar</span>
+        <span class="size_title">${this.additives[0].name}</span>
       </label>
       <input type="radio" name="add" value="0.50" id="add-2" />
       <label for="add-2" class="modal__add_option">
         <span class="icon">2</span>
-        <span class="size_title">Cinnamon</span>
+        <span class="size_title">${this.additives[1].name}</span>
       </label>
       <input type="radio" name="add" value="0.50" id="add-2" />
       <label for="add-2" class="modal__add_option">
         <span class="icon">3</span>
-        <span class="size_title">Syrup</span>
+        <span class="size_title">${this.additives[2].name}</span>
       </label>
     </form>
     <div class="modal__price">

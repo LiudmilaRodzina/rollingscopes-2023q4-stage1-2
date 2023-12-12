@@ -18,7 +18,7 @@ main.append(app);
 footer.append(Footer);
 
 console.log(
-  `Привет! Извини, не успела выполнить требования для страницы меню. Если есть возможность подождать с проверкой, буду очень благодарна. Спасибо!`
+  `Привет! Извини, не успела выполнить многие требования. Если есть возможность подождать с проверкой, буду очень благодарна. Спасибо!`
 );
 console.log(`1. Burger: +22;
 2. Carousel: +14 (
@@ -32,7 +32,7 @@ console.log(`1. Burger: +22;
   When switching categories, the products of the selected category are displayed: +2
 )
 4. Modal: 10;
-  + The Modal with the description of a specific product opens when clicking on any part of a card of product: +1 (partially)
+  + The Modal with the description of a specific product opens when clicking on any part of a card of product: +2
   + The part of the page outside the Modal is darkened: +2
   + When the Modal is open, the vertical scroll of the page becomes inactive; when closed, it becomes active again: +2
   + Clicking on the area around the Modal and Close button closes it: +2
@@ -40,4 +40,4 @@ console.log(`1. Burger: +22;
   + After the Modal is opened, the 'Size' option 'S' is selected, and no option in the 'Additives' section is selected. The product's final price is the same as in the card: +2
 5. Video: +8;
 
-Total: 56`);
+Total: 57`);
