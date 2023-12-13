@@ -90,12 +90,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   slides.forEach((slide) => {
-    slide.addEventListener("mouseenter", () => {
+    slide.addEventListener("pointerenter", (e) => {
+      if (e.pointerType === "touch") return;
       toggleAnimation();
     });
   });
   slides.forEach((slide) => {
-    slide.addEventListener("mouseleave", () => {
+    slide.addEventListener("pointerleave", (e) => {
+      if (e.pointerType === "touch") return;
       toggleAnimation();
     });
   });
