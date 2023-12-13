@@ -76,6 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
       nextSlide();
     });
   });
+  sliderLine.addEventListener(
+    "contextmenu",
+    function (e) {
+      e.preventDefault();
+    },
+    false
+  );
 
   function toggleAnimation() {
     let progressBar = progressBars[slideIndex];
@@ -98,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   slides.forEach((slide) => {
-    slide.addEventListener("touchleave", () => {
+    slide.addEventListener("touchend", () => {
       toggleAnimation();
     });
   });
@@ -106,8 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
   sliderLine.addEventListener("animationend", nextSlide);
 
   // Touch events
-  document.addEventListener("touchstart", handleTouchStart, false);
-  document.addEventListener("touchmove", handleTouchMove, false);
+  sliderLine.addEventListener("touchstart", handleTouchStart, false);
+  sliderLine.addEventListener("touchmove", handleTouchMove, false);
 
   function handleTouchStart(event) {
     x1 = event.touches[0].clientX;
