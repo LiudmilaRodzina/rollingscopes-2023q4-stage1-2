@@ -6,24 +6,25 @@ import "./index.scss";
 const content = htmlToElement(favorite);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.querySelector(".slider");
-  const images = document.querySelectorAll(".slider__card");
-  const sliderLine = document.querySelector(".slider-line");
-  const arrowLeft = document.querySelector(".arrow-left");
-  const arrowRight = document.querySelector(".arrow-right");
-  const controls = document.querySelectorAll(".control");
+  const sliderLine = document.querySelector(".slider__line");
+  const slides = document.querySelectorAll(".slider__line_card");
+  const arrowLeft = document.querySelector(".slider__arrow_left");
+  const arrowRight = document.querySelector(".slider__arrow_right");
+  const progressBars = document.querySelectorAll(".slider__progress-bar_line");
 
-  let count = 0;
+  let slideIndex = 0;
   let width;
-  let controlIndex = 0;
+  let progressBarIndex = 0;
   let x1 = null;
+
+  progressBars[slideIndex].classList.add("active");
 
   function init() {
     width = document.querySelector(".slider__container").offsetWidth;
-    sliderLine.style.width = width * images.length + "px";
-    images.forEach((item) => {
-      item.style.width = width + "px";
-      item.style.height = "auto";
+    sliderLine.style.width = width * slides.length + "px";
+    slides.forEach((slide) => {
+      slide.style.width = width + "px";
+      slide.style.height = "auto";
     });
     rollSlider();
   }
@@ -31,47 +32,78 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", init);
 
   const nextSlide = () => {
-    count++;
-    controlIndex++;
-    if (count >= images.length) {
-      count = 0;
-      controlIndex = 0;
+    slideIndex++;
+    progressBarIndex++;
+    if (slideIndex >= slides.length) {
+      slideIndex = 0;
+      progressBarIndex = 0;
     }
     rollSlider();
-    thisSlide(controlIndex);
+    thisSlide(progressBarIndex);
   };
   const prevSlide = () => {
-    count--;
-    controlIndex--;
-    if (count < 0) {
-      count = images.length - 1;
-      controlIndex = images.length - 1;
+    slideIndex--;
+    progressBarIndex--;
+    if (slideIndex < 0) {
+      slideIndex = slides.length - 1;
+      progressBarIndex = slides.length - 1;
     }
     rollSlider();
-    thisSlide(controlIndex);
+    thisSlide(progressBarIndex);
   };
   arrowRight.addEventListener("click", nextSlide);
   arrowLeft.addEventListener("click", prevSlide);
-
   function rollSlider() {
-    sliderLine.style.transform = "translate(-" + count * width + "px)";
+    sliderLine.style.transform = "translate(-" + slideIndex * width + "px)";
   }
+  progressBars.forEach((progressBar, index) => {
+    progressBar.addEventListener("click", () => {
+      slideIndex = index;
+      sliderLine.style.transform = "translate(-" + slideIndex * width + "px)";
+      progressBarIndex = index;
+      thisSlide(progressBarIndex);
+    });
+  });
+  const thisSlide = (index) => {
+    for (let progressBar of progressBars) {
+      progressBar.classList.remove("active");
+    }
+    progressBars[index].classList.add("active");
+  };
 
-  controls.forEach((control, index) => {
-    control.addEventListener("click", () => {
-      count = index;
-      sliderLine.style.transform = "translate(-" + count * width + "px)";
-      controlIndex = index;
-      thisSlide(controlIndex);
+  progressBars.forEach((progressBar) => {
+    progressBar.addEventListener("animationend", () => {
+      nextSlide();
     });
   });
 
-  const thisSlide = (index) => {
-    for (let control of controls) {
-      control.classList.remove("active");
-    }
-    controls[index].classList.add("active");
-  };
+  function toggleAnimation() {
+    let progressBar = progressBars[slideIndex];
+    progressBar.classList.toggle("paused");
+  }
+
+  slides.forEach((slide) => {
+    slide.addEventListener("mouseenter", () => {
+      toggleAnimation();
+    });
+  });
+  slides.forEach((slide) => {
+    slide.addEventListener("mouseleave", () => {
+      toggleAnimation();
+    });
+  });
+  slides.forEach((slide) => {
+    slide.addEventListener("touchstart", () => {
+      toggleAnimation();
+    });
+  });
+  slides.forEach((slide) => {
+    slide.addEventListener("touchleave", () => {
+      toggleAnimation();
+    });
+  });
+
+  sliderLine.addEventListener("animationend", nextSlide);
 
   // Touch events
   document.addEventListener("touchstart", handleTouchStart, false);
@@ -93,10 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     x1 = null;
   }
-
-  setInterval(() => {
-    nextSlide();
-  }, 7000);
 });
 
 export default content;
