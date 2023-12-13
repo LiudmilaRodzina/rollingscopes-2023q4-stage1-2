@@ -1,6 +1,5 @@
 import htmlToElement from "../../utils/htmlToElement";
 import Menu from "./index.html";
-// import * as images from "../../assets/images/menu-images.js";
 import data from "./productsData.js";
 import { Article } from "./Article.js";
 import { Modal } from "./Modal.js";
@@ -17,19 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const getArticlesWrapper = () => {
+  function getArticlesWrapper() {
     const articlesContainer = document.querySelector(".articles__container");
     articlesContainer.innerHTML = "";
     return articlesContainer;
-  };
+  }
 
-  const generateArticles = (data) => {
+  function generateArticles(data) {
     let articles = [];
     data.forEach((article) => {
       articles.push(new Article(article));
     });
     return articles;
-  };
+  }
 
   if (data) {
     renderArticlesToDom();
@@ -40,37 +39,41 @@ document.addEventListener("DOMContentLoaded", () => {
       .querySelector(".tabs__container")
       .addEventListener("click", (e) => {
         if (e.target.classList.contains("tab")) {
-          let clickedTab = e.target;
-          removeSelectedTabs();
-          selectClickedTab(clickedTab);
+          let clickedTab = e.target.closest(".tab");
+          console.log(clickedTab);
+          removeTabSelection();
+          addTabSelection(clickedTab);
           filterMenuBySelectedTab(clickedTab.innerText.toLowerCase());
         }
       });
   };
   addTabsClickHandler();
 
-  const removeSelectedTabs = () => {
+  const removeTabSelection = () => {
     let tabs = document.querySelectorAll(".tabs__container .tab");
     tabs.forEach((tab) => {
       tab.classList.remove("tab--active");
     });
   };
-  const selectClickedTab = (clickedTab) => {
+
+  const addTabSelection = (clickedTab) => {
     clickedTab.classList.add("tab--active");
   };
 
-  const filterMenuBySelectedTab = (clickedTab) => {
+  function filterMenuBySelectedTab(clickedTab) {
     let articles = document.querySelectorAll(".article");
     articles.forEach((article) => {
       article.classList.add("article_hidden");
+
       article.querySelectorAll(".tab").forEach((tab) => {
         if (tab.innerHTML === clickedTab) {
           article.classList.remove("article_hidden");
         }
       });
     });
-  };
+  }
 
+  // modal handlers
   const addArticleClickHandler = () => {
     document
       .querySelector(".articles__container")
