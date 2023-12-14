@@ -17,13 +17,12 @@
     color: $color-text-accent;
   }
 }
-.arrow {
+.slider__arrow {
   background-color: $color-primary;
   border: 1px solid $color-border-dark;
   border-radius: 50%;
   width: 6rem;
   height: 6rem;
-  margin: 0 0.4rem 4.4rem;
   transition: all 0.5s ease-in-out;
 
   @include media-mobile-large {
@@ -35,21 +34,21 @@
     width: 2.4rem;
     height: 2.4rem;
   }
-  &-left__icon {
+  &_left-icon {
     background: url(./../../../assets/icons/arrow-left.svg);
     transition: all 0.5s ease-in-out;
   }
-  &-right__icon {
+  &_right-icon {
     background: url(./../../../assets/icons/arrow-right.svg);
     transition: all 0.5s ease-in-out;
   }
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       background-color: $color-secondary;
-      .arrow-left__icon {
+      .arrow_left-icon {
         background: url(./../../../assets/icons/arrow-left-hover.svg);
       }
-      .arrow-right__icon {
+      .arrow_right-icon {
         background: url(./../../../assets/icons/arrow-right-hover.svg);
       }
     }
@@ -63,43 +62,79 @@
   padding-top: 4rem;
 
   @include media-mobile-large {
-    display: block;
+    justify-content: center;
   }
 }
 .slider__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-
-  @include media-mobile {
-    max-width: 34.8rem;
-  }
-}
-.slider__card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  overflow: hidden;
   max-width: 48rem;
-  gap: 1.8rem;
 
   @include media-mobile-large {
     max-width: 34.8rem;
   }
+}
+.slider__line {
+  display: flex;
+  transition: all 1s ease-in-out;
 
-  &_title {
-    @include text(2.4rem, 600, 125%, $color-text-dark);
-  }
-  &_text {
-    @include text(1.6rem, 400, 150%, $color-text-dark);
-  }
-  &_price {
-    @include text(2.4rem, 600, 125%, $color-text-dark);
+  &_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    max-width: 48rem;
+    gap: 1.8rem;
+
+    @include media-mobile-large {
+      max-width: 34.8rem;
+    }
+
+    &-title {
+      @include text(2.4rem, 600, 125%, $color-text-dark);
+    }
+    &-text {
+      @include text(1.6rem, 400, 150%, $color-text-dark);
+    }
+    &-price {
+      @include text(2.4rem, 600, 125%, $color-text-dark);
+    }
   }
 }
-.slider__controls {
+.slider__progress {
   display: flex;
+  justify-content: center;
   gap: 1.2rem;
   padding-top: 3.8rem;
+
+  &-bar {
+    position: relative;
+    background-color: $color-border-light;
+    width: 4rem;
+    height: 0.4rem;
+    border-radius: 10rem;
+
+    &_line {
+      position: absolute;
+      background-color: $color-border-dark;
+      width: 0;
+      height: 0.4rem;
+      border-radius: 10rem;
+
+      &.active {
+        background-color: $color-border-dark;
+        animation: progress 3s linear 0s forwards;
+      }
+      &.paused {
+        animation-play-state: paused;
+      }
+    }
+  }
+}
+@keyframes progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
