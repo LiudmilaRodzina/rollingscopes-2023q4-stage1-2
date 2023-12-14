@@ -197,7 +197,7 @@
   display: none;
 }
 @include media-desktop {
-  .refresh-btn {
+  .load-more__btn {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -208,14 +208,19 @@
     grid-column: 1/-1;
     justify-self: center;
     margin-bottom: 10rem;
+    transition: all 0.3s;
 
     span {
       display: inline-block;
       width: 2.4rem;
       height: 2.4rem;
     }
-    &__icon {
+    &_icon {
       background: url(./../../assets/icons/refresh.svg);
+    }
+    &:hover,
+    &:active {
+      background-color: $color-text-accent;
     }
   }
 }

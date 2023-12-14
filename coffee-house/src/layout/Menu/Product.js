@@ -1,4 +1,4 @@
-export class Article {
+export class Product {
   constructor({ id, name, urlToImage, description, price, category }) {
     this.id = id;
     this.name = name;
@@ -8,7 +8,7 @@ export class Article {
     this.category = category;
   }
 
-  generateArticle() {
+  generateProduct() {
     let template = "";
     let article = document.createElement("article");
     article.className = "article";

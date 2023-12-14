@@ -1,7 +1,7 @@
 import htmlToElement from "../../utils/htmlToElement";
 import Menu from "./index.html";
 import data from "./productsData.js";
-import { Article } from "./Article.js";
+import { Product } from "./Product.js";
 import { Modal } from "./Modal.js";
 
 import "./index.scss";
@@ -9,30 +9,62 @@ import "./index.scss";
 const menu = htmlToElement(Menu);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const renderArticlesToDom = () => {
-    let articlesWrapper = getArticlesWrapper();
-    generateArticles(data).forEach((article) => {
-      articlesWrapper.append(article.generateArticle());
+  const tab1 = document.getElementById("coffee");
+  const tab2 = document.getElementById("tea");
+  const tab3 = document.getElementById("dessert");
+  const products = document.querySelectorAll(".article");
+
+  function generateProducts(data) {
+    let products = [];
+    data.forEach((product) => {
+      products.push(new Product(product));
     });
-  };
-
-  function getArticlesWrapper() {
-    const articlesContainer = document.querySelector(".articles__container");
-    articlesContainer.innerHTML = "";
-    return articlesContainer;
+    return products;
+  }
+  function getProductsWrapper() {
+    const productsContainer = document.querySelector(".articles__container");
+    productsContainer.innerHTML = "";
+    return productsContainer;
   }
 
-  function generateArticles(data) {
-    let articles = [];
-    data.forEach((article) => {
-      articles.push(new Article(article));
+  // const mediaDesktop = window.matchMedia("(min-width: 769px)");
+  // const mediaModile = window.matchMedia("(max-width: 768px)");
+
+  function renderDefault() {
+    let productsWrapper = getProductsWrapper();
+    generateProducts(data.slice(0, 8)).forEach((product) => {
+      productsWrapper.append(product.generateProduct());
     });
-    return articles;
   }
+  renderDefault();
 
-  if (data) {
-    renderArticlesToDom();
-  }
+  tab1.addEventListener("click", () => {
+    products.forEach((product) => {
+      product.classList.add("article_hidden");
+    });
+    let productsWrapper = getProductsWrapper();
+    generateProducts(data.slice(0, 8)).forEach((product) => {
+      productsWrapper.append(product.generateProduct());
+    });
+  });
+  tab2.addEventListener("click", () => {
+    products.forEach((product) => {
+      product.classList.add("article_hidden");
+    });
+    let productsWrapper = getProductsWrapper();
+    generateProducts(data.slice(8, 12)).forEach((product) => {
+      productsWrapper.append(product.generateProduct());
+    });
+  });
+  tab3.addEventListener("click", () => {
+    products.forEach((product) => {
+      product.classList.add("article_hidden");
+    });
+    let productsWrapper = getProductsWrapper();
+    generateProducts(data.slice(12, 21)).forEach((product) => {
+      productsWrapper.append(product.generateProduct());
+    });
+  });
 
   const addTabsClickHandler = () => {
     document
@@ -40,10 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
       .addEventListener("click", (e) => {
         if (e.target.classList.contains("tab")) {
           let clickedTab = e.target.closest(".tab");
-          console.log(clickedTab);
           removeTabSelection();
           addTabSelection(clickedTab);
-          filterMenuBySelectedTab(clickedTab.innerText.toLowerCase());
+          // filterMenuBySelectedTab(clickedTab.innerText.toLowerCase());
         }
       });
   };
@@ -55,46 +86,32 @@ document.addEventListener("DOMContentLoaded", () => {
       tab.classList.remove("tab--active");
     });
   };
-
   const addTabSelection = (clickedTab) => {
     clickedTab.classList.add("tab--active");
   };
 
-  function filterMenuBySelectedTab(clickedTab) {
-    let articles = document.querySelectorAll(".article");
-    articles.forEach((article) => {
-      article.classList.add("article_hidden");
-
-      article.querySelectorAll(".tab").forEach((tab) => {
-        if (tab.innerHTML === clickedTab) {
-          article.classList.remove("article_hidden");
-        }
-      });
-    });
-  }
-
   // modal handlers
-  const addArticleClickHandler = () => {
+  const addProductClickHandler = () => {
     document
       .querySelector(".articles__container")
       .addEventListener("click", (e) => {
         if (e.target.closest(".article")) {
-          let clickedArticleId = e.target
+          let clickedProductId = e.target
             .closest(".article")
             .getAttribute("data-id");
-          let clickedArticleData = getClickedData(clickedArticleId);
+          let clickedProductData = getClickedData(clickedProductId);
 
-          renderArticleModalWindow(clickedArticleData);
+          renderProductModalWindow(clickedProductData);
         }
       });
   };
-  addArticleClickHandler();
+  addProductClickHandler();
 
   const getClickedData = (id) => {
-    return data.find((article) => article.id == id);
+    return data.find((product) => product.id == id);
   };
 
-  const renderArticleModalWindow = (content) => {
+  const renderProductModalWindow = (content) => {
     let modal = new Modal("modal__wrapper", content);
     modal.renderModal();
   };
