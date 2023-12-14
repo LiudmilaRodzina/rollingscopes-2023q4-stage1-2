@@ -27,9 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return productsContainer;
   }
 
-  // const mediaDesktop = window.matchMedia("(min-width: 769px)");
-  // const mediaModile = window.matchMedia("(max-width: 768px)");
-
   function renderDefault() {
     let productsWrapper = getProductsWrapper();
     generateProducts(data.slice(0, 8)).forEach((product) => {
@@ -74,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
           let clickedTab = e.target.closest(".tab");
           removeTabSelection();
           addTabSelection(clickedTab);
-          // filterMenuBySelectedTab(clickedTab.innerText.toLowerCase());
         }
       });
   };

@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", () => {
       burgerBtn.classList.remove("open");
       menu.classList.remove("open");
-
       body.classList.remove("no-scroll");
     });
   });

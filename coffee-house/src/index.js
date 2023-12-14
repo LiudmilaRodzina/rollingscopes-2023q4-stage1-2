@@ -17,9 +17,7 @@ main.append(about);
 main.append(app);
 footer.append(Footer);
 
-console.log(
-  `Привет! Ещё работаю над кнопкой load more. Интерактивность кнопок в модалках точно не успею сделать. Можешь уже проверять, если ждать больше нет возможности! Спасибо большое за терпение!`
-);
+console.log(`Привет! Всё, что смогла, выполнила. Спасибо большое за терпение!`);
 console.log(`1. Burger: +22;
 2. Carousel: +24;
 3. Categories of products: +12;
