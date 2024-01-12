@@ -1,0 +1,49 @@
+@import "normalize.css";
+@import "variables.scss";
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Lato", sans-serif;
+  padding: 3rem;
+  box-sizing: border-box;
+  background-color: rgba(170, 154, 170, 0.2);
+}
+.wrapper {
+  margin: 0 auto;
+  max-width: 144rem;
+}
+.game {
+  display: flex;
+  flex-direction: column;
+  background-color: $color-background;
+  border-radius: 1.5rem;
+  width: 100rem;
+  height: 80vh;
+  padding: 2rem;
+  margin: 0 auto;
+  border: 1px solid rgba(158, 160, 129, 0.5);
+  box-shadow: 0 0 1rem 0.2rem rgba(34, 60, 80, 0.1);
+}
+.section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 50vh;
+  border: 1px solid $color-border;
+  display: flex;
+  &-left {
+    width: 40%;
+    border: 1px solid $color-border;
+  }
+  &-right {
+    width: 60%;
+    border: 1px solid $color-border;
+  }
+}
+.keyboard {
+  width: 100%;
+  height: 40vh;
+  border: 1px solid $color-border;
+}
