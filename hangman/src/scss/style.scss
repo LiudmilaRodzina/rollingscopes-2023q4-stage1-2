@@ -7,31 +7,28 @@ html {
 }
 body {
   font-family: "Lato", sans-serif;
-  padding: 3rem;
+  padding: 0 1rem;
   box-sizing: border-box;
   background-color: rgba(170, 154, 170, 0.2);
 }
-.wrapper {
+.container {
   margin: 0 auto;
   max-width: 144rem;
 }
 .game {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: $color-background;
   border-radius: 1.5rem;
-  width: 100rem;
-  height: 80vh;
+  height: 85vh;
   padding: 2rem;
   margin: 0 auto;
-  border: 1px solid rgba(158, 160, 129, 0.5);
-  box-shadow: 0 0 1rem 0.2rem rgba(34, 60, 80, 0.1);
+  border: 1px solid $color-border;
+  box-shadow: 0 0 1rem 0.2rem $color-border;
 }
 .section {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
   height: 50vh;
-  border: 1px solid $color-border;
   display: flex;
   &-left {
     width: 40%;
@@ -39,11 +36,46 @@ body {
   }
   &-right {
     width: 60%;
-    border: 1px solid $color-border;
+    padding: 1rem;
+    font-size: 2rem;
+    color: $color-text;
+    text-align: center;
+    &__word {
+      margin-bottom: 3rem;
+    }
   }
 }
 .keyboard {
-  width: 100%;
-  height: 40vh;
-  border: 1px solid $color-border;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  padding-top: 4rem;
+  max-width: 70%;
+}
+.key {
+  height: 3rem;
+  width: 3.2rem;
+  border-radius: 0.3rem;
+  font-size: 1.6rem;
+  text-align: center;
+  border: 1.5px solid $color-text;
+  box-shadow: 0 0 0.6rem 0.1rem $color-border;
+  cursor: pointer;
+}
+.dashes {
+  font-size: 3rem;
+}
+.image {
+  width: 40%;
+  height: 70%;
+  padding: 3rem 4rem;
+}
+.request {
+  color: rgb(98, 82, 145);
+  font-size: 0.8rem;
+  text-align: center;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.03rem;
 }
