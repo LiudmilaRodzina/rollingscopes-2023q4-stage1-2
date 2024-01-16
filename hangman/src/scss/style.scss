@@ -19,7 +19,7 @@ body {
   align-items: center;
   margin: 0 auto;
   max-width: 144rem;
-  height: 100dvh;
+  height: 100svh;
   background-color: $color-background;
   border: 1px solid $color-border;
   box-shadow: 0 0 1rem 0.2rem $color-border;
@@ -129,6 +129,7 @@ body {
 
   @include media-mobile-large {
     max-width: 100%;
+    padding-bottom: 3rem;
   }
 
   &_key {
