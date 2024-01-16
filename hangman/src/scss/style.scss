@@ -24,6 +24,7 @@ body {
   border: 1px solid $color-border;
   box-shadow: 0 0 1rem 0.2rem $color-border;
   border-radius: 1.5rem;
+  color: $color-text;
 
   @include media-mobile-large {
     flex-direction: column;
@@ -74,6 +75,7 @@ body {
     }
   }
 }
+
 .section__quiz {
   display: flex;
   flex-direction: column;
@@ -82,7 +84,6 @@ body {
   text-align: center;
   width: 40%;
   font-size: 2.8rem;
-  color: $color-text;
 
   @include media-tablet-land {
     font-size: 2.4rem;
@@ -99,6 +100,13 @@ body {
 
   &_word {
     margin-bottom: 3rem;
+  }
+
+  &_count {
+    color: $color-text-secondary;
+    padding-top: 3rem;
+    font-size: 1.8rem;
+    letter-spacing: 0.06rem;
   }
 }
 
@@ -144,8 +152,8 @@ body {
     }
 
     @include media-mobile-large {
-      height: 4rem;
-      width: 3.8rem;
+      height: 3.9rem;
+      width: 3.7rem;
     }
   }
 
@@ -156,4 +164,65 @@ body {
       font-size: 2.2rem;
     }
   }
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-overlay;
+}
+
+.modal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 38rem;
+  width: 30rem;
+  border-radius: 1.5rem;
+  background-color: $color-modal;
+  border: 0.5px solid $color-text;
+  box-shadow: 0 0 10rem 2rem $color-border;
+}
+
+h2,
+h3 {
+  letter-spacing: 0.08rem;
+}
+
+.button-play {
+  padding: 0.8rem 1.8rem;
+  margin-top: 2.2rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  background-color: $color-border;
+  border: 0.5px solid $color-text;
+  color: $color-text;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-background;
+    box-shadow: 0 0 0.5rem 0.01rem $color-overlay;
+  }
+}
+
+.show {
+  display: flex;
+}
+
+.disabled {
+  cursor: auto;
+  pointer-events: none;
 }
