@@ -3,17 +3,16 @@ export function createHtmlTemplate() {
   let template = "";
   template += `
     <div class="container">
-      <p class="request"><-- Привет! Прости, не успела закончить задание. Если есть возможность, вернись, пожалуйста, к проверке ближе к концу кросс-чека. Спасибо! --> </p>
       <div class="game">
         <div class="section">
-          <div class="section-left">
-          <img src="./images/gallows.png" class="image" alt="gallows image" />
+          <div class="section__image">
+          <img src="./images/gallows.png" class="section__image_img" alt="gallows image" />
           </div>
-          <div class="section-right">
-          <div class="section-right__word"></div>
+          <div class="section__quiz">
+           <div class="section__quiz_word"></div>
           </div>
+          <div class="section__keyboard"></div>
         </div>
-        <div class="keyboard"></div>
       </div>
     </div>
   `;

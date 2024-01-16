@@ -1,0 +1,17 @@
+@mixin media-tablet-land {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media-tablet-port {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-mobile-large {
+  @media (max-width: 620px) {
+    @content;
+  }
+}

@@ -6,7 +6,7 @@ const data = {
   Espresso:
     "A strong, concentrated coffee beverage produced by forcing hot water under pressure through finely ground coffee beans",
   Caffeine:
-    "A natural stimulant found in coffee beans, tea leaves, and other substances, known for its ability to increase alertness and reduce drowsiness",
+    "A natural stimulant found in coffee beans, known for its ability to increase alertness and reduce drowsiness",
   Macchiato:
     "An espresso drink made with a small amount of milk, often topped with foamed milk or whipped cream",
   Latte:
