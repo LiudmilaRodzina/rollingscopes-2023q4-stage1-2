@@ -4,7 +4,7 @@
       <div class="game">
         <div class="section">
           <div class="section-left">
-          <img src="./public/images/gallows.png" class="image" alt="gallows image" />
+          <img src="./images/gallows.png" class="image" alt="gallows image" />
           </div>
           <div class="section-right">
           <div class="section-right__word"></div>
