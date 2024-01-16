@@ -44,8 +44,7 @@ body {
 .section {
   display: flex;
   align-items: center;
-  height: 50vh;
-  gap: 2rem;
+  height: 60vh;
 
   @include media-mobile-large {
     flex-direction: column;
@@ -54,6 +53,27 @@ body {
   }
 }
 
+.section__image {
+  text-align: center;
+  width: 35%;
+
+  @include media-mobile-large {
+    width: 50%;
+  }
+
+  &_img {
+    width: 50%;
+    max-width: 20rem;
+    max-height: 70vh;
+
+    @include media-tablet-land {
+      width: 60%;
+    }
+    @include media-tablet-port {
+      width: 70%;
+    }
+  }
+}
 .section__quiz {
   display: flex;
   flex-direction: column;
@@ -61,11 +81,12 @@ body {
   align-items: center;
   text-align: center;
   width: 40%;
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: $color-text;
 
   @include media-tablet-land {
     font-size: 2.4rem;
+    width: 45%;
   }
 
   @include media-tablet-port {
@@ -81,25 +102,6 @@ body {
   }
 }
 
-.section__image {
-  text-align: center;
-  width: 30%;
-
-  @include media-tablet-port {
-    width: 40%;
-  }
-
-  @include media-mobile-large {
-    width: 50%;
-  }
-
-  &_img {
-    width: 50%;
-    max-width: 20rem;
-    max-height: 70vh;
-  }
-}
-
 .section__keyboard {
   display: flex;
   flex-wrap: wrap;
@@ -107,14 +109,23 @@ body {
   align-items: center;
   gap: 0.8rem;
   max-width: 30%;
+  padding: 0 4rem 0 4rem;
+
+  @include media-tablet-land {
+    max-width: 35%;
+    padding: 0 1rem 0 2rem;
+  }
+  @include media-tablet-port {
+    padding: 0 1rem 0 1rem;
+  }
 
   @include media-mobile-large {
     max-width: 100%;
   }
 
   &_key {
-    height: 3.8rem;
-    width: 3.6rem;
+    height: 3.6rem;
+    width: 3.4rem;
     border-radius: 0.5rem;
     font-size: 1.8rem;
     text-align: center;
@@ -128,8 +139,8 @@ body {
     }
 
     @include media-tablet-port {
-      height: 3.4rem;
-      width: 3.2rem;
+      height: 3.2rem;
+      width: 3rem;
     }
 
     @include media-mobile-large {
@@ -139,10 +150,10 @@ body {
   }
 
   &_dashes {
-    font-size: 3.2rem;
+    font-size: 2.6rem;
 
     @include media-tablet-port {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
     }
   }
 }
