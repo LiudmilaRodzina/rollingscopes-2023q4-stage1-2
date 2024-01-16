@@ -3,10 +3,13 @@ import data from "./data.js";
 
 createHtmlTemplate();
 
-const keyboard = document.querySelector(".section__keyboard");
 const container = document.querySelector(".container");
+const keyboard = document.querySelector(".section__keyboard");
+const image = document.querySelector(".section__image_img");
+
 let winCount = 0;
 let count = 0;
+let maxGuess = 6;
 let hint = "";
 let secretWord = "";
 let overlay, modal, message, playButton;
@@ -18,64 +21,61 @@ const renderOverlay = () => {
 };
 renderOverlay();
 
-const init = () => {
-  for (let i = 65; i < 91; i++) {
-    let key = document.createElement("button");
-    key.classList.add("section__keyboard_key");
-    key.innerText = String.fromCharCode(i);
-    keyboard.append(key);
-
-    key.addEventListener("click", () => {
-      let secretWordArr = secretWord.split("");
-      let dashes = document.getElementsByClassName("section__keyboard_dashes");
-
-      if (secretWordArr.includes(key.innerText)) {
-        secretWordArr.forEach((char, index) => {
-          if (char === key.innerText) {
-            dashes[index].innerText = char;
-            key.classList.add("disabled");
-            key.disabled = true;
-            winCount += 1;
-
-            if (winCount == secretWordArr.length) {
-              overlay.classList.add("show");
-              modal.classList.add("show");
-              message.innerText = "You Win!";
-            }
-          }
-        });
-      } else {
-        key.classList.add("disabled");
-        key.disabled = true;
-        count += 1;
-        document.querySelector(
-          ".section__quiz_count"
-        ).innerText = `Incorrect guesses: ${count} / 6 `;
-
-        if (count === 6) {
-          overlay.classList.add("show");
-          modal.classList.add("show");
-          message.innerText = "You Lose!";
-        }
-      }
-    });
-    keyboard.append(key);
-  }
+const gameOver = (win) => {
+  setTimeout(() => {
+    overlay.classList.add("show");
+    modal.classList.add("show");
+    message.innerText = win ? "You Win!" : "You Lose!";
+  }, 400);
 };
 
+const startGame = (key, text) => {
+  let secretWordArr = secretWord.split("");
+  let dashes = document.getElementsByClassName("section__keyboard_dashes");
+  if (secretWordArr.includes(text)) {
+    secretWordArr.forEach((char, index) => {
+      if (char === key.innerText) {
+        dashes[index].innerText = char;
+        winCount += 1;
+      }
+    });
+  } else {
+    count += 1;
+    image.src = `./images/hangman-${count}.svg`;
+    document.querySelector(
+      ".section__quiz_count"
+    ).innerText = `Incorrect guesses: ${count} / ${maxGuess} `;
+  }
+  key.disabled = true;
+
+  if (count === maxGuess) return gameOver(false);
+  if (winCount == secretWordArr.length) return gameOver(true);
+};
+
+let key;
+for (let i = 65; i < 91; i++) {
+  key = document.createElement("button");
+  key.classList.add("section__keyboard_key");
+  key.innerText = String.fromCharCode(i);
+  keyboard.append(key);
+
+  key.addEventListener("click", (e) =>
+    startGame(e.target, String.fromCharCode(i))
+  );
+}
+
 const generateQuiz = (obj) => {
-  const objArray = Object.keys(obj);
-  const objIndex = [Math.floor(Math.random() * objArray.length)];
-  hint = obj[objArray[objIndex]];
-  secretWord = objArray[objIndex].toUpperCase();
-  let secretWordDisplay = secretWord.replace(
+  const objKeysArr = Object.keys(obj);
+  const randomIndex = [Math.floor(Math.random() * objKeysArr.length)];
+  hint = obj[objKeysArr[randomIndex]];
+  secretWord = objKeysArr[randomIndex].toUpperCase();
+  let secretWordHidden = secretWord.replace(
     /./g,
     '<span class="section__keyboard_dashes">_ </span>'
   );
-  document.querySelector(".section__quiz_word").innerHTML = secretWordDisplay;
+  document.querySelector(".section__quiz_word").innerHTML = secretWordHidden;
   document.querySelector(".section__quiz_hint").append(hint);
 };
-generateQuiz(data);
 
 const renderModal = () => {
   modal = document.createElement("div");
@@ -84,34 +84,28 @@ const renderModal = () => {
 
   message = document.createElement("h2");
 
-  let secretWordDisplay = document.createElement("h3");
-  secretWordDisplay.innerHTML = `The word was: ${secretWord}`;
+  let secretWordModal = document.createElement("h3");
+  secretWordModal.innerHTML = `The word was: ${secretWord}`;
 
   playButton = document.createElement("button");
   playButton.innerText = "New Game";
   playButton.classList.add("button-play");
 
   modal.append(message);
-  modal.append(secretWordDisplay);
+  modal.append(secretWordModal);
   modal.append(playButton);
 };
-renderModal();
 
+generateQuiz(data);
+renderModal();
 console.log(secretWord);
 
-window.onload = init;
-
 console.log(
-  `Привет! Ещё продолжаю выполнять задание. Если есть возможность, вернись, пожалуйста, к проверке ближе к концу кросс-чека. Спасибо!`
+  `Привет! Ещё продолжаю выполнять задание.
+
+  Пока total 115 баллов (150 - 35). Не выполнено:
+  - The user can play the game by using the physical keyboard: -20
+  - When the user clicks the 'play again' button, the game starts over: -15.
+
+  Если есть возможность, вернись, пожалуйста, к проверке ближе к концу кросс-чека. Спасибо!`
 );
-console.log(`Total: 100
-+ Responsive/adaptive UI from 1440px to 360px viewport: +10
-+ Body in the index.html is empty: +20
-+ The game starts with the correct default view and a random question: +5
-+ The user can play the game by using the virtual keyboard: +20
-+ When the letter is correct, it appears instead of the corresponding underscore. If the letter repeats in the word, all corresponding underscores must be replaced by it: +15
-+ When the letter is incorrect: the incorrect guesses counter is updated: +5
-+ The clicked/pressed letter is disabled: +5
-+ When the user runs out of 6 attempts or wins the game, the modal window appears: +10
-+ The modal window includes the message about the game's outcome (winning or losing), the secret word and the 'play again' button: +10
-`);

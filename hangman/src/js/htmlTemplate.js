@@ -6,7 +6,8 @@ export function createHtmlTemplate() {
       <div class="game">
         <div class="section">
           <div class="section__image">
-          <img src="./images/gallows.png" class="section__image_img" alt="gallows image" />
+          <h1>Hangman Game</h1>
+          <img src="./images/hangman-0.svg" class="section__image_img" alt="gallows image" />
           </div>
           <div class="section__quiz">
            <div class="section__quiz_word"></div>
