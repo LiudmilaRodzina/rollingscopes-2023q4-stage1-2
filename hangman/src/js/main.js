@@ -14,6 +14,7 @@ let prevRandomIndex = -1;
 let hint = "";
 let secretWord = "";
 let overlay, modal, message, playButton;
+let pressedButtons = new Set();
 
 const resetGame = () => {
   winCount = 0;
@@ -26,6 +27,7 @@ const resetGame = () => {
     ".section__quiz_count"
   ).innerText = `Incorrect guesses: ${count} / ${maxGuess} `;
   keyboard.querySelectorAll("button").forEach((key) => (key.disabled = false));
+  pressedButtons.clear();
   document.querySelector(".section__quiz_word").innerHTML = "";
   document.querySelector(".section__quiz_hint").innerHTML = "";
 
@@ -51,6 +53,11 @@ const gameOver = (win) => {
 };
 
 const startGame = (key, text) => {
+  if (pressedButtons.has(text)) {
+    return;
+  }
+  pressedButtons.add(text);
+
   let secretWordArr = secretWord.split("");
   let dashes = document.getElementsByClassName("section__keyboard_dashes");
   if (secretWordArr.includes(text)) {
@@ -72,6 +79,17 @@ const startGame = (key, text) => {
   if (count === maxGuess) return gameOver(false);
   if (winCount == secretWordArr.length) return gameOver(true);
 };
+
+document.addEventListener("keypress", (e) => {
+  const key = e.key.toUpperCase();
+
+  if (/^[A-Z]$/.test(key)) {
+    const button = keyboard.querySelector(
+      `.section__keyboard_key:nth-child(${key.charCodeAt(0) - 64})`
+    );
+    startGame(button, key);
+  }
+});
 
 let key;
 for (let i = 65; i < 91; i++) {
@@ -126,9 +144,3 @@ generateQuiz(data);
 renderModal();
 
 playButton.addEventListener("click", resetGame);
-
-console.log(
-  `Привет! Ещё продолжаю выполнять задание.
-Осталось выполнить одно требование (остальное вроде работает):
-- The user can play the game by using the physical keyboard: -20`
-);
