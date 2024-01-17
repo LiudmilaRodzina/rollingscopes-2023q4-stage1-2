@@ -10,9 +10,30 @@ const image = document.querySelector(".section__image_img");
 let winCount = 0;
 let count = 0;
 let maxGuess = 6;
+let prevRandomIndex = -1;
 let hint = "";
 let secretWord = "";
 let overlay, modal, message, playButton;
+
+const resetGame = () => {
+  winCount = 0;
+  count = 0;
+  secretWord = "";
+  modal.classList.remove("show");
+  overlay.classList.remove("show");
+  image.src = `./images/hangman-${count}.svg`;
+  document.querySelector(
+    ".section__quiz_count"
+  ).innerText = `Incorrect guesses: ${count} / ${maxGuess} `;
+  keyboard.querySelectorAll("button").forEach((key) => (key.disabled = false));
+  document.querySelector(".section__quiz_word").innerHTML = "";
+  document.querySelector(".section__quiz_hint").innerHTML = "";
+
+  playButton.removeEventListener("click", resetGame);
+  generateQuiz(data);
+  renderModal();
+  playButton.addEventListener("click", resetGame);
+};
 
 const renderOverlay = () => {
   overlay = document.createElement("div");
@@ -66,7 +87,13 @@ for (let i = 65; i < 91; i++) {
 
 const generateQuiz = (obj) => {
   const objKeysArr = Object.keys(obj);
-  const randomIndex = [Math.floor(Math.random() * objKeysArr.length)];
+
+  let randomIndex = prevRandomIndex;
+  while (randomIndex === prevRandomIndex) {
+    randomIndex = [Math.floor(Math.random() * objKeysArr.length)];
+  }
+  prevRandomIndex = randomIndex;
+
   hint = obj[objKeysArr[randomIndex]];
   secretWord = objKeysArr[randomIndex].toUpperCase();
   let secretWordHidden = secretWord.replace(
@@ -75,6 +102,7 @@ const generateQuiz = (obj) => {
   );
   document.querySelector(".section__quiz_word").innerHTML = secretWordHidden;
   document.querySelector(".section__quiz_hint").append(hint);
+  console.log(secretWord);
 };
 
 const renderModal = () => {
@@ -83,7 +111,6 @@ const renderModal = () => {
   container.append(modal);
 
   message = document.createElement("h2");
-
   let secretWordModal = document.createElement("h3");
   secretWordModal.innerHTML = `The word was: ${secretWord}`;
 
@@ -95,17 +122,13 @@ const renderModal = () => {
   modal.append(secretWordModal);
   modal.append(playButton);
 };
-
 generateQuiz(data);
 renderModal();
-console.log(secretWord);
+
+playButton.addEventListener("click", resetGame);
 
 console.log(
   `Привет! Ещё продолжаю выполнять задание.
-
-  Пока total 115 баллов (150 - 35). Не выполнено:
-  - The user can play the game by using the physical keyboard: -20
-  - When the user clicks the 'play again' button, the game starts over: -15.
-
-  Если есть возможность, вернись, пожалуйста, к проверке ближе к концу кросс-чека. Спасибо!`
+Осталось выполнить одно требование (остальное вроде работает):
+- The user can play the game by using the physical keyboard: -20`
 );
