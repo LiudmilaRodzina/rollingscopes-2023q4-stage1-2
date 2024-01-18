@@ -52,10 +52,6 @@ const gameOver = (result) => {
   overlay.classList.add("show");
   modal.classList.add("show");
   message.innerText = result ? "You Win!" : "You Lose!";
-
-  if (!result) {
-    image.src = "./images/hangman-6.svg";
-  }
 };
 
 const startGame = (key, text) => {
@@ -118,7 +114,7 @@ const generateQuiz = (obj) => {
 
   let randomIndex = prevRandomIndex;
   while (randomIndex === prevRandomIndex) {
-    randomIndex = [Math.floor(Math.random() * objKeysArr.length)];
+    randomIndex = Math.floor(Math.random() * objKeysArr.length);
   }
   prevRandomIndex = randomIndex;
 
