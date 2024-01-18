@@ -25,6 +25,7 @@ body {
   box-shadow: 0 0 1rem 0.2rem $color-border;
   border-radius: 1.5rem;
   color: $color-text;
+  overflow: hidden;
 
   @include media-mobile-large {
     flex-direction: column;
