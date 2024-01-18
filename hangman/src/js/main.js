@@ -44,12 +44,18 @@ const renderOverlay = () => {
 };
 renderOverlay();
 
-const gameOver = (win) => {
-  setTimeout(() => {
-    overlay.classList.add("show");
-    modal.classList.add("show");
-    message.innerText = win ? "You Win!" : "You Lose!";
-  }, 400);
+const gameOver = (result) => {
+  if (!result) {
+    image.src = `./images/hangman-${maxGuess}.svg`;
+  }
+
+  overlay.classList.add("show");
+  modal.classList.add("show");
+  message.innerText = result ? "You Win!" : "You Lose!";
+
+  if (!result) {
+    image.src = "./images/hangman-6.svg";
+  }
 };
 
 const startGame = (key, text) => {
