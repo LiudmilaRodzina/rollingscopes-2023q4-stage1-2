@@ -81,6 +81,10 @@ const startGame = (key, text) => {
 };
 
 document.addEventListener("keypress", (e) => {
+  if (overlay.classList.contains("show")) {
+    return;
+  }
+
   const key = e.key.toUpperCase();
 
   if (/^[A-Z]$/.test(key)) {
