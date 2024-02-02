@@ -16,6 +16,6 @@
     "vite": "^5.0.8"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1"
+    "modern-normalize": "^2.0.0"
   }
 }

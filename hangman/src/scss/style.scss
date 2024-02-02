@@ -1,4 +1,4 @@
-@import "normalize.css";
+@import "modern-normalize";
 @import "variables.scss";
 @import "mixins.scss";
 
@@ -15,8 +15,6 @@ body {
 }
 
 .container {
-  display: flex;
-  align-items: center;
   margin: 0 auto;
   max-width: 144rem;
   height: 100svh;
