@@ -1,6 +1,9 @@
 import createHtmlTemplate from "./htmlTemplate";
+import { onload } from "./themes";
 import puzzles from "./data";
 import "../scss/style.scss";
+
+document.addEventListener("DOMContentLoaded", onload);
 
 const gridSize = 5;
 
@@ -178,5 +181,5 @@ const attachEventListeners = () => {
 
 generateGrid();
 
-const button = document.querySelector(".button");
-button.addEventListener("click", generateGrid);
+const buttonReset = document.querySelector(".reset");
+buttonReset.addEventListener("click", generateGrid);

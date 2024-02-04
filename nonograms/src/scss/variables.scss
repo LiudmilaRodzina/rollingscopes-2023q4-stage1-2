@@ -1,3 +1,4 @@
-$color-primary: #333;
-$color-secondary: #eee;
-$color-border: #bbb;
+$color-black: var(--color-black, #222);
+$color-dark-grey: var(--color-dark-grey, #555);
+$color-light-grey: var(--color-light-grey, #ddd);
+$color-white: var(--color-white, #eee);
