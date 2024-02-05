@@ -1,6 +1,6 @@
 @import "modern-normalize";
 @import "variables.scss";
-@import "mixins.scss";
+@import "modal.scss";
 
 html {
   font-size: 62.5%;
@@ -13,20 +13,21 @@ body {
 }
 
 .container {
-  margin: 0 auto;
+  position: relative;
   display: flex;
   align-items: start;
   justify-content: space-around;
   flex-direction: column;
   box-sizing: border-box;
-  padding-top: 2rem;
+  margin: 0 auto;
   max-width: 144rem;
+  padding-top: 2rem;
 }
 
 .grid-container {
-  margin: 0 auto;
   display: flex;
   flex-direction: column-reverse;
+  margin: 0 auto;
   border: 1px solid $color-black;
 }
 
@@ -36,8 +37,8 @@ body {
   height: 5rem;
   border: 0.5px solid $color-light-grey;
   text-align: center;
-  cursor: pointer;
   background-color: $color-white;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0 0 0.5rem 0.01rem $color-dark-grey;
@@ -87,8 +88,8 @@ body {
 
 .clues-top {
   display: flex;
-  margin-left: 5rem;
   min-height: 5rem;
+  margin-left: 5rem;
 }
 
 .row {
@@ -124,6 +125,7 @@ body {
   display: flex;
   gap: 1rem;
 }
+
 .lock {
   pointer-events: none;
 }

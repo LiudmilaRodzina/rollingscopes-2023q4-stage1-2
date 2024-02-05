@@ -1,5 +1,5 @@
 const setThemeColor = (property, darkModeValue, lightModeValue) => {
-  const darkMode = localStorage.getItem("darkmode") === "true";
+  const darkMode = localStorage.getItem("darkMode") === "true";
   const modeValue = darkMode ? darkModeValue : lightModeValue;
   document.documentElement.style.setProperty(property, modeValue);
 };
@@ -12,15 +12,15 @@ const getThemeColors = () => {
 };
 
 const implementDarkMode = () => {
-  const darkMode = localStorage.getItem("darkmode") === "true";
-  localStorage.setItem("darkmode", !darkMode);
+  const darkMode = localStorage.getItem("darkMode") === "true";
+  localStorage.setItem("darkMode", !darkMode);
   const body = document.querySelector("body");
   body.classList.toggle("dark", !darkMode);
   getThemeColors();
 };
 
 const onload = () => {
-  const darkMode = localStorage.getItem("darkmode") === "true";
+  const darkMode = localStorage.getItem("darkMode") === "true";
   document.body.classList.toggle("dark", darkMode);
   getThemeColors();
 
@@ -32,7 +32,7 @@ const onload = () => {
 
   buttonTheme.addEventListener("click", () => {
     implementDarkMode();
-    const darkMode = localStorage.getItem("darkmode") === "true";
+    const darkMode = localStorage.getItem("darkMode") === "true";
     buttonTheme.innerText = darkMode ? lightImage : darkImage;
     const sound = new Audio();
     sound.src = "audio/switch.mp3";

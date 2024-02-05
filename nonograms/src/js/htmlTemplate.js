@@ -6,6 +6,16 @@ const createHtmlTemplate = () => {
   const gridContainer = document.createElement("div");
   gridContainer.classList.add("grid-container");
 
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+  modal.innerText = "Great! You have solved the nonogram!";
+
+  const buttonClose = document.createElement("button");
+  buttonClose.classList.add("button", "close", "crossed");
+
   const buttonsContainer = document.createElement("div");
   buttonsContainer.classList.add("buttons-container");
 
@@ -20,8 +30,8 @@ const createHtmlTemplate = () => {
   buttonSound.classList.add("button", "sound");
 
   body.append(container);
-
-  container.append(gridContainer, buttonsContainer);
+  container.append(overlay, modal, gridContainer, buttonsContainer);
+  modal.append(buttonClose);
   buttonsContainer.append(buttonTheme, buttonReset, buttonSound);
 
   return gridContainer;

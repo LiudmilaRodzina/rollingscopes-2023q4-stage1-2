@@ -1,6 +1,7 @@
 import createHtmlTemplate from "./htmlTemplate";
 import { onload } from "./themes";
 import { playSound, toggleSound, loadSoundState } from "./sound";
+import { displayModal, closeModal } from "./modal";
 import puzzles from "./data";
 import "../scss/style.scss";
 
@@ -171,7 +172,8 @@ const checkForWin = () => {
   ) {
     playSound("win");
     document.querySelector(".grid").classList.add("lock");
-    setTimeout(() => alert("Great! You have solved the nonogram!"), 0);
+    const buttonClose = document.querySelector(".close");
+    displayModal();
   }
 };
 
@@ -183,6 +185,7 @@ const attachEventListeners = () => {
 };
 
 generateGrid();
+loadSoundState();
 
 const buttonReset = document.querySelector(".reset");
 buttonReset.addEventListener("click", () => {
@@ -197,4 +200,7 @@ buttonSound.addEventListener("click", () => {
   playSound("switch");
 });
 
-loadSoundState();
+const buttonClose = document.querySelector(".close");
+buttonClose.addEventListener("click", () => {
+  closeModal();
+});
