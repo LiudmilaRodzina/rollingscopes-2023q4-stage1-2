@@ -1,17 +1,17 @@
-export const setThemeColor = (property, darkModeValue, lightModeValue) => {
+const setThemeColor = (property, darkModeValue, lightModeValue) => {
   const darkMode = localStorage.getItem("darkmode") === "true";
   const modeValue = darkMode ? darkModeValue : lightModeValue;
   document.documentElement.style.setProperty(property, modeValue);
 };
 
-export const getThemeColors = () => {
+const getThemeColors = () => {
   setThemeColor("--color-black", "#eee", "#222");
   setThemeColor("--color-dark-grey", "#ddd", "#555");
   setThemeColor("--color-light-grey", "#555", "#ddd");
   setThemeColor("--color-white", "#222", "#eee");
 };
 
-export const implementDarkMode = () => {
+const implementDarkMode = () => {
   const darkMode = localStorage.getItem("darkmode") === "true";
   localStorage.setItem("darkmode", !darkMode);
   const body = document.querySelector("body");
@@ -19,21 +19,29 @@ export const implementDarkMode = () => {
   getThemeColors();
 };
 
-export const onload = () => {
+const onload = () => {
   const darkMode = localStorage.getItem("darkmode") === "true";
   document.body.classList.toggle("dark", darkMode);
-  const buttonText = darkMode ? "Light Mode" : "Dark Mode";
   getThemeColors();
 
   const buttonTheme = document.querySelector(".theme");
-  if (buttonTheme) {
-    buttonTheme.innerText = buttonText;
-    buttonTheme.addEventListener("click", () => {
-      implementDarkMode();
-      const darkMode = localStorage.getItem("darkmode") === "true";
-      buttonTheme.innerText = darkMode ? "Light Mode" : "Dark Mode";
-    });
-  }
+
+  buttonTheme.addEventListener("click", () => {
+    implementDarkMode();
+    const darkMode = localStorage.getItem("darkmode") === "true";
+    buttonTheme.innerText = darkMode ? "⚪" : "⚫";
+    const sound = new Audio();
+    sound.src = "audio/switch.mp3";
+    let isSoundOn = localStorage.getItem("isSoundOn");
+
+    if (isSoundOn === "true") {
+      sound.play();
+    } else {
+      sound.pause();
+    }
+  });
 };
 
 document.addEventListener("DOMContentLoaded", onload);
+
+export { onload };

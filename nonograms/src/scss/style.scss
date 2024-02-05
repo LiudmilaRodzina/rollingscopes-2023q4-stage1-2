@@ -9,19 +9,22 @@ html {
 
 body {
   background-color: $color-white;
+  margin: 0 auto;
 }
 
 .container {
+  margin: 0 auto;
   display: flex;
   align-items: start;
   justify-content: space-around;
+  flex-direction: column;
   box-sizing: border-box;
-  margin: 0 auto;
   padding-top: 2rem;
   max-width: 144rem;
 }
 
 .grid-container {
+  margin: 0 auto;
   display: flex;
   flex-direction: column-reverse;
   border: 1px solid $color-black;
@@ -114,4 +117,13 @@ body {
   border-right: none;
   border: 0.5px solid $color-dark-grey;
   border-bottom: 2px solid $color-black;
+}
+
+.buttons-container {
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+}
+.lock {
+  pointer-events: none;
 }

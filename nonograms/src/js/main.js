@@ -1,9 +1,8 @@
 import createHtmlTemplate from "./htmlTemplate";
 import { onload } from "./themes";
+import { playSound, toggleSound, loadSoundState } from "./sound";
 import puzzles from "./data";
 import "../scss/style.scss";
-
-document.addEventListener("DOMContentLoaded", onload);
 
 const gridSize = 5;
 
@@ -139,6 +138,7 @@ const handleLeftClick = (event) => {
     cell.classList.add("filled");
   }
 
+  playSound("left-click");
   checkForWin();
 };
 
@@ -155,6 +155,7 @@ const handleRightClick = (event) => {
     cell.classList.add("crossed");
   }
 
+  playSound("right-click");
   checkForWin();
 };
 
@@ -168,6 +169,8 @@ const checkForWin = () => {
     filledCells.length === solidCells.length &&
     solidCells.every((cell) => cell.classList.contains("filled"))
   ) {
+    playSound("win");
+    document.querySelector(".grid").classList.add("lock");
     setTimeout(() => alert("Great! You have solved the nonogram!"), 0);
   }
 };
@@ -182,4 +185,16 @@ const attachEventListeners = () => {
 generateGrid();
 
 const buttonReset = document.querySelector(".reset");
-buttonReset.addEventListener("click", generateGrid);
+buttonReset.addEventListener("click", () => {
+  generateGrid();
+  playSound("reset");
+});
+
+const buttonSound = document.querySelector(".sound");
+buttonSound.addEventListener("click", () => {
+  loadSoundState();
+  toggleSound();
+  playSound("switch");
+});
+
+loadSoundState();
