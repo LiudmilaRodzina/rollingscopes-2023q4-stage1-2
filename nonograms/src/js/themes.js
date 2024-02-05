@@ -24,12 +24,16 @@ const onload = () => {
   document.body.classList.toggle("dark", darkMode);
   getThemeColors();
 
+  const darkImage = "⚫";
+  const lightImage = "⚪";
+
   const buttonTheme = document.querySelector(".theme");
+  buttonTheme.innerText = darkMode ? lightImage : darkImage;
 
   buttonTheme.addEventListener("click", () => {
     implementDarkMode();
     const darkMode = localStorage.getItem("darkmode") === "true";
-    buttonTheme.innerText = darkMode ? "⚪" : "⚫";
+    buttonTheme.innerText = darkMode ? lightImage : darkImage;
     const sound = new Audio();
     sound.src = "audio/switch.mp3";
     let isSoundOn = localStorage.getItem("isSoundOn");

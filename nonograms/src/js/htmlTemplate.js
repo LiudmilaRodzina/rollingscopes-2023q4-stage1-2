@@ -15,7 +15,6 @@ const createHtmlTemplate = () => {
 
   const buttonTheme = document.createElement("button");
   buttonTheme.classList.add("button", "theme");
-  buttonTheme.innerText = "⚫";
 
   const buttonSound = document.createElement("button");
   buttonSound.classList.add("button", "sound");
