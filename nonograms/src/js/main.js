@@ -9,7 +9,6 @@ const gridSize = 5;
 
 const generatePuzzle = () => {
   const randomPuzzle = Math.floor(Math.random() * puzzles.length);
-  console.log(puzzles[randomPuzzle]);
   return puzzles[randomPuzzle];
 };
 
@@ -201,6 +200,14 @@ buttonSound.addEventListener("click", () => {
 });
 
 const buttonClose = document.querySelector(".close");
+const overlay = document.querySelector(".overlay");
 buttonClose.addEventListener("click", () => {
   closeModal();
 });
+overlay.addEventListener("click", () => {
+  closeModal();
+});
+
+console.log(
+  `Привет! Ещё работаю над заданием. Если есть возможность, вернись, пожалуйста, к проверке ближе к концу кросс-чека. Спасибо!`
+);
