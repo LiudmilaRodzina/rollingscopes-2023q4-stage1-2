@@ -7,14 +7,13 @@ const createHtmlTemplate = () => {
     <div class="modal">Great! You have solved the nonogram!
       <button class="button close crossed"></button>
     </div>
-    <h1>Nonograms Game</h1>
+    <h3>Nonograms Game</h3>
     <div class="grid-container">
-      <div class="grid"></div>
-      <div class="clues-top"></div>
     </div>
     <div class="buttons-container">
       <button class="button theme"></button>
-      <button class="button reset">Random Game (5x5)</button>
+      <button class="button reset">Random Game</button>
+      <button class="button solution">Solution</button>
       <button class="button sound"></button>
     </div>
   </div>

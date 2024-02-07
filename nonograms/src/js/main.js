@@ -5,113 +5,22 @@ import { displayModal, closeModal } from "./modal";
 import puzzles from "./data";
 import "../scss/style.scss";
 
-const gridSize = 5;
-
-const generatePuzzle = () => {
-  const randomPuzzle = Math.floor(Math.random() * puzzles.length);
-  return puzzles[randomPuzzle];
-};
-
 const gridContainer = createHtmlTemplate();
+let gridSize = 0;
+let randomPuzzle;
 let cells;
 
-const getTopClues = (matrix) => {
-  const topClues = [];
-  for (let j = 0; j < gridSize; j++) {
-    let count = 0;
-    const clues = [];
-
-    for (let i = 0; i < gridSize; i++) {
-      if (matrix[i][j] === 1) {
-        count++;
-      } else if (count !== 0) {
-        clues.push(count);
-        count = 0;
-      }
-    }
-
-    if (count !== 0) {
-      clues.push(count);
-    }
-
-    topClues.push(clues);
-  }
-  return topClues;
+const generateRandomPuzzle = () => {
+  randomPuzzle = Math.floor(Math.random() * puzzles.length);
+  console.log(puzzles[randomPuzzle]);
+  return puzzles[randomPuzzle].matrix;
 };
 
-const getLeftClues = (matrix) => {
-  const leftClues = [];
-  for (let i = 0; i < gridSize; i++) {
-    let count = 0;
-    const clues = [];
-
-    for (let j = 0; j < gridSize; j++) {
-      if (matrix[i][j] === 1) {
-        count++;
-      } else if (count !== 0) {
-        clues.push(count);
-        count = 0;
-      }
-    }
-
-    if (count !== 0) {
-      clues.push(count);
-    }
-
-    leftClues.push(clues);
-  }
-
-  return leftClues;
-};
-
-const generateGrid = () => {
-  gridContainer.innerHTML = "";
-
-  const puzzle = generatePuzzle();
-  const topClues = getTopClues(puzzle);
-  const leftClues = getLeftClues(puzzle);
-
-  const grid = document.createElement("div");
-  grid.classList.add("grid");
-  gridContainer.append(grid);
-
-  // Generate top clues
-  const topCluesRow = document.createElement("div");
-  topCluesRow.classList.add("clues-top");
-
-  for (let i = 0; i < gridSize; i++) {
-    const cell = document.createElement("div");
-    cell.classList.add("clue-cell");
-
-    const clues = topClues[i];
-    for (const value of clues) {
-      const clueText = document.createElement("span");
-      clueText.className = "clue-text";
-      clueText.innerText = value;
-      cell.append(clueText);
-    }
-    topCluesRow.append(cell);
-  }
-  gridContainer.append(topCluesRow);
-
-  // Generate rows and left clues
+const generateGridCells = (puzzle, grid) => {
   for (let i = 0; i < gridSize; i++) {
     const row = document.createElement("div");
     row.classList.add("row");
 
-    const leftClueCell = document.createElement("div");
-    leftClueCell.classList.add("clue-cell");
-
-    const clues = leftClues[i];
-    for (const value of clues) {
-      const clueText = document.createElement("span");
-      clueText.className = "clue-text";
-      clueText.innerText = value;
-      leftClueCell.append(clueText);
-    }
-    row.append(leftClueCell);
-
-    // generate grid cells
     for (let j = 0; j < gridSize; j++) {
       const cell = document.createElement("div");
       cell.classList.add("cell");
@@ -122,14 +31,90 @@ const generateGrid = () => {
     }
     grid.append(row);
   }
+};
 
-  cells = Array.from(grid.querySelectorAll(".cell")); // Convert NodeList of cells to an array
+const generateClues = (topClues, leftClues, gridContainer) => {
+  const topCluesContainer = document.createElement("div");
+  topCluesContainer.classList.add("clues-top");
+  gridContainer.append(topCluesContainer);
+
+  for (let i = 0; i < gridSize; i++) {
+    const topClueCell = document.createElement("div");
+    topClueCell.classList.add("clues-top-cell");
+
+    const values = topClues[i];
+    for (const value of values) {
+      const clueText = document.createElement("span");
+      clueText.className = "clue-text";
+      clueText.innerText = value;
+      topClueCell.append(clueText);
+    }
+    topCluesContainer.append(topClueCell);
+  }
+
+  const leftCluesContainer = document.createElement("div");
+  leftCluesContainer.classList.add("clues-left");
+  gridContainer.prepend(leftCluesContainer);
+
+  for (let i = 0; i < gridSize; i++) {
+    const leftClueCell = document.createElement("div");
+    leftClueCell.classList.add("clues-left-cell");
+
+    const values = leftClues[i];
+    for (const value of values) {
+      const clueText = document.createElement("span");
+      clueText.className = "clue-text";
+      clueText.innerText = value;
+      leftClueCell.append(clueText);
+    }
+    leftCluesContainer.append(leftClueCell);
+  }
+};
+
+const generateGrid = () => {
+  gridContainer.innerHTML = "";
+  const grid = document.createElement("div");
+  grid.classList.add("grid");
+  gridContainer.append(grid);
+
+  const randomPuzzle = generateRandomPuzzle();
+  gridSize = randomPuzzle.length;
+  const topClues = getClues(randomPuzzle, "top");
+  const leftClues = getClues(randomPuzzle, "left");
+
+  generateGridCells(randomPuzzle, grid);
+  generateClues(topClues, leftClues, gridContainer);
+
+  cells = Array.from(grid.querySelectorAll(".cell"));
   attachEventListeners();
+};
+
+const getClues = (matrix, orientation) => {
+  const clues = [];
+  for (let i = 0; i < gridSize; i++) {
+    let count = 0;
+    const values = [];
+
+    for (let j = 0; j < gridSize; j++) {
+      const cellValue = orientation === "top" ? matrix[j][i] : matrix[i][j];
+
+      if (cellValue === 1) {
+        count++;
+      } else if (count !== 0) {
+        values.push(count);
+        count = 0;
+      }
+    }
+    if (count !== 0) {
+      values.push(count);
+    }
+    clues.push(values);
+  }
+  return clues;
 };
 
 const handleLeftClick = (event) => {
   const cell = event.target;
-
   if (cell.classList.contains("filled")) {
     cell.classList.remove("filled");
   } else if (cell.classList.contains("crossed")) {
@@ -137,15 +122,13 @@ const handleLeftClick = (event) => {
   } else {
     cell.classList.add("filled");
   }
-
   playSound("left-click");
-  checkForWin();
+  checkForWin(gridContainer);
 };
 
 const handleRightClick = (event) => {
-  event.preventDefault(); // Prevent context menu display
+  event.preventDefault();
   const cell = event.target;
-
   if (cell.classList.contains("filled")) {
     cell.classList.remove("filled");
     cell.classList.add("crossed");
@@ -154,7 +137,6 @@ const handleRightClick = (event) => {
   } else {
     cell.classList.add("crossed");
   }
-
   playSound("right-click");
   checkForWin();
 };
@@ -164,14 +146,12 @@ const checkForWin = () => {
     gridContainer.querySelectorAll(".cell.filled")
   );
   const solidCells = Array.from(gridContainer.querySelectorAll(".cell.solid"));
-
   if (
     filledCells.length === solidCells.length &&
     solidCells.every((cell) => cell.classList.contains("filled"))
   ) {
     playSound("win");
     document.querySelector(".grid").classList.add("lock");
-    const buttonClose = document.querySelector(".close");
     displayModal();
   }
 };
@@ -208,6 +188,24 @@ overlay.addEventListener("click", () => {
   closeModal();
 });
 
-console.log(
-  `Привет! Ещё работаю над заданием. Если есть возможность, вернись, пожалуйста, к проверке ближе к концу кросс-чека. Спасибо!`
-);
+const buttonSolution = document.querySelector(".solution");
+buttonSolution.addEventListener("click", () => {
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach((cell) => {
+    if (cell.classList.contains("crossed")) {
+      cell.classList.remove("crossed");
+    }
+    if (cell.classList.contains("solid")) {
+      cell.classList.add("filled");
+    }
+    if (
+      cell.classList.contains("filled") &&
+      !cell.classList.contains("solid")
+    ) {
+      cell.classList.remove("filled");
+    }
+  });
+  document.querySelector(".grid").classList.add("lock");
+  playSound("reset");
+  loadSoundState();
+});

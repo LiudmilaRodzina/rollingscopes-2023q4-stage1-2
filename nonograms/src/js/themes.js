@@ -37,7 +37,6 @@ const onload = () => {
     const sound = new Audio();
     sound.src = "audio/switch.mp3";
     let isSoundOn = localStorage.getItem("isSoundOn");
-
     if (isSoundOn === "true") {
       sound.play();
     } else {
