@@ -166,8 +166,8 @@ const attachEventListeners = () => {
 generateGrid();
 loadSoundState();
 
-const buttonReset = document.querySelector(".reset");
-buttonReset.addEventListener("click", () => {
+const buttonRandom = document.querySelector(".random");
+buttonRandom.addEventListener("click", () => {
   generateGrid();
   playSound("reset");
 });
@@ -208,4 +208,20 @@ buttonSolution.addEventListener("click", () => {
   document.querySelector(".grid").classList.add("lock");
   playSound("reset");
   loadSoundState();
+});
+
+const buttonRestart = document.querySelector(".restart");
+buttonRestart.addEventListener("click", () => {
+  playSound("reset");
+
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach((cell) => {
+    if (
+      cell.classList.contains("crossed") ||
+      cell.classList.contains("filled")
+    ) {
+      cell.classList.remove("crossed");
+      cell.classList.remove("filled");
+    }
+  });
 });
