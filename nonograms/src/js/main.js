@@ -272,5 +272,24 @@ buttonHard.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  generateGrid();
+  gridContainer.innerHTML = "";
+  const grid = document.createElement("div");
+  grid.classList.add("grid");
+  gridContainer.append(grid);
+
+  const sizePuzzles = puzzles.filter((puzzle) => puzzle.size === "5x5");
+
+  randomIndex = Math.floor(Math.random() * 5);
+
+  const randomPuzzle = sizePuzzles[randomIndex].matrix;
+  console.log(sizePuzzles[randomIndex]);
+
+  gridSize = 5;
+  generateGridCells(randomPuzzle, grid);
+  const topClues = getClues(randomPuzzle, "top");
+  const leftClues = getClues(randomPuzzle, "left");
+  generateClues(topClues, leftClues, gridContainer);
+
+  cells = Array.from(grid.querySelectorAll(".cell"));
+  attachEventListeners();
 });
