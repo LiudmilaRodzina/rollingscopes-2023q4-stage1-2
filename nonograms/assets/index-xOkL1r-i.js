@@ -4,7 +4,6 @@
     <div class="modal">Great! You have solved the nonogram!
       <button class="button close crossed"></button>
     </div>
-
     <div class="grid-container">
     </div>
     <div class="buttons-container">
