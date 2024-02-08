@@ -225,23 +225,20 @@ buttonRestart.addEventListener("click", () => {
       cell.classList.remove("filled");
     }
   });
+
   document.querySelector(".grid").classList.remove("lock");
 });
 
 const handleGridSizeGeneration = (size) => {
   playSound("reset");
-
   const sizePuzzles = puzzles.filter((puzzle) => puzzle.size === size);
-
   randomIndex = prevRandomIndex;
   while (randomIndex === prevRandomIndex) {
     randomIndex = Math.floor(Math.random() * sizePuzzles.length);
   }
   prevRandomIndex = randomIndex;
-
   const randomPuzzle = sizePuzzles[randomIndex].matrix;
   console.log(sizePuzzles[randomIndex]);
-
   const grid = document.querySelector(".grid");
   grid.innerHTML = "";
   gridSize = size === "5x5" ? 5 : size === "10x10" ? 10 : 15;
@@ -254,6 +251,7 @@ const handleGridSizeGeneration = (size) => {
 
   cells = Array.from(grid.querySelectorAll(".cell"));
   attachEventListeners();
+  document.querySelector(".grid").classList.remove("lock");
 };
 
 const buttonEasy = document.querySelector(".easy");
