@@ -7,13 +7,18 @@ import "../scss/style.scss";
 
 const gridContainer = createHtmlTemplate();
 let gridSize = 0;
-let randomPuzzle;
+let prevRandomIndex = -1;
+let randomIndex;
 let cells;
 
 const generateRandomPuzzle = () => {
-  randomPuzzle = Math.floor(Math.random() * puzzles.length);
-  console.log(puzzles[randomPuzzle]);
-  return puzzles[randomPuzzle].matrix;
+  randomIndex = prevRandomIndex;
+  while (randomIndex === prevRandomIndex) {
+    randomIndex = Math.floor(Math.random() * puzzles.length);
+  }
+  prevRandomIndex = randomIndex;
+  console.log(puzzles[randomIndex]);
+  return puzzles[randomIndex].matrix;
 };
 
 const generateGridCells = (puzzle, grid) => {
@@ -227,7 +232,13 @@ const handleGridSizeGeneration = (size) => {
   playSound("reset");
 
   const sizePuzzles = puzzles.filter((puzzle) => puzzle.size === size);
-  const randomIndex = Math.floor(Math.random() * sizePuzzles.length);
+
+  randomIndex = prevRandomIndex;
+  while (randomIndex === prevRandomIndex) {
+    randomIndex = Math.floor(Math.random() * sizePuzzles.length);
+  }
+  prevRandomIndex = randomIndex;
+
   const randomPuzzle = sizePuzzles[randomIndex].matrix;
   console.log(sizePuzzles[randomIndex]);
 
