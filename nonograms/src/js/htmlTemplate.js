@@ -7,7 +7,7 @@ const createHtmlTemplate = () => {
     <div class="modal">Great! You have solved the nonogram!
       <button class="button close crossed"></button>
     </div>
-    <h3>Nonograms Game</h3>
+
     <div class="grid-container">
     </div>
     <div class="buttons-container">
@@ -16,6 +16,7 @@ const createHtmlTemplate = () => {
       <button class="button solution">Solution</button>
       <button class="button sound"></button>
     </div>
+    <h3>Nonograms Game</h3>
   </div>
 `;
   body.innerHTML = template;
