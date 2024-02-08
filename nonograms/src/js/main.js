@@ -163,7 +163,6 @@ const attachEventListeners = () => {
   });
 };
 
-generateGrid();
 loadSoundState();
 
 const buttonRandom = document.querySelector(".random");
@@ -222,4 +221,45 @@ buttonRestart.addEventListener("click", () => {
     }
   });
   document.querySelector(".grid").classList.remove("lock");
+});
+
+const handleGridSizeGeneration = (size) => {
+  playSound("reset");
+
+  const sizePuzzles = puzzles.filter((puzzle) => puzzle.size === size);
+  const randomIndex = Math.floor(Math.random() * sizePuzzles.length);
+  const randomPuzzle = sizePuzzles[randomIndex].matrix;
+  console.log(sizePuzzles[randomIndex]);
+
+  const grid = document.querySelector(".grid");
+  grid.innerHTML = "";
+  gridSize = size === "5x5" ? 5 : size === "10x10" ? 10 : 15;
+  generateGridCells(randomPuzzle, grid);
+  gridContainer.querySelector(".clues-top").remove();
+  gridContainer.querySelector(".clues-left").remove();
+  const topClues = getClues(randomPuzzle, "top");
+  const leftClues = getClues(randomPuzzle, "left");
+  generateClues(topClues, leftClues, gridContainer);
+
+  cells = Array.from(grid.querySelectorAll(".cell"));
+  attachEventListeners();
+};
+
+const buttonEasy = document.querySelector(".easy");
+buttonEasy.addEventListener("click", () => {
+  handleGridSizeGeneration("5x5");
+});
+
+const buttonMedium = document.querySelector(".medium");
+buttonMedium.addEventListener("click", () => {
+  handleGridSizeGeneration("10x10");
+});
+
+const buttonHard = document.querySelector(".hard");
+buttonHard.addEventListener("click", () => {
+  handleGridSizeGeneration("15x15");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  generateGrid();
 });

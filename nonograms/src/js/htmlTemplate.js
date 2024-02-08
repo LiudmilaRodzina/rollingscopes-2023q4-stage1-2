@@ -12,10 +12,15 @@ const createHtmlTemplate = () => {
     </div>
     <div class="buttons-container">
       <button class="button theme"></button>
+      <button class="button easy">Easy</button>
+      <button class="button medium">Medium</button>
+      <button class="button hard">Hard</button>
+      <button class="button sound"></button>
+    </div>
+    <div class="buttons-container">
       <button class="button restart">Restart Game</button>
       <button class="button solution">Solution</button>
       <button class="button random">Random Game</button>
-      <button class="button sound"></button>
     </div>
     <h3>Nonograms Game</h3>
   </div>

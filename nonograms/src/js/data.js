@@ -243,3 +243,24 @@ const puzzles = [
 ];
 
 export default puzzles;
+
+// const buttonEasy = document.querySelector(".easy");
+// buttonEasy.addEventListener("click", () => {
+//   playSound("reset");
+//   gridSize = 5;
+//   generateGrid();
+// });
+
+// const buttonMedium = document.querySelector(".medium");
+// buttonMedium.addEventListener("click", () => {
+//   playSound("reset");
+//   gridSize = 10;
+//   generateGrid();
+// });
+
+// const buttonHard = document.querySelector(".hard");
+// buttonHard.addEventListener("click", () => {
+//   playSound("reset");
+//   gridSize = 15;
+//   generateGrid();
+// });
