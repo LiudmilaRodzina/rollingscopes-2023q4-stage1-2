@@ -148,6 +148,11 @@ h3 {
     padding: 0.5rem;
     width: 3.5rem;
 
+    &:nth-child(5),
+    &:nth-child(10) {
+      border-right: 2px solid $color-dark-grey;
+    }
+
     &:first-child {
       border-left: 2px solid $color-black;
     }
@@ -202,6 +207,10 @@ h3 {
         border-top: 0px solid $color-dark-grey;
       }
     }
+    &:nth-child(5),
+    &:nth-child(10) {
+      border-bottom: 2px solid $color-dark-grey;
+    }
 
     @include media-tablet {
       height: 3.02rem;
@@ -246,10 +255,10 @@ h3 {
 
 .cell:nth-child(5),
 .cell:nth-child(10) {
-  border-right: 0.5px solid $color-dark-grey;
+  border-right: 1px solid $color-dark-grey;
 }
 
 .row:nth-child(5),
 .row:nth-child(10) {
-  border-bottom: 0.5px solid $color-dark-grey;
+  border-bottom: 1px solid $color-dark-grey;
 }
