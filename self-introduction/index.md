@@ -1,4 +1,4 @@
-Link: [Self-introduction by Liudmila Rodzina](https://www.youtube.com/channel/UCBl5Kq8aNruixEygv00lV8g)
+[Self-introduction by Liudmila Rodzina](https://www.youtube.com/watch?v=XWdag9wBIUI)
 
 ## Presentation Transcript:
 
