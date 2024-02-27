@@ -6,6 +6,7 @@ const DotenvWebpackPlugin = require('dotenv-webpack');
 const EslingPlugin = require('eslint-webpack-plugin');
 
 const baseConfig = {
+    devtool: 'inline-cheap-module-source-map',
     entry: path.resolve(__dirname, './src/index'),
     mode: 'development',
     module: {
