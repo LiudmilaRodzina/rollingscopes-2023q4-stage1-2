@@ -1,13 +1,13 @@
-export interface SourceResponse {
+export interface ISourceResponse {
     status: 'ok' | 'error';
-    sources: NewsItems[];
+    sources: INewsItems[];
 }
-export interface ArticleResponse {
+export interface IArticlesResponse {
     status: 'ok' | 'error';
     totalResults: number;
-    articles: NewsItem[];
+    articles: INewsItem[];
 }
-export interface NewsItems {
+export interface INewsItems {
     id: string;
     name: string;
     description: string;
@@ -16,12 +16,12 @@ export interface NewsItems {
     language: string;
     country: string;
 }
-export interface SourceItem {
-    id: string;
+export interface ISourceItem {
+    id: string | null;
     name: string;
 }
-export interface NewsItem {
-    source: SourceItem;
+export interface INewsItem {
+    source: ISourceItem;
     author: string;
     content: string;
     description: string;
@@ -29,4 +29,11 @@ export interface NewsItem {
     title: string;
     url: string;
     urlToImage: string;
+}
+
+export interface ILoader<T> {
+  method: string;
+  endpoint: string;
+  callback: (data: T) => void;
+  options?: Record<string, string>;
 }

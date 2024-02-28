@@ -1,25 +1,33 @@
-import { NewsItem } from '../../../types/types';
+import { INewsItem } from '../../../types/types';
 import './news.css';
 
 class News {
-    draw(data: NewsItem[]): void {
+    public draw(data: INewsItem[]): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
 
+        const selectElement = <T extends HTMLElement>(root: DocumentFragment, selector: string): T => {
+            const element = root.querySelector<T>(selector);
+            if (!element) {
+                throw new TypeError('Element not found.');
+            }
+            return element;
+        };
+
         news.forEach((item, idx) => {
             const newsClone = newsItemTemp.content.cloneNode(true) as DocumentFragment;
-            const newsItem = newsClone.querySelector('.news__item') as HTMLElement;
+            const newsItem = selectElement<HTMLElement>(newsClone, '.news__item');
 
             if (idx % 2) newsItem.classList.add('alt');
 
-            const newsImage = newsClone.querySelector('.news__meta-photo') as HTMLElement;
-            const newsAuthor = newsClone.querySelector('.news__meta-author') as HTMLElement;
-            const newsDate = newsClone.querySelector('.news__meta-date') as HTMLElement;
-            const newsTitle = newsClone.querySelector('.news__description-title') as HTMLElement;
-            const newsSource = newsClone.querySelector('.news__description-source') as HTMLElement;
-            const newsContent = newsClone.querySelector('.news__description-content') as HTMLElement;
-            const newsReadMore = newsClone.querySelector('.news__read-more a') as HTMLElement;
+            const newsImage = selectElement<HTMLElement>(newsClone, '.news__meta-photo');
+            const newsAuthor = selectElement<HTMLElement>(newsClone, '.news__meta-author');
+            const newsDate = selectElement<HTMLElement>(newsClone, '.news__meta-date');
+            const newsTitle = selectElement<HTMLElement>(newsClone, '.news__description-title');
+            const newsSource = selectElement<HTMLElement>(newsClone, '.news__description-source');
+            const newsContent = selectElement<HTMLElement>(newsClone, '.news__description-content');
+            const newsReadMore = selectElement<HTMLElement>(newsClone, '.news__read-more a');
 
             newsImage.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
             newsAuthor.textContent = item.author || item.source.name;
