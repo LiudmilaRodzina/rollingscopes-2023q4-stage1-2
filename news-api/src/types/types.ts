@@ -32,8 +32,8 @@ export interface INewsItem {
 }
 
 export interface ILoader<T> {
-  method: string;
-  endpoint: string;
-  callback: (data: T) => void;
-  options?: Record<string, string>;
+    method: string;
+    endpoint: string;
+    callback: (data: T) => void;
+    options?: Record<string, string>;
 }
