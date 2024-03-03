@@ -6,7 +6,9 @@ class AppLoader extends Loader {
         const apiKey = process.env.API_KEY;
 
         if (!apiUrl || !apiKey) {
-            throw new Error('Please, check if the URL address and your API key are correct.');
+            const errorMessage = 'Please check if the URL address and your API key are correct.';
+            window.alert(errorMessage);
+            throw new Error(errorMessage);
         }
 
         super(apiUrl, {
