@@ -1,9 +1,5 @@
 import { ILoader } from '../../types/types';
-
-enum ErrorCode {
-    Unauthorized = 401,
-    NotFound = 404,
-}
+import { ErrorCode } from '../../types/enums';
 
 class Loader {
     private baseLink: string;
