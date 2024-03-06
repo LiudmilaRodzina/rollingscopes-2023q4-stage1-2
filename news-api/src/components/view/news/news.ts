@@ -1,4 +1,4 @@
-import { INewsItem } from '../../../types/types';
+import { INewsItem } from '../../../typeDeclarations/interfaces';
 import './news.css';
 
 class News {

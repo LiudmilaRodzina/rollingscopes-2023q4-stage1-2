@@ -1,4 +1,4 @@
-import { ISourceItem } from '../../../types/types';
+import { ISourceItem } from '../../../typeDeclarations/interfaces';
 import './sources.css';
 
 class Sources {

@@ -1,8 +1,5 @@
 import AppLoader from './appLoader';
-import { IArticlesResponse, ISourceResponse } from '../../types/types';
-
-type CallSource = (data: ISourceResponse) => void;
-type CallArticles = (data: IArticlesResponse) => void;
+import { CallSource, CallArticles } from '../../typeDeclarations/types';
 
 class AppController extends AppLoader {
     public getSources(callback: CallSource): void {

@@ -1,6 +1,6 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { ISourceResponse, IArticlesResponse } from '../../types/types';
+import { ISourceResponse, IArticlesResponse } from '../../typeDeclarations/interfaces';
 
 class App {
     private controller: AppController;

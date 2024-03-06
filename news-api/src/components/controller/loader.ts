@@ -1,5 +1,6 @@
-import { ILoader } from '../../types/types';
-import { ErrorCode } from '../../types/enums';
+import { ILoader } from '../../typeDeclarations/interfaces';
+import { ErrorCode } from '../../typeDeclarations/enums';
+import { RequestOptions } from '../../typeDeclarations/types';
 
 class Loader {
     private baseLink: string;
@@ -11,11 +12,12 @@ class Loader {
     }
 
     public getResp<T>(
-        { endpoint, options = {} }: { endpoint: string; options?: Record<string, string> },
+        request: RequestOptions,
         callback: (data: T) => void = () => {
             console.error('No callback for GET response');
         }
     ): void {
+        const { endpoint, options = {} } = request;
         this.load<T>({ method: 'GET', endpoint, callback, options });
     }
 
