@@ -1,4 +1,5 @@
 import ErrorMessage from "../../types/enums";
+import LocalStorageManager from "../../storage/localStorage";
 import "./login-validator.scss";
 
 export default class LoginValidator {
@@ -25,6 +26,14 @@ export default class LoginValidator {
   public setupValidation(): void {
     if (this.loginButton) {
       this.loginButton.disabled = true;
+
+      this.loginButton.addEventListener("click", () => {
+        const userData = this.getUserDataFromInputs();
+
+        if (userData) {
+          LocalStorageManager.saveUserData(userData);
+        }
+      });
 
       this.allInputs.forEach((input: HTMLInputElement) => {
         input.addEventListener("input", () => {
@@ -53,6 +62,21 @@ export default class LoginValidator {
     if (this.loginButton) {
       this.loginButton.disabled = !allInputsFilled;
     }
+  }
+
+  private getUserDataFromInputs(): { [key: string]: string } | null {
+    const userData: { [key: string]: string } = {};
+
+    this.allInputs.forEach((input: HTMLInputElement) => {
+      const fieldName = input.getAttribute("name");
+      const value = input.value.trim();
+
+      if (fieldName && value) {
+        userData[fieldName] = value;
+      }
+    });
+
+    return Object.keys(userData).length > 0 ? userData : null;
   }
 
   static isFirstLetterUppercase(input: HTMLInputElement): boolean {
