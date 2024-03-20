@@ -1,0 +1,9 @@
+@import "../../index.scss";
+
+.error-message {
+  display: inline-block;
+  font-size: 0.8em;
+  margin-top: 5px;
+  letter-spacing: 0.03rem;
+  color: $color-error;
+}

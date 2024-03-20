@@ -1,5 +1,5 @@
 import "./index.scss";
-import LoginView from "./view/loginPage/loginPage";
+import LoginView from "./view/login/login-view";
 
 class App {
   constructor() {
