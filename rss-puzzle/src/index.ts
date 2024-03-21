@@ -19,5 +19,7 @@ class App {
 const myApp = new App();
 export default myApp;
 
-console.log(`Completed tasks: 01, 02, 03, 04, 05, 06 (so far)
-Total: 40 points`);
+console.log(`Completed tasks: 01-07
+Total: 45 points
+
+There will be no updates. Thank you!`);

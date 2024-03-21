@@ -31,26 +31,8 @@
   color: $color-text;
 }
 
-.button-login,
-.button-logout {
-  max-width: 20rem;
-  padding: 1rem 2rem;
-  color: $color-text;
-  border: 1px solid $color-border;
-  border-radius: 0.2rem;
-  font-size: 2.2rem;
-  margin-top: 3rem;
-
-  &:disabled {
-    background-color: $color-background;
-    color: $color-disabled-text;
-    cursor: not-allowed;
-  }
-  &:enabled {
-    background-color: $color-active;
-    cursor: pointer;
-  }
-  &:enabled:hover {
-    background-color: $color-hover;
-  }
+.button-login:disabled {
+  background-color: $color-background;
+  color: $color-disabled-text;
+  cursor: not-allowed;
 }

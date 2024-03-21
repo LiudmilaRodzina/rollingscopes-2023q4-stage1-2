@@ -1,6 +1,8 @@
 import ElementCreator from "../element-creator";
 import LocalStorageManager from "../../storage/localStorage";
 import LoginView from "../login/login-view";
+import GameView from "../game/game-view";
+
 import "./start-view.scss";
 
 export default class LoggedInView extends ElementCreator {
@@ -11,6 +13,7 @@ export default class LoggedInView extends ElementCreator {
       textContent: "",
     });
     this.addContent();
+    this.addStartButton();
     this.addLogoutButton();
   }
 
@@ -36,6 +39,21 @@ export default class LoggedInView extends ElementCreator {
     contentContainer.append(appName, userGreeting, appDescription);
 
     this.getElement()?.append(contentContainer);
+  }
+
+  private addStartButton(): void {
+    const startButton = document.createElement("button");
+    startButton.textContent = "Start Game";
+    startButton.classList.add("button-start");
+
+    startButton.addEventListener("click", () => {
+      window.location.hash = "game";
+      const gameView = new GameView();
+      document.body.innerHTML = "";
+      document.body.append(gameView.getElement() as Node);
+    });
+
+    this.getElement()?.append(startButton);
   }
 
   private addLogoutButton(): void {
