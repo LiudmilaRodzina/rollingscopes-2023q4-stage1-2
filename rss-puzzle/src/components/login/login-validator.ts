@@ -1,4 +1,5 @@
 import ErrorMessage from "../../types/enums";
+import LoggedInView from "../../view/start/start-view";
 import LocalStorageManager from "../../storage/localStorage";
 import "./login-validator.scss";
 
@@ -29,9 +30,16 @@ export default class LoginValidator {
 
       this.loginButton.addEventListener("click", () => {
         const userData = this.getUserDataFromInputs();
-
         if (userData) {
           LocalStorageManager.saveUserData(userData);
+        }
+
+        const loggedInView = new LoggedInView();
+        const loggedInElement = loggedInView.getElement();
+        if (loggedInElement) {
+          window.history.pushState(null, "", "#start");
+          document.body.innerHTML = "";
+          document.body.append(loggedInElement);
         }
       });
 
@@ -48,6 +56,11 @@ export default class LoginValidator {
         }
       });
     }
+  }
+
+  static checkUserData(): boolean {
+    const userData = localStorage.getItem("userData");
+    return userData !== null;
   }
 
   private validateEmptyInputs(): void {

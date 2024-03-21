@@ -1,6 +1,7 @@
 import "./login-view.scss";
 import ElementCreator from "../element-creator";
 import LoginValidator from "../../components/login/login-validator";
+import LoggedInView from "../start/start-view";
 
 export default class LoginView extends ElementCreator {
   constructor() {
@@ -22,7 +23,7 @@ export default class LoginView extends ElementCreator {
     text: string,
     attr: string,
     classNames: string[],
-    autocomplete: string = "",
+    autocomplete: string = ""
   ): void {
     const elementParams = {
       tag,
@@ -55,5 +56,21 @@ export default class LoginView extends ElementCreator {
     this.addElement("label", "Surname:", "", ["input-label"]);
     this.addElement("input", "", "surname", ["input-field", "surname"], "off");
     this.addElement("button", "Login", "", ["button", "button-login"]);
+  }
+
+  static handleDOMContentLoaded() {
+    document.addEventListener("DOMContentLoaded", () => {
+      const { hash } = window.location;
+
+      if (hash === "#start") {
+        const loggedInView = new LoggedInView();
+        const loggedInElement = loggedInView.getElement();
+
+        if (loggedInElement) {
+          document.body.innerHTML = "";
+          document.body.append(loggedInElement);
+        }
+      }
+    });
   }
 }

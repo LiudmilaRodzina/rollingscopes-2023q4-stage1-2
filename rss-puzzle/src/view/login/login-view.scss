@@ -11,6 +11,7 @@
   width: 50rem;
   height: 40rem;
   padding-bottom: 3rem;
+  margin-bottom: 10rem;
 }
 
 .input-label {
@@ -30,7 +31,8 @@
   color: $color-text;
 }
 
-.button-login {
+.button-login,
+.button-logout {
   max-width: 20rem;
   padding: 1rem 2rem;
   color: $color-text;

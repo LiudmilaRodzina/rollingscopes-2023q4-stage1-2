@@ -11,4 +11,8 @@ export default class LocalStorageManager {
     }
     return Object.values(userData).every((value) => value.trim() !== "");
   }
+
+  static removeUserData(): void {
+    localStorage.removeItem("userData");
+  }
 }

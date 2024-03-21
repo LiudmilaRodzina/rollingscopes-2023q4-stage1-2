@@ -13,10 +13,11 @@ class App {
     if (bodyElement) {
       bodyElement.append(loginView.getElement() as Node);
     }
+    LoginView.handleDOMContentLoaded();
   }
 }
 const myApp = new App();
 export default myApp;
 
-console.log(`Completed tasks: 01, 02, 03 (so far)
-Total: 25 points`);
+console.log(`Completed tasks: 01, 02, 03, 04 (so far)
+Total: 30 points`);
