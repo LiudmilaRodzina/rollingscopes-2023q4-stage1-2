@@ -1,7 +1,7 @@
-import ErrorMessage from "../../types/enums";
-import LoggedInView from "../../view/start/start-view";
-import LocalStorageManager from "../../storage/localStorage";
-import "./login-validator.scss";
+import ErrorMessage from '../../types/enums';
+import LoggedInView from '../../view/start/start-view';
+import LocalStorageManager from '../../storage/localStorage';
+import './login-validator.scss';
 
 export default class LoginValidator {
   formElement: HTMLFormElement;
@@ -28,7 +28,7 @@ export default class LoginValidator {
     if (this.loginButton) {
       this.loginButton.disabled = true;
 
-      this.loginButton.addEventListener("click", () => {
+      this.loginButton.addEventListener('click', () => {
         const userData = this.getUserDataFromInputs();
         if (userData) {
           LocalStorageManager.saveUserData(userData);
@@ -37,39 +37,38 @@ export default class LoginValidator {
         const loggedInView = new LoggedInView();
         const loggedInElement = loggedInView.getElement();
         if (loggedInElement) {
-          window.history.pushState(null, "", "#start");
-          document.body.innerHTML = "";
+          window.history.pushState(null, '', '#start');
+          document.body.innerHTML = '';
           document.body.append(loggedInElement);
         }
       });
 
       this.allInputs.forEach((input: HTMLInputElement) => {
-        input.addEventListener("input", () => {
+        input.addEventListener('input', () => {
           this.validateEmptyInputs();
           LoginValidator.validateUppercaseFirstLetter(input);
           this.validateCharacterRestriction(input);
           LoginValidator.validateMinimumLength(input);
         });
 
-        if (input.tagName === "input") {
-          input.setAttribute("required", "true");
+        if (input.tagName === 'input') {
+          input.setAttribute('required', 'true');
         }
       });
     }
   }
 
   static checkUserData(): boolean {
-    const userData = localStorage.getItem("userData");
+    const userData = localStorage.getItem('userData');
     return userData !== null;
   }
 
   private validateEmptyInputs(): void {
     const allInputsFilled = this.allInputs.every(
-      (input: HTMLInputElement) =>
-        input.value.trim() !== "" &&
-        LoginValidator.validateUppercaseFirstLetter(input) &&
-        this.validateCharacterRestriction(input) &&
-        LoginValidator.validateMinimumLength(input),
+      (input: HTMLInputElement) => input.value.trim() !== ''
+        && LoginValidator.validateUppercaseFirstLetter(input)
+        && this.validateCharacterRestriction(input)
+        && LoginValidator.validateMinimumLength(input),
     );
 
     if (this.loginButton) {
@@ -81,7 +80,7 @@ export default class LoginValidator {
     const userData: { [key: string]: string } = {};
 
     this.allInputs.forEach((input: HTMLInputElement) => {
-      const fieldName = input.getAttribute("name");
+      const fieldName = input.getAttribute('name');
       const value = input.value.trim();
 
       if (fieldName && value) {
@@ -121,15 +120,15 @@ export default class LoginValidator {
   }
 
   static validateMinimumLength(input: HTMLInputElement): boolean {
-    const fieldName = input.getAttribute("name");
+    const fieldName = input.getAttribute('name');
     const lengthName = 3;
     const lengthSurname = 4;
-    const minLength = fieldName === "name" ? lengthName : lengthSurname;
+    const minLength = fieldName === 'name' ? lengthName : lengthSurname;
     const currentErrorMessage = input.nextElementSibling as HTMLElement;
 
     if (
-      currentErrorMessage &&
-      currentErrorMessage.className === "error-message"
+      currentErrorMessage
+      && currentErrorMessage.className === 'error-message'
     ) {
       return true;
     }
@@ -142,10 +141,9 @@ export default class LoginValidator {
       return false;
     }
     if (input.value.length < minLength) {
-      const errorMessage =
-        fieldName === "name"
-          ? ErrorMessage.LengthRestrictionName
-          : ErrorMessage.LengthRestrictionSurname;
+      const errorMessage = fieldName === 'name'
+        ? ErrorMessage.LengthRestrictionName
+        : ErrorMessage.LengthRestrictionSurname;
 
       LoginValidator.showErrorMessage(input, errorMessage);
       return false;
@@ -156,17 +154,17 @@ export default class LoginValidator {
 
   static showErrorMessage(input: HTMLInputElement, message: string): void {
     const errorElement = input.nextElementSibling as HTMLElement;
-    if (!errorElement || errorElement.className !== "error-message") {
-      const errorMessage = document.createElement("span");
-      errorMessage.className = "error-message";
+    if (!errorElement || errorElement.className !== 'error-message') {
+      const errorMessage = document.createElement('span');
+      errorMessage.className = 'error-message';
       errorMessage.textContent = message;
-      input.insertAdjacentElement("afterend", errorMessage);
+      input.insertAdjacentElement('afterend', errorMessage);
     }
   }
 
   static hideErrorMessage(input: HTMLInputElement): void {
     const errorElement = input.nextElementSibling as HTMLElement;
-    if (errorElement && errorElement.className === "error-message") {
+    if (errorElement && errorElement.className === 'error-message') {
       errorElement.remove();
     }
   }
@@ -187,7 +185,7 @@ export default class LoginValidator {
       return false;
     }
     if (
-      currentInput.getAttribute("name") !== inputToCheck.getAttribute("name")
+      currentInput.getAttribute('name') !== inputToCheck.getAttribute('name')
     ) {
       return true;
     }

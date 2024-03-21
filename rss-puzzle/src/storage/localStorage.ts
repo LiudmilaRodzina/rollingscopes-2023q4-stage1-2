@@ -1,7 +1,7 @@
 export default class LocalStorageManager {
   static saveUserData(userData: { [key: string]: string }): void {
     if (LocalStorageManager.validateUserData(userData)) {
-      localStorage.setItem("userData", JSON.stringify(userData));
+      localStorage.setItem('userData', JSON.stringify(userData));
     }
   }
 
@@ -9,10 +9,10 @@ export default class LocalStorageManager {
     if (!userData || Object.keys(userData).length === 0) {
       return false;
     }
-    return Object.values(userData).every((value) => value.trim() !== "");
+    return Object.values(userData).every((value) => value.trim() !== '');
   }
 
   static removeUserData(): void {
-    localStorage.removeItem("userData");
+    localStorage.removeItem('userData');
   }
 }

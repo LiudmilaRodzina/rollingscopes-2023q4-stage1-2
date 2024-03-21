@@ -1,41 +1,44 @@
-import ElementCreator from "../element-creator";
-import LocalStorageManager from "../../storage/localStorage";
-import LoginView from "../login/login-view";
-import "./start-view.scss";
+import ElementCreator from '../element-creator';
+import LocalStorageManager from '../../storage/localStorage';
+import LoginView from '../login/login-view';
+import './start-view.scss';
 
 export default class LoggedInView extends ElementCreator {
   constructor() {
     super({
-      tag: "div",
-      classNames: ["logged-in-container"],
-      textContent: "",
+      tag: 'div',
+      classNames: ['logged-in-container'],
+      textContent: '',
     });
     this.addContent();
     this.addLogoutButton();
   }
 
   private addContent(): void {
-    const welcomeText = document.createElement("p");
-    welcomeText.textContent = "Welcome, you are logged in!";
+    const appName = document.createElement('p');
+    appName.textContent = 'ENGLISH PUZZLE';
 
-    const contentContainer = document.createElement("div");
-    contentContainer.classList.add("content-container");
-    contentContainer.append(welcomeText);
+    const appDescription = document.createElement('span');
+    appDescription.textContent = 'Click on words, collect phrases. Words can be dragged and dropped. Select tooltips in the menu';
+
+    const contentContainer = document.createElement('div');
+    contentContainer.classList.add('content-container');
+    contentContainer.append(appName, appDescription);
 
     this.getElement()?.append(contentContainer);
   }
 
   private addLogoutButton(): void {
-    const logoutButton = document.createElement("button");
-    logoutButton.textContent = "Logout";
-    logoutButton.classList.add("button-logout");
+    const logoutButton = document.createElement('button');
+    logoutButton.textContent = 'Logout';
+    logoutButton.classList.add('button-logout');
 
-    logoutButton.addEventListener("click", () => {
+    logoutButton.addEventListener('click', () => {
       LocalStorageManager.removeUserData();
 
-      window.location.hash = "login";
+      window.location.hash = 'login';
       const loginView = new LoginView();
-      document.body.innerHTML = "";
+      document.body.innerHTML = '';
       document.body.append(loginView.getElement() as Node);
     });
 

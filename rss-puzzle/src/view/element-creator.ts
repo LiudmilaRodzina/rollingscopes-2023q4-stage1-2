@@ -3,9 +3,9 @@ export default class ElementCreator {
 
   constructor(
     params: { tag: string; classNames: string[]; textContent: string } = {
-      tag: "",
+      tag: '',
       classNames: [],
-      textContent: "",
+      textContent: '',
     },
   ) {
     this.element = null;
