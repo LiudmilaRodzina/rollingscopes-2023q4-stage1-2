@@ -15,4 +15,9 @@ export default class LocalStorageManager {
   static removeUserData(): void {
     localStorage.removeItem('userData');
   }
+
+  static getUserData(): { [key: string]: string } {
+    const userDataString = localStorage.getItem('userData') || '{}';
+    return JSON.parse(userDataString);
+  }
 }
