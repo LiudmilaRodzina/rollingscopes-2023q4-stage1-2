@@ -3,9 +3,9 @@ export default class ElementCreator {
 
   constructor(
     params: { tag: string; classNames: string[]; textContent: string } = {
-      tag: '',
+      tag: "",
       classNames: [],
-      textContent: '',
+      textContent: "",
     },
   ) {
     this.element = null;
@@ -18,11 +18,11 @@ export default class ElementCreator {
     textContent: string;
   }): void {
     this.element = document.createElement(params.tag);
-    this.setCSSClasses(params.classNames);
+    this.setCssClasses(params.classNames);
     this.setTextContent(params.textContent);
   }
 
-  private setCSSClasses(cssClasses: string[]): void {
+  private setCssClasses(cssClasses: string[]): void {
     cssClasses.forEach((className: string) => {
       if (this.element) {
         this.element.classList.add(className);
