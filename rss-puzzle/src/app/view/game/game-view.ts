@@ -45,7 +45,9 @@ export default class GameView extends ElementCreator {
 
     logoutButton.addEventListener("click", () => {
       LocalStorageHandler.removeUserData();
-      window.location.href = `/#${HASH_VALUE.LOGIN}`;
+      const pathArray = window.location.pathname.split("/");
+      const basePath = pathArray.slice(0, -2).join("/");
+      window.location.href = `${window.location.origin}${basePath}/#${HASH_VALUE.LOGIN}`;
     });
 
     this.getElement()?.append(logoutButton);
