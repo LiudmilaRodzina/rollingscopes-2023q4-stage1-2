@@ -1,4 +1,4 @@
-import AppController from "./app/app-controller";
+import AppController from './app/app-controller';
 
 class App {
   constructor() {

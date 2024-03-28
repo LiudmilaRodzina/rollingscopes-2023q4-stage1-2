@@ -1,24 +1,23 @@
-import "./game-view.scss";
-import ElementCreator from "../element-creator";
-import LocalStorageHandler from "../../storage/localStorage-handler";
+import './game-view.scss';
+import ElementCreator from '../element-creator';
+import LocalStorageHandler from '../../storage/localStorage-handler';
 
-const NOTIFICATION_MESSAGE =
-  "Sorry, we are experiencing technical difficulties. Please try again later";
-const LOGOUT_BUTTON_TEXT = "Logout";
+const NOTIFICATION_MESSAGE = 'Sorry, we are experiencing technical difficulties. Please try again later';
+const LOGOUT_BUTTON_TEXT = 'Logout';
 
 const CLASS_NAME = {
-  GAME_CONTAINER: "game-container",
-  BUTTON_LOGOUT: "button-logout",
+  GAME_CONTAINER: 'game-container',
+  BUTTON_LOGOUT: 'button-logout',
 };
 
 const TAG = {
-  BUTTON: "button",
-  CONTAINER: "div",
-  PARAGRAPH: "p",
+  BUTTON: 'button',
+  CONTAINER: 'div',
+  PARAGRAPH: 'p',
 };
 
 const HASH_VALUE = {
-  LOGIN: "login",
+  LOGIN: 'login',
 };
 
 export default class GameView extends ElementCreator {
@@ -26,7 +25,7 @@ export default class GameView extends ElementCreator {
     super({
       tag: TAG.CONTAINER,
       classNames: [CLASS_NAME.GAME_CONTAINER],
-      textContent: "",
+      textContent: '',
     });
     this.addContent();
     this.addLogoutButton();
@@ -43,10 +42,10 @@ export default class GameView extends ElementCreator {
     logoutButton.textContent = LOGOUT_BUTTON_TEXT;
     logoutButton.classList.add(CLASS_NAME.BUTTON_LOGOUT);
 
-    logoutButton.addEventListener("click", () => {
+    logoutButton.addEventListener('click', () => {
       LocalStorageHandler.removeUserData();
-      const pathArray = window.location.pathname.split("/");
-      const basePath = pathArray.slice(0, -2).join("/");
+      const pathArray = window.location.pathname.split('/');
+      const basePath = pathArray.slice(0, -1).join('/');
       window.location.href = `${window.location.origin}${basePath}/#${HASH_VALUE.LOGIN}`;
     });
 

@@ -1,28 +1,28 @@
-import "./login-handler.scss";
-import ErrorMessage from "../types/enums";
-import LocalStorageHandler from "../storage/localStorage-handler";
-import StartScreenView from "../view/start/start-view";
-import GameView from "../view/game/game-view";
+import './login-handler.scss';
+import ErrorMessage from '../types/enums';
+import LocalStorageHandler from '../storage/localStorage-handler';
+import StartScreenView from '../view/start/start-view';
+import GameView from '../view/game/game-view';
 
-const CLASS_NAME = { ERROR_MESSAGE_CLASS: "error-message" };
+const CLASS_NAME = { ERROR_MESSAGE_CLASS: 'error-message' };
 
 const TAG = {
-  INPUT: "input",
-  SPAN: "span",
+  INPUT: 'input',
+  SPAN: 'span',
 };
 
 const HASH_VALUE = {
-  START: "start",
-  GAME: "game",
+  START: 'start',
+  GAME: 'game',
 };
 
 const INPUT_ATTRIBUTE = {
-  NAME: "name",
+  NAME: 'name',
 };
 const INPUT_ATTRIBUTE_NAME = {
-  FIRST_NAME: "first-name",
-  SURNAME: "surname",
-  BLANK: "",
+  FIRST_NAME: 'first-name',
+  SURNAME: 'surname',
+  BLANK: '',
 };
 
 const MIN_LENGTH_NAME = 3;
@@ -51,7 +51,7 @@ export default class LoginHandler {
 
   public setupValidation(): void {
     if (this.loginButton) {
-      this.loginButton.addEventListener("click", () => {
+      this.loginButton.addEventListener('click', () => {
         const userData = this.getUserDataFromInputs();
         if (userData) {
           LocalStorageHandler.saveUserData(userData);
@@ -60,7 +60,7 @@ export default class LoginHandler {
       });
 
       this.allInputs.forEach((input: HTMLInputElement) => {
-        input.addEventListener("input", () => {
+        input.addEventListener('input', () => {
           this.validateEmptyInputs();
           LoginHandler.validateUppercaseFirstLetter(input);
           this.validateCharacterRestriction(input);
@@ -68,7 +68,7 @@ export default class LoginHandler {
         });
 
         if (input.tagName === TAG.INPUT) {
-          input.setAttribute("required", "true");
+          input.setAttribute('required', 'true');
         }
       });
     }
@@ -76,11 +76,10 @@ export default class LoginHandler {
 
   private validateEmptyInputs(): void {
     const allInputsFilled = this.allInputs.every(
-      (input: HTMLInputElement) =>
-        input.value.trim() !== "" &&
-        LoginHandler.validateUppercaseFirstLetter(input) &&
-        this.validateCharacterRestriction(input) &&
-        LoginHandler.validateMinimumLength(input),
+      (input: HTMLInputElement) => input.value.trim() !== ''
+        && LoginHandler.validateUppercaseFirstLetter(input)
+        && this.validateCharacterRestriction(input)
+        && LoginHandler.validateMinimumLength(input),
     );
 
     if (this.loginButton) {
@@ -118,15 +117,14 @@ export default class LoginHandler {
 
   static validateMinimumLength(input: HTMLInputElement): boolean {
     const fieldName = input.getAttribute(INPUT_ATTRIBUTE.NAME);
-    const minLength =
-      fieldName === INPUT_ATTRIBUTE_NAME.FIRST_NAME
-        ? MIN_LENGTH_NAME
-        : MIN_LENGTH_SURNAME;
+    const minLength = fieldName === INPUT_ATTRIBUTE_NAME.FIRST_NAME
+      ? MIN_LENGTH_NAME
+      : MIN_LENGTH_SURNAME;
     const currentErrorMessage = input.nextElementSibling as HTMLElement;
 
     if (
-      currentErrorMessage &&
-      currentErrorMessage.className === CLASS_NAME.ERROR_MESSAGE_CLASS
+      currentErrorMessage
+      && currentErrorMessage.className === CLASS_NAME.ERROR_MESSAGE_CLASS
     ) {
       return true;
     }
@@ -139,10 +137,9 @@ export default class LoginHandler {
       return false;
     }
     if (input.value.length < minLength) {
-      const errorMessage =
-        fieldName === INPUT_ATTRIBUTE_NAME.FIRST_NAME
-          ? ErrorMessage.LengthRestrictionName
-          : ErrorMessage.LengthRestrictionSurname;
+      const errorMessage = fieldName === INPUT_ATTRIBUTE_NAME.FIRST_NAME
+        ? ErrorMessage.LengthRestrictionName
+        : ErrorMessage.LengthRestrictionSurname;
 
       LoginHandler.showErrorMessage(input, errorMessage);
       return false;
@@ -154,21 +151,21 @@ export default class LoginHandler {
   static showErrorMessage(input: HTMLInputElement, message: string): void {
     const errorElement = input.nextElementSibling as HTMLElement;
     if (
-      !errorElement ||
-      errorElement.className !== CLASS_NAME.ERROR_MESSAGE_CLASS
+      !errorElement
+      || errorElement.className !== CLASS_NAME.ERROR_MESSAGE_CLASS
     ) {
       const errorMessage = document.createElement(TAG.SPAN);
       errorMessage.className = CLASS_NAME.ERROR_MESSAGE_CLASS;
       errorMessage.textContent = message;
-      input.insertAdjacentElement("afterend", errorMessage);
+      input.insertAdjacentElement('afterend', errorMessage);
     }
   }
 
   static hideErrorMessage(input: HTMLInputElement): void {
     const errorElement = input.nextElementSibling as HTMLElement;
     if (
-      errorElement &&
-      errorElement.className === CLASS_NAME.ERROR_MESSAGE_CLASS
+      errorElement
+      && errorElement.className === CLASS_NAME.ERROR_MESSAGE_CLASS
     ) {
       errorElement.remove();
     }
@@ -190,8 +187,8 @@ export default class LoginHandler {
       return false;
     }
     if (
-      currentInput.getAttribute(INPUT_ATTRIBUTE.NAME) !==
-      inputToCheck.getAttribute(INPUT_ATTRIBUTE.NAME)
+      currentInput.getAttribute(INPUT_ATTRIBUTE.NAME)
+      !== inputToCheck.getAttribute(INPUT_ATTRIBUTE.NAME)
     ) {
       return true;
     }
@@ -218,14 +215,14 @@ export default class LoginHandler {
     const startScreenElement = startScreenView.getElement();
 
     if (startScreenElement) {
-      window.history.pushState(null, "", `#${HASH_VALUE.START}`);
-      document.body.innerHTML = "";
+      window.history.pushState(null, '', `#${HASH_VALUE.START}`);
+      document.body.innerHTML = '';
       document.body.append(startScreenElement);
     }
   }
 
   static stayLoggedInOnLoad() {
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener('DOMContentLoaded', () => {
       const { hash } = window.location;
 
       if (hash === `#${HASH_VALUE.START}`) {
@@ -233,7 +230,7 @@ export default class LoginHandler {
         const startScreenElement = startScreenView.getElement();
 
         if (startScreenElement) {
-          document.body.innerHTML = "";
+          document.body.innerHTML = '';
           document.body.append(startScreenElement);
         }
       }
@@ -243,7 +240,7 @@ export default class LoginHandler {
         const gameViewElement = gameView.getElement();
 
         if (gameViewElement) {
-          document.body.innerHTML = "";
+          document.body.innerHTML = '';
           document.body.append(gameViewElement);
         }
       }

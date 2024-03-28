@@ -1,5 +1,5 @@
 export default class LocalStorageHandler {
-  static readonly USER_DATA_KEY = "userData";
+  static readonly USER_DATA_KEY = 'userData';
 
   static saveUserData(userData: { [key: string]: string }): void {
     if (LocalStorageHandler.validateUserData(userData)) {
@@ -12,7 +12,7 @@ export default class LocalStorageHandler {
 
   static validateUserData(userData: { [key: string]: string }): boolean {
     return (
-      userData && Object.values(userData).every((value) => value.trim() !== "")
+      userData && Object.values(userData).every((value) => value.trim() !== '')
     );
   }
 
@@ -21,8 +21,7 @@ export default class LocalStorageHandler {
   }
 
   static getUserData(): { [key: string]: string } {
-    const userDataString =
-      localStorage.getItem(LocalStorageHandler.USER_DATA_KEY) || "{}";
+    const userDataString = localStorage.getItem(LocalStorageHandler.USER_DATA_KEY) || '{}';
     return JSON.parse(userDataString);
   }
 }
