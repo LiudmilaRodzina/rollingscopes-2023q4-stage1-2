@@ -1,32 +1,32 @@
-import './start-view.scss';
-import ElementCreator from '../element-creator';
-import LocalStorageHandler from '../../storage/localStorage-handler';
-import GameView from '../game/game-view';
+import "./start-view.scss";
+import ElementCreator from "../element-creator";
+import LocalStorageHandler from "../../storage/localStorage-handler";
+import GameView from "../game/game-view";
 
-const APP_NAME = 'ENGLISH PUZZLE';
-const GREETING_MESSAGE = 'Welcome, ';
-const APP_DESCRIPTION = 'Click on words, collect phrases. Words can be dragged and dropped. Select tooltips in the menu';
-const START_BUTTON_TEXT = 'Start Game';
-const LOGOUT_BUTTON_TEXT = 'Logout';
+const APP_NAME = "ENGLISH PUZZLE";
+const GREETING_MESSAGE = "Welcome, ";
+const APP_DESCRIPTION =
+  "Click on words, collect phrases. Words can be dragged and dropped. Select tooltips in the menu";
+const START_BUTTON_TEXT = "Start Game";
+const LOGOUT_BUTTON_TEXT = "Logout";
 
 const CLASS_NAME = {
-  USER_GREETING: 'user-greeting',
-  CONTENT_CONTAINER: 'content-container',
-  START_SCREEN_CONTAINER: 'start-screen-container',
-  BUTTON_START: 'button-start',
-  BUTTON_LOGOUT: 'button-logout',
+  USER_GREETING: "user-greeting",
+  CONTENT_CONTAINER: "content-container",
+  START_SCREEN_CONTAINER: "start-screen-container",
+  BUTTON_START: "button-start",
+  BUTTON_LOGOUT: "button-logout",
 };
 
 const TAG = {
-  BUTTON: 'button',
-  CONTAINER: 'div',
-  PARAGRAPH: 'p',
-  SPAN: 'span',
+  BUTTON: "button",
+  CONTAINER: "div",
+  PARAGRAPH: "p",
+  SPAN: "span",
 };
 
 const HASH_VALUE = {
-  LOGIN: 'login',
-  GAME: 'game',
+  GAME: "game",
 };
 
 export default class StartScreenView extends ElementCreator {
@@ -34,7 +34,7 @@ export default class StartScreenView extends ElementCreator {
     super({
       tag: TAG.CONTAINER,
       classNames: [CLASS_NAME.START_SCREEN_CONTAINER],
-      textContent: '',
+      textContent: "",
     });
     this.addContent();
     this.addStartButton();
@@ -68,10 +68,10 @@ export default class StartScreenView extends ElementCreator {
     startButton.textContent = START_BUTTON_TEXT;
     startButton.classList.add(CLASS_NAME.BUTTON_START);
 
-    startButton.addEventListener('click', () => {
+    startButton.addEventListener("click", () => {
       window.location.hash = HASH_VALUE.GAME;
       const gameView = new GameView();
-      document.body.innerHTML = '';
+      document.body.innerHTML = "";
       document.body.append(gameView.getElement() as Node);
     });
     this.getElement()?.append(startButton);
@@ -82,11 +82,11 @@ export default class StartScreenView extends ElementCreator {
     logoutButton.textContent = LOGOUT_BUTTON_TEXT;
     logoutButton.classList.add(CLASS_NAME.BUTTON_LOGOUT);
 
-    logoutButton.addEventListener('click', () => {
+    logoutButton.addEventListener("click", () => {
       LocalStorageHandler.removeUserData();
-      const pathArray = window.location.pathname.split('/');
-      const basePath = pathArray.slice(0, -1).join('/');
-      window.location.href = `${window.location.origin}${basePath}/#${HASH_VALUE.LOGIN}`;
+      const pathArray = window.location.pathname.split("/");
+      const basePath = pathArray.slice(0, -1).join("/");
+      window.location.href = `${window.location.origin}${basePath}/`;
     });
 
     this.getElement()?.append(logoutButton);

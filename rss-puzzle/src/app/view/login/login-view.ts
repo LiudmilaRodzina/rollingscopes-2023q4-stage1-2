@@ -1,41 +1,41 @@
-import './login-view.scss';
-import ElementCreator from '../element-creator';
+import "./login-view.scss";
+import ElementCreator from "../element-creator";
 
 const CLASS_NAME = {
-  LOGIN_CONTAINER: 'login-container',
-  INPUT_FIELD: 'input-field',
-  INPUT_LABEL: 'input-label',
-  BUTTON_LOGIN: 'button-login',
+  LOGIN_CONTAINER: "login-container",
+  INPUT_FIELD: "input-field",
+  INPUT_LABEL: "input-label",
+  BUTTON_LOGIN: "button-login",
 };
 
 const TAG = {
-  FORM: 'form',
-  INPUT: 'input',
-  LABEL: 'label',
-  BUTTON: 'button',
+  FORM: "form",
+  INPUT: "input",
+  LABEL: "label",
+  BUTTON: "button",
 };
 
 const TEXT_CONTENT = {
-  NAME: 'Name:',
-  SURNAME: 'Surname:',
-  LOGIN: 'Login',
-  BLANK: '',
+  NAME: "Name:",
+  SURNAME: "Surname:",
+  LOGIN: "Login",
+  BLANK: "",
 };
 
 const INPUT_ATTRIBUTE_NAME = {
-  NAME: 'first-name',
-  SURNAME: 'surname',
-  BLANK: '',
+  NAME: "first-name",
+  SURNAME: "surname",
+  BLANK: "",
 };
 
-const AUTOCOMPLETE_OFF = 'off';
+const AUTOCOMPLETE_OFF = "off";
 
 export default class LoginView extends ElementCreator {
   constructor() {
     super({
       tag: TAG.FORM,
       classNames: [CLASS_NAME.LOGIN_CONTAINER],
-      textContent: '',
+      textContent: "",
     });
     this.createLoginView();
   }
@@ -45,7 +45,7 @@ export default class LoginView extends ElementCreator {
     text: string,
     attr: string,
     classNames: string[],
-    autocomplete: string = '',
+    autocomplete: string = "",
   ): void {
     const elementParams = {
       tag,
@@ -64,7 +64,7 @@ export default class LoginView extends ElementCreator {
         inputElement.name = attr;
 
         if (autocomplete) {
-          inputElement.setAttribute('autocomplete', autocomplete);
+          inputElement.setAttribute("autocomplete", autocomplete);
         }
       }
     }
