@@ -1,0 +1,47 @@
+$color-body: #b8d0d5;
+$color-text-light: #b8d0d5;
+$color-text-dark: #293133;
+$color-background-garage: #293133;
+$color-background-winners: #004134;
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 1.6rem;
+  margin: 0 auto;
+  height: 100%;
+  color: $color-text-light;
+  background-color: $color-body;
+}
+
+h2 {
+  font-size: 4.4rem;
+  margin: 0;
+  padding-bottom: 1rem;
+}
+
+p {
+  letter-spacing: 0.08rem;
+  font-size: 2rem;
+}
+
+button {
+  max-width: 20rem;
+  padding: 1rem 2rem;
+  color: $color-text-dark;
+  border: none;
+  border-radius: 0.2rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.08rem;
+  font-weight: 700;
+  margin: 2rem;
+  background-color: $color-body;
+}

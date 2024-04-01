@@ -1,0 +1,20 @@
+{
+  "ignorePatterns": ["vite.config.ts", ".eslintrc.json", "dist/assets/*.js"],
+  "extends": [
+    "eslint-config-airbnb-base",
+    "eslint-config-airbnb-typescript/base"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "overrides": [
+    {
+      "files": ["src/*.ts"],
+      "rules": {
+        "no-console": 1
+      }
+    }
+  ]
+}
