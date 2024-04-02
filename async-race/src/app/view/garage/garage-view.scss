@@ -2,8 +2,22 @@
 
 .garage-container {
   background-color: $color-background-garage;
-  padding: 15%;
-  width: 60vw;
+  padding: 2rem;
+  margin: 3rem;
+  width: 85vw;
+  min-height: 89dvh;
   text-align: center;
   border-radius: 0.4rem;
+}
+
+.car-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  height: 4rem;
+  border-bottom: 1px dashed $color-text-light;
+}
+
+.car-name {
+  font-size: 1.2rem;
 }

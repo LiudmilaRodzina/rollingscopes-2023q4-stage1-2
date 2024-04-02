@@ -3,10 +3,10 @@ $color-text-light: #b8d0d5;
 $color-text-dark: #293133;
 $color-background-garage: #293133;
 $color-background-winners: #004134;
+$color-background: #2c3c4c;
 
 html {
   font-size: 62.5%;
-  height: 100%;
   scroll-behavior: smooth;
 }
 
@@ -17,9 +17,8 @@ body {
   font-family: Arial, sans-serif;
   font-size: 1.6rem;
   margin: 0 auto;
-  height: 100%;
   color: $color-text-light;
-  background-color: $color-body;
+  background-color: $color-background;
 }
 
 h2 {
@@ -34,7 +33,7 @@ p {
 }
 
 button {
-  max-width: 20rem;
+  width: 20rem;
   padding: 1rem 2rem;
   color: $color-text-dark;
   border: none;
