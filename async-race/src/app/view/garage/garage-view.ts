@@ -2,11 +2,17 @@ import "./garage-view.scss";
 import WinnersView from "../winners/winners-view";
 import { fetchCars } from "../../api/api";
 import Car from "../../types/interfaces";
-import carSvg from "/images/car.svg";
 import carData from "../../data/data";
+import carSvg from "/images/car.svg";
 
 export default class GarageView {
   private winnersView: WinnersView | null = null;
+
+  private totalCars: number = 0;
+
+  private currentPage: number = 1;
+
+  private carsPerPage: number = 7;
 
   setWinnersView(winnersView: WinnersView): void {
     this.winnersView = winnersView;
@@ -15,43 +21,115 @@ export default class GarageView {
   async displayGarage(): Promise<void> {
     const garageContainer = document.createElement("div");
     garageContainer.classList.add("garage-container");
-    garageContainer.innerHTML = `
-    <h2>Garage</h2>
-    <p>Page #1</p>
-    <p style="color: brown;">Garage under construction. Please come back later</p>
-    <button id="button-generate">GENERATE CARS</button>
-    <button id="button-winners">TO WINNERS</button>
-  `;
     document.body.innerHTML = "";
     document.body.append(garageContainer);
 
-    const buttonWinners = document.getElementById(
-      "button-winners",
-    ) as HTMLButtonElement;
+    garageContainer.innerHTML = `
+    <h2>Garage (${this.totalCars})</h2>
+    <p>Page #${this.currentPage}</p>
+  `;
+
+    const buttonWinners = document.createElement("button");
+    buttonWinners.id = "button-winners";
+    buttonWinners.textContent = "TO WINNERS";
     buttonWinners.addEventListener("click", () => {
-      if (this.winnersView) {
-        this.winnersView.displayWinners();
-      }
+      this.winnersView?.displayWinners();
     });
 
-    const buttonGenerate = document.getElementById(
-      "button-generate",
-    ) as HTMLButtonElement;
+    const buttonGenerate = document.createElement("button");
+    buttonGenerate.id = "button-generate";
+    buttonGenerate.textContent = "GENERATE CARS";
     buttonGenerate.addEventListener("click", () => {
       this.generateRandomCars(100);
     });
 
-    fetchCars()
-      .then((cars: Car[]) => {
-        cars.forEach((car: Car) => {
-          const carContainer = this.renderCar(car);
-          garageContainer.append(carContainer);
-        });
-      })
-      .catch(() => {
-        const errorMessage = "Error fetching and displaying cars";
-        console.error(errorMessage);
-      });
+    const prevButton = document.createElement("button");
+    prevButton.textContent = "<< Previous Page";
+    prevButton.addEventListener("click", () => {
+      if (this.currentPage > 1) {
+        this.currentPage -= 1;
+        this.updateVisibilityOfCars();
+        this.updatePageNumber();
+      }
+    });
+
+    const nextButton = document.createElement("button");
+    nextButton.textContent = "Next Page >>";
+    nextButton.addEventListener("click", () => {
+      const maxPage = Math.ceil(this.totalCars / this.carsPerPage);
+      if (this.currentPage < maxPage) {
+        this.currentPage += 1;
+        this.updateVisibilityOfCars();
+        this.updatePageNumber();
+      }
+    });
+
+    garageContainer.innerHTML = `
+      <h2>Garage (${this.totalCars})</h2>
+      <p>Page #${this.currentPage}</p>
+    `;
+
+    garageContainer.append(
+      buttonGenerate,
+
+      prevButton,
+      nextButton,
+      buttonWinners,
+    );
+
+    await this.displayCars();
+  }
+
+  private async displayCars(): Promise<void> {
+    const cars = await fetchCars();
+    this.totalCars = cars.length;
+
+    const garageContainer = document.querySelector(
+      ".garage-container",
+    ) as HTMLElement;
+
+    for (const car of cars) {
+      const carContainer = this.renderCar(car);
+      garageContainer.append(carContainer);
+    }
+
+    this.updateTotalCarsCount();
+    this.updatePageNumber();
+    this.updateVisibilityOfCars();
+  }
+
+  private updateVisibilityOfCars(): void {
+    const garageContainer = document.querySelector(
+      ".garage-container",
+    ) as HTMLElement;
+
+    const allCarContainers = garageContainer.querySelectorAll(".car-container");
+
+    allCarContainers.forEach((carContainer, index) => {
+      const container = carContainer as HTMLElement;
+      container.style.display = "none";
+
+      if (
+        index >= (this.currentPage - 1) * this.carsPerPage &&
+        index < this.currentPage * this.carsPerPage
+      ) {
+        container.style.display = "flex";
+      }
+    });
+  }
+
+  private updatePageNumber(): void {
+    const pageText = document.querySelector(".garage-container p");
+    if (pageText) {
+      pageText.textContent = `Page #${this.currentPage}`;
+    }
+  }
+
+  private updateTotalCarsCount(): void {
+    const garageTitle = document.querySelector(".garage-container h2");
+    if (garageTitle) {
+      garageTitle.textContent = `Garage (${this.totalCars})`;
+    }
   }
 
   private renderCar(car: Car): HTMLDivElement {
@@ -92,14 +170,27 @@ export default class GarageView {
       });
   }
 
-  private generateRandomCars(count: number): void {
+  private async generateRandomCars(count: number): Promise<void> {
     const randomCars = Array.from({ length: count }, () =>
       this.generateRandomCar(),
     );
-    const carContainers = randomCars.map((car) => this.renderCar(car));
 
-    const garageContainer = document.querySelector(".garage-container");
-    garageContainer?.append(...carContainers);
+    const garageContainer = document.querySelector(
+      ".garage-container",
+    ) as HTMLElement;
+    const carContainers = randomCars.map((car) => this.renderCar(car));
+    garageContainer.append(...carContainers);
+
+    this.totalCars += count;
+    this.updateTotalCarsCount();
+
+    const maxPage = Math.ceil(this.totalCars / this.carsPerPage);
+    if (this.currentPage > maxPage) {
+      this.currentPage = maxPage;
+    }
+
+    this.updatePageNumber();
+    this.updateVisibilityOfCars();
   }
 
   private generateRandomCar(): Car {
@@ -110,12 +201,11 @@ export default class GarageView {
     const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
     const randomID = Date.now() * 1000 + Math.floor(Math.random() * 1000);
-    const randomCar: Car = {
+
+    return {
       name: `${make} ${model}`,
       color,
       id: randomID,
     };
-
-    return randomCar;
   }
 }
