@@ -14,3 +14,12 @@ class App {
 }
 const newApp = new App();
 export default newApp;
+
+console.log(`Done:
+Two Views (10 points):"Garage" and "Winners"
+Garage View Content (5 points): name, the current page number, and the total number of cars
+Pagination (10 points): 7 cars per page
+Random Car Creation (10 points): create random cars (100 cars per click)
+
+Total: 35
+`);

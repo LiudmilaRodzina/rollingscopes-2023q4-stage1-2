@@ -20,7 +20,7 @@ export default class WinnersView {
     `;
 
     const buttonGarage = document.createElement("button");
-    buttonGarage.classList.add('button-garage"');
+    buttonGarage.classList.add("button-garage");
     buttonGarage.textContent = "TO GARAGE";
     buttonGarage.addEventListener("click", () => {
       this.garageView.displayGarage();

@@ -19,6 +19,8 @@ export default class GarageView {
   }
 
   async displayGarage(): Promise<void> {
+    this.currentPage = 1;
+
     const garageContainer = document.createElement("div");
     garageContainer.classList.add("garage-container");
     document.body.innerHTML = "";
