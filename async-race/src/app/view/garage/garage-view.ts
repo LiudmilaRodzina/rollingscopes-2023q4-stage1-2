@@ -24,7 +24,11 @@ export default class GarageView {
     document.body.innerHTML = "";
     document.body.append(garageContainer);
 
-    garageContainer.innerHTML = `
+    const header = document.createElement("div");
+    header.classList.add("header");
+    garageContainer.append(header);
+
+    header.innerHTML = `
     <h2>Garage (${this.totalCars})</h2>
     <p>Page #${this.currentPage}</p>
   `;
@@ -42,6 +46,39 @@ export default class GarageView {
     buttonGenerate.addEventListener("click", () => {
       this.generateRandomCars(100);
     });
+
+    const main = document.createElement("div");
+    main.classList.add("main");
+    garageContainer.append(main);
+
+    header.append(buttonGenerate, buttonWinners);
+
+    await this.displayCars();
+  }
+
+  private async displayCars(): Promise<void> {
+    const cars = await fetchCars();
+    this.totalCars = cars.length;
+
+    const main = document.querySelector(".main") as HTMLElement;
+    this.displayPaginationButtons();
+
+    for (const car of cars) {
+      const carContainer = this.renderCar(car);
+      main.append(carContainer);
+    }
+
+    this.updateTotalCarsCount();
+    this.updatePageNumber();
+    this.updateVisibilityOfCars();
+  }
+
+  private displayPaginationButtons(): void {
+    const main = document.querySelector(".main") as HTMLElement;
+
+    const buttonsPagination = document.createElement("div");
+    buttonsPagination.classList.add("buttons-pagination");
+    main.append(buttonsPagination);
 
     const prevButton = document.createElement("button");
     prevButton.textContent = "<< Previous Page";
@@ -64,38 +101,7 @@ export default class GarageView {
       }
     });
 
-    garageContainer.innerHTML = `
-      <h2>Garage (${this.totalCars})</h2>
-      <p>Page #${this.currentPage}</p>
-    `;
-
-    garageContainer.append(
-      buttonGenerate,
-
-      prevButton,
-      nextButton,
-      buttonWinners,
-    );
-
-    await this.displayCars();
-  }
-
-  private async displayCars(): Promise<void> {
-    const cars = await fetchCars();
-    this.totalCars = cars.length;
-
-    const garageContainer = document.querySelector(
-      ".garage-container",
-    ) as HTMLElement;
-
-    for (const car of cars) {
-      const carContainer = this.renderCar(car);
-      garageContainer.append(carContainer);
-    }
-
-    this.updateTotalCarsCount();
-    this.updatePageNumber();
-    this.updateVisibilityOfCars();
+    buttonsPagination.append(prevButton, nextButton);
   }
 
   private updateVisibilityOfCars(): void {
@@ -175,11 +181,9 @@ export default class GarageView {
       this.generateRandomCar(),
     );
 
-    const garageContainer = document.querySelector(
-      ".garage-container",
-    ) as HTMLElement;
+    const main = document.querySelector(".main") as HTMLElement;
     const carContainers = randomCars.map((car) => this.renderCar(car));
-    garageContainer.append(...carContainers);
+    main.append(...carContainers);
 
     this.totalCars += count;
     this.updateTotalCarsCount();
@@ -200,12 +204,9 @@ export default class GarageView {
       carData.models[Math.floor(Math.random() * carData.models.length)];
     const color = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 
-    const randomID = Date.now() * 1000 + Math.floor(Math.random() * 1000);
-
     return {
       name: `${make} ${model}`,
       color,
-      id: randomID,
     };
   }
 }

@@ -10,6 +10,24 @@
   border-radius: 0.4rem;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.buttons-pagination {
+  display: flex;
+  align-items: start;
+  padding-bottom: 2rem;
+
+  & button {
+    width: 13rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 1.2rem;
+  }
+}
+
 .car-container {
   display: flex;
   flex-direction: row-reverse;
