@@ -2,32 +2,16 @@ import "./start-view.scss";
 import ElementCreator from "../element-creator";
 import LocalStorageHandler from "../../storage/localStorage-handler";
 import GameView from "../game/game-view";
-
-const APP_NAME = "ENGLISH PUZZLE";
-const GREETING_MESSAGE = "Welcome, ";
-const APP_DESCRIPTION =
-  "Click on words, collect phrases. Words can be dragged and dropped. Select tooltips in the menu";
-const START_BUTTON_TEXT = "Start Game";
-const LOGOUT_BUTTON_TEXT = "Logout";
-
-const CLASS_NAME = {
-  USER_GREETING: "user-greeting",
-  CONTENT_CONTAINER: "content-container",
-  START_SCREEN_CONTAINER: "start-screen-container",
-  BUTTON_START: "button-start",
-  BUTTON_LOGOUT: "button-logout",
-};
-
-const TAG = {
-  BUTTON: "button",
-  CONTAINER: "div",
-  PARAGRAPH: "p",
-  SPAN: "span",
-};
-
-const HASH_VALUE = {
-  GAME: "game",
-};
+import {
+  APP_NAME,
+  GREETING_MESSAGE,
+  APP_DESCRIPTION,
+  START_BUTTON_TEXT,
+  LOGOUT_BUTTON_TEXT,
+  CLASS_NAME,
+  TAG,
+  HASH_VALUE,
+} from "../../consts/consts";
 
 export default class StartScreenView extends ElementCreator {
   constructor() {

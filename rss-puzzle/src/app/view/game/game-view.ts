@@ -1,21 +1,12 @@
 import "./game-view.scss";
 import ElementCreator from "../element-creator";
 import LocalStorageHandler from "../../storage/localStorage-handler";
-
-const NOTIFICATION_MESSAGE =
-  "Sorry, we are experiencing technical difficulties. Please try again later";
-const LOGOUT_BUTTON_TEXT = "Logout";
-
-const CLASS_NAME = {
-  GAME_CONTAINER: "game-container",
-  BUTTON_LOGOUT: "button-logout",
-};
-
-const TAG = {
-  BUTTON: "button",
-  CONTAINER: "div",
-  PARAGRAPH: "p",
-};
+import {
+  NOTIFICATION_MESSAGE,
+  CLASS_NAME,
+  TAG,
+  LOGOUT_BUTTON_TEXT,
+} from "../../consts/consts";
 
 export default class GameView extends ElementCreator {
   constructor() {

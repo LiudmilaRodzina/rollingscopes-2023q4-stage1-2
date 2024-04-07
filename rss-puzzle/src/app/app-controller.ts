@@ -1,8 +1,7 @@
 import LoginView from "./view/login/login-view";
 import LoginHandler from "./verification/login-handler";
+import { BUTTON_SELECTOR, INPUT_SELECTOR } from "./consts/consts";
 
-const BUTTON_SELECTOR = "button";
-const INPUT_SELECTOR = "input";
 export default class AppController {
   static createView(): void {
     const loginView = new LoginView();

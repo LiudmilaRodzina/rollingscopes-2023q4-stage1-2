@@ -1,34 +1,12 @@
 import "./login-view.scss";
 import ElementCreator from "../element-creator";
-
-const CLASS_NAME = {
-  LOGIN_CONTAINER: "login-container",
-  INPUT_FIELD: "input-field",
-  INPUT_LABEL: "input-label",
-  BUTTON_LOGIN: "button-login",
-};
-
-const TAG = {
-  FORM: "form",
-  INPUT: "input",
-  LABEL: "label",
-  BUTTON: "button",
-};
-
-const TEXT_CONTENT = {
-  NAME: "Name:",
-  SURNAME: "Surname:",
-  LOGIN: "Login",
-  BLANK: "",
-};
-
-const INPUT_ATTRIBUTE_NAME = {
-  NAME: "first-name",
-  SURNAME: "surname",
-  BLANK: "",
-};
-
-const AUTOCOMPLETE_OFF = "off";
+import {
+  CLASS_NAME,
+  TAG,
+  TEXT_CONTENT,
+  INPUT_ATTRIBUTE_NAME,
+  AUTOCOMPLETE_OFF,
+} from "../../consts/consts";
 
 export default class LoginView extends ElementCreator {
   constructor() {

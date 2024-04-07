@@ -3,30 +3,15 @@ import ErrorMessage from "../types/enums";
 import LocalStorageHandler from "../storage/localStorage-handler";
 import StartScreenView from "../view/start/start-view";
 import GameView from "../view/game/game-view";
-
-const CLASS_NAME = { ERROR_MESSAGE_CLASS: "error-message" };
-
-const TAG = {
-  INPUT: "input",
-  SPAN: "span",
-};
-
-const HASH_VALUE = {
-  START: "start",
-  GAME: "game",
-};
-
-const INPUT_ATTRIBUTE = {
-  NAME: "name",
-};
-const INPUT_ATTRIBUTE_NAME = {
-  FIRST_NAME: "first-name",
-  SURNAME: "surname",
-  BLANK: "",
-};
-
-const MIN_LENGTH_NAME = 3;
-const MIN_LENGTH_SURNAME = 4;
+import {
+  CLASS_NAME,
+  TAG,
+  HASH_VALUE,
+  INPUT_ATTRIBUTE,
+  INPUT_ATTRIBUTE_NAME,
+  MIN_LENGTH_NAME,
+  MIN_LENGTH_SURNAME,
+} from "../consts/consts";
 
 export default class LoginHandler {
   formElement: HTMLFormElement;
@@ -119,7 +104,7 @@ export default class LoginHandler {
   static validateMinimumLength(input: HTMLInputElement): boolean {
     const fieldName = input.getAttribute(INPUT_ATTRIBUTE.NAME);
     const minLength =
-      fieldName === INPUT_ATTRIBUTE_NAME.FIRST_NAME
+      fieldName === INPUT_ATTRIBUTE_NAME.NAME
         ? MIN_LENGTH_NAME
         : MIN_LENGTH_SURNAME;
     const currentErrorMessage = input.nextElementSibling as HTMLElement;
@@ -140,7 +125,7 @@ export default class LoginHandler {
     }
     if (input.value.length < minLength) {
       const errorMessage =
-        fieldName === INPUT_ATTRIBUTE_NAME.FIRST_NAME
+        fieldName === INPUT_ATTRIBUTE_NAME.NAME
           ? ErrorMessage.LengthRestrictionName
           : ErrorMessage.LengthRestrictionSurname;
 
