@@ -1,33 +1,39 @@
 import "./garage-view.scss";
-import WinnersView from "../winners/winners-view";
-import { fetchCars } from "../../api/api";
+import Navigation from "../navigation-interface";
+import fetchCars from "../../api/fetch-cars";
 import Car from "../../types/interfaces";
 import carData from "../../data/data";
-import carSvg from "/images/car.svg";
+import carSvg from "../../../../public/images/car.svg";
+import {
+  PAGE_SIZE,
+  RANDOM_CARS_COUNT,
+  BUTTON_TEXT,
+  CLASS_NAME,
+  ELEMENT_ID,
+  SVG_FILL_COLOR_REGEX,
+} from "../../consts/consts";
 
 export default class GarageView {
-  private winnersView: WinnersView | null = null;
+  private navigateToWinners: Navigation;
+
+  constructor(navigateToWinners: Navigation) {
+    this.navigateToWinners = navigateToWinners;
+  }
 
   private totalCars: number = 0;
 
   private currentPage: number = 1;
 
-  private carsPerPage: number = 7;
-
-  setWinnersView(winnersView: WinnersView): void {
-    this.winnersView = winnersView;
-  }
-
-  async displayGarage(): Promise<void> {
+  public displayGarage(): void {
     this.currentPage = 1;
 
     const garageContainer = document.createElement("div");
-    garageContainer.classList.add("garage-container");
+    garageContainer.classList.add(CLASS_NAME.GARAGE_CONTAINER);
     document.body.innerHTML = "";
     document.body.append(garageContainer);
 
     const header = document.createElement("div");
-    header.classList.add("header");
+    header.classList.add(CLASS_NAME.HEADER);
     garageContainer.append(header);
 
     header.innerHTML = `
@@ -36,17 +42,17 @@ export default class GarageView {
   `;
 
     const buttonWinners = document.createElement("button");
-    buttonWinners.id = "button-winners";
-    buttonWinners.textContent = "TO WINNERS";
+    buttonWinners.id = ELEMENT_ID.BUTTON_WINNERS;
+    buttonWinners.textContent = BUTTON_TEXT.TO_WINNERS;
     buttonWinners.addEventListener("click", () => {
-      this.winnersView?.displayWinners();
+      this.navigateToWinners.navigate();
     });
 
     const buttonGenerate = document.createElement("button");
-    buttonGenerate.id = "button-generate";
-    buttonGenerate.textContent = "GENERATE CARS";
+    buttonGenerate.id = ELEMENT_ID.BUTTON_GENERATE;
+    buttonGenerate.textContent = BUTTON_TEXT.GENERATE_CARS;
     buttonGenerate.addEventListener("click", () => {
-      this.generateRandomCars(100);
+      this.generateRandomCars(RANDOM_CARS_COUNT);
     });
 
     const main = document.createElement("div");
@@ -55,35 +61,37 @@ export default class GarageView {
 
     header.append(buttonGenerate, buttonWinners);
 
-    await this.displayCars();
+    this.displayCars();
   }
 
   private async displayCars(): Promise<void> {
-    const cars = await fetchCars();
-    this.totalCars = cars.length;
+    try {
+      const cars = await fetchCars();
+      this.totalCars = cars.length;
 
-    const main = document.querySelector(".main") as HTMLElement;
-    this.displayPaginationButtons();
+      const main = document.querySelector(`.${CLASS_NAME.MAIN}`) as HTMLElement;
+      this.displayPaginationButtons();
 
-    for (const car of cars) {
-      const carContainer = this.renderCar(car);
-      main.append(carContainer);
+      const carContainers = cars.map((car: Car) => GarageView.renderCar(car));
+      main.append(...carContainers);
+
+      this.updateTotalCarsCount();
+      this.updatePageNumber();
+      this.updateVisibilityOfCars();
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
-
-    this.updateTotalCarsCount();
-    this.updatePageNumber();
-    this.updateVisibilityOfCars();
   }
 
   private displayPaginationButtons(): void {
-    const main = document.querySelector(".main") as HTMLElement;
+    const main = document.querySelector(`.${CLASS_NAME.MAIN}`) as HTMLElement;
 
     const buttonsPagination = document.createElement("div");
-    buttonsPagination.classList.add("buttons-pagination");
+    buttonsPagination.classList.add(CLASS_NAME.BUTTONS_PAGINATION);
     main.append(buttonsPagination);
 
     const prevButton = document.createElement("button");
-    prevButton.textContent = "<< Previous Page";
+    prevButton.textContent = BUTTON_TEXT.PREV_PAGE;
     prevButton.addEventListener("click", () => {
       if (this.currentPage > 1) {
         this.currentPage -= 1;
@@ -93,9 +101,9 @@ export default class GarageView {
     });
 
     const nextButton = document.createElement("button");
-    nextButton.textContent = "Next Page >>";
+    nextButton.textContent = BUTTON_TEXT.NEXT_PAGE;
     nextButton.addEventListener("click", () => {
-      const maxPage = Math.ceil(this.totalCars / this.carsPerPage);
+      const maxPage = Math.ceil(this.totalCars / PAGE_SIZE);
       if (this.currentPage < maxPage) {
         this.currentPage += 1;
         this.updateVisibilityOfCars();
@@ -108,18 +116,20 @@ export default class GarageView {
 
   private updateVisibilityOfCars(): void {
     const garageContainer = document.querySelector(
-      ".garage-container",
+      `.${CLASS_NAME.GARAGE_CONTAINER}`,
     ) as HTMLElement;
 
-    const allCarContainers = garageContainer.querySelectorAll(".car-container");
+    const allCarContainers = garageContainer.querySelectorAll(
+      `.${CLASS_NAME.CAR_CONTAINER}`,
+    );
 
     allCarContainers.forEach((carContainer, index) => {
       const container = carContainer as HTMLElement;
       container.style.display = "none";
 
       if (
-        index >= (this.currentPage - 1) * this.carsPerPage &&
-        index < this.currentPage * this.carsPerPage
+        index >= (this.currentPage - 1) * PAGE_SIZE &&
+        index < this.currentPage * PAGE_SIZE
       ) {
         container.style.display = "flex";
       }
@@ -127,70 +137,80 @@ export default class GarageView {
   }
 
   private updatePageNumber(): void {
-    const pageText = document.querySelector(".garage-container p");
+    const pageText = document.querySelector(
+      `.${CLASS_NAME.GARAGE_CONTAINER} p`,
+    );
     if (pageText) {
       pageText.textContent = `Page #${this.currentPage}`;
     }
   }
 
   private updateTotalCarsCount(): void {
-    const garageTitle = document.querySelector(".garage-container h2");
+    const garageTitle = document.querySelector(
+      `.${CLASS_NAME.GARAGE_CONTAINER} h2`,
+    );
     if (garageTitle) {
       garageTitle.textContent = `Garage (${this.totalCars})`;
     }
   }
 
-  private renderCar(car: Car): HTMLDivElement {
+  static renderCar(car: Car): HTMLDivElement {
     const carContainer = document.createElement("div");
-    carContainer.classList.add("car-container");
+    carContainer.classList.add(CLASS_NAME.CAR_CONTAINER);
 
-    this.renderCarName(car.name, carContainer);
-    this.renderCarImage(car, carContainer);
+    GarageView.renderCarName(car.name, carContainer);
+    GarageView.renderCarImage(car, carContainer);
 
     return carContainer;
   }
 
-  private renderCarName(name: string, container: HTMLElement): void {
+  static renderCarName(name: string, container: HTMLElement): void {
     const carNameElement = document.createElement("span");
     carNameElement.textContent = name;
-    carNameElement.classList.add("car-name");
+    carNameElement.classList.add(CLASS_NAME.CAR_NAME);
     container.append(carNameElement);
   }
 
-  private renderCarImage(car: Car, container: HTMLDivElement): void {
-    fetch(carSvg)
-      .then((response) => response.text())
-      .then((svgText) => {
-        const updatedSvgText = svgText.replace(
-          /fill="#323232"/g,
-          `fill="${car.color}"`,
-        );
+  static async renderCarImage(
+    car: Car,
+    container: HTMLDivElement,
+  ): Promise<void> {
+    try {
+      const response = await fetch(carSvg);
+      const svgText = await response.text();
+      const updatedSvgText = GarageView.updateSvgFillColor(svgText, car.color);
 
-        const parser = new DOMParser();
-        const svgElement = parser.parseFromString(
-          updatedSvgText,
-          "image/svg+xml",
-        ).documentElement;
+      const parser = new DOMParser();
+      const svgElement = parser.parseFromString(
+        updatedSvgText,
+        "image/svg+xml",
+      ).documentElement;
 
-        if (svgElement) {
-          container.append(svgElement);
-        }
-      });
+      container.append(svgElement);
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   }
 
-  private async generateRandomCars(count: number): Promise<void> {
+  static updateSvgFillColor(svgText: string, color: string): string {
+    return svgText.replace(SVG_FILL_COLOR_REGEX, `fill="${color}"`);
+  }
+
+  private generateRandomCars(count: number): void {
     const randomCars = Array.from({ length: count }, () =>
-      this.generateRandomCar(),
+      GarageView.generateRandomCar(),
     );
 
-    const main = document.querySelector(".main") as HTMLElement;
-    const carContainers = randomCars.map((car) => this.renderCar(car));
+    const main = document.querySelector(`.${CLASS_NAME.MAIN}`) as HTMLElement;
+    const carContainers = randomCars.map((car: Car) =>
+      GarageView.renderCar(car),
+    );
     main.append(...carContainers);
 
     this.totalCars += count;
     this.updateTotalCarsCount();
 
-    const maxPage = Math.ceil(this.totalCars / this.carsPerPage);
+    const maxPage = Math.ceil(this.totalCars / PAGE_SIZE);
     if (this.currentPage > maxPage) {
       this.currentPage = maxPage;
     }
@@ -199,7 +219,7 @@ export default class GarageView {
     this.updateVisibilityOfCars();
   }
 
-  private generateRandomCar(): Car {
+  static generateRandomCar(): Car {
     const make =
       carData.makes[Math.floor(Math.random() * carData.makes.length)];
     const model =

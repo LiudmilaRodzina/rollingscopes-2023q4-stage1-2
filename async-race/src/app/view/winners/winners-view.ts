@@ -1,16 +1,17 @@
 import "./winners-view.scss";
-import GarageView from "../garage/garage-view";
+import Navigation from "../navigation-interface";
+import { CLASS_NAME, ELEMENT_ID, BUTTON_TEXT } from "../../consts/consts";
 
 export default class WinnersView {
-  private garageView: GarageView;
+  private navigateToGarage: Navigation;
 
-  constructor(garageView: GarageView) {
-    this.garageView = garageView;
+  constructor(navigateToGarage: Navigation) {
+    this.navigateToGarage = navigateToGarage;
   }
 
-  displayWinners(): void {
+  public displayWinners(): void {
     const winnersContainer = document.createElement("div");
-    winnersContainer.classList.add("winners-container");
+    winnersContainer.classList.add(CLASS_NAME.WINNERS_CONTAINER);
     document.body.innerHTML = "";
     document.body.append(winnersContainer);
 
@@ -20,10 +21,10 @@ export default class WinnersView {
     `;
 
     const buttonGarage = document.createElement("button");
-    buttonGarage.classList.add("button-garage");
-    buttonGarage.textContent = "TO GARAGE";
+    buttonGarage.id = ELEMENT_ID.BUTTON_GARAGE;
+    buttonGarage.textContent = BUTTON_TEXT.TO_GARAGE;
     buttonGarage.addEventListener("click", () => {
-      this.garageView.displayGarage();
+      this.navigateToGarage.navigate();
     });
 
     winnersContainer.append(buttonGarage);
