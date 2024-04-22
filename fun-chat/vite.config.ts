@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: '/liudmilarodzina-JSFE2023Q4/fun-chat/',
+  base: "/liudmilarodzina-JSFE2023Q4/fun-chat/",
 });

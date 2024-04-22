@@ -1,0 +1,38 @@
+@import "../../../index.scss";
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-container-background;
+  border: 1px solid $color-border;
+  border-radius: 0.2rem;
+  min-width: 36rem;
+  height: 40rem;
+  padding-bottom: 3rem;
+  margin-bottom: 10rem;
+}
+
+.input-label {
+  font-size: 2.2rem;
+  color: $color-text;
+  margin: 2rem 0 0.5rem;
+}
+
+.input-field {
+  padding: 0.5rem;
+  width: 25rem;
+  height: 2.5rem;
+  outline: none;
+  border: 1px solid $color-border;
+  border-radius: 0.2rem;
+  font-size: 2.4rem;
+  color: $color-text;
+}
+
+.button-login:disabled {
+  background-color: $color-background;
+  color: $color-disabled-text;
+  cursor: not-allowed;
+}

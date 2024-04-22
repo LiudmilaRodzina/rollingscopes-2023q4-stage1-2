@@ -1,0 +1,43 @@
+$color-background: rgba(220, 218, 220);
+$color-container-background: rgba(206, 212, 218);
+$color-hover: rgba(170, 154, 170, 0.6);
+$color-active: rgba(170, 154, 170, 0.5);
+$color-text: rgba(34, 60, 80);
+$color-border: rgba(34, 60, 80, 0.3);
+$color-disabled-text: rgba(34, 60, 80, 0.7);
+$color-error: rgba(224, 42, 42);
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  height: 100%;
+  background-color: $color-background;
+}
+
+button {
+  max-width: 20rem;
+  padding: 1rem 2rem;
+  color: $color-text;
+  border: 1px solid $color-border;
+  border-radius: 0.2rem;
+  font-size: 2.2rem;
+  margin-top: 3rem;
+
+  &:enabled {
+    background-color: $color-active;
+    cursor: pointer;
+  }
+  &:enabled:hover {
+    background-color: $color-hover;
+  }
+}

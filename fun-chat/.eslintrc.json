@@ -14,7 +14,8 @@
       "files": ["src/*.ts"],
       "rules": {
         "no-console": 1
-      }
+      },
+      "noInlineConfig": true
     }
   ]
 }
