@@ -11,13 +11,14 @@
   min-width: 36rem;
   height: 40rem;
   padding-bottom: 3rem;
-  box-shadow: 5px 5px 15px rgba(189, 186, 186, 0.5);
+  box-shadow: $box-shadow;
+  gap: 1rem;
 }
 
 .input-label {
   font-size: 2.2rem;
   color: $color-text;
-  margin: 2rem 0 0.5rem;
+  margin: 2rem 0 0;
 }
 
 .input-field {
@@ -29,12 +30,13 @@
   border-radius: 0.2rem;
   font-size: 2.4rem;
   color: $color-text;
-  box-shadow: 5px 5px 15px rgba(189, 186, 186, 0.5);
+  box-shadow: $box-shadow;
+  background-color: $color-input-background;
 }
 
 .button-login:disabled {
   background-color: $color-background;
   color: $color-disabled-text;
   cursor: not-allowed;
-  box-shadow: 5px 5px 15px rgba(189, 186, 186, 0.5);
+  box-shadow: $box-shadow;
 }

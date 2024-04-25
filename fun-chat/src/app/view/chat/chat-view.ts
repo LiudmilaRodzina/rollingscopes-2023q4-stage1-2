@@ -55,8 +55,8 @@ export default class ChatView extends ElementCreator {
     chatField.append(header, messengerMessages, inputContainer);
 
     document.body.innerHTML = "";
-    document.body.appendChild(this.getElement() as HTMLElement);
-    document.querySelector(".chat-container")?.appendChild(chatField);
+    document.body.append(this.getElement() as HTMLElement);
+    document.querySelector(".chat-container")?.append(chatField);
 
     new SendMessage();
     new LoginUser();
@@ -68,12 +68,12 @@ export default class ChatView extends ElementCreator {
     this.addInfoButton(buttonsContainer);
     this.addFunChatText(buttonsContainer);
     this.addLogoutButton(buttonsContainer);
-    this.getElement()?.appendChild(buttonsContainer);
+    this.getElement()?.append(buttonsContainer);
   }
 
   private addFunChatText(container: HTMLDivElement): void {
     const funChatText = document.createTextNode("Fun Chat");
-    container.appendChild(funChatText);
+    container.append(funChatText);
   }
 
   private addInfoButton(container: HTMLDivElement): void {
@@ -88,7 +88,7 @@ export default class ChatView extends ElementCreator {
       document.body.append(infoView.getElement() as Node);
     });
 
-    container.appendChild(infoButton);
+    container.append(infoButton);
   }
 
   private addLogoutButton(container: HTMLDivElement): void {
@@ -103,6 +103,6 @@ export default class ChatView extends ElementCreator {
       window.location.href = `${window.location.origin}${basePath}/`;
     });
 
-    container.appendChild(logoutButton);
+    container.append(logoutButton);
   }
 }

@@ -1,5 +1,6 @@
 import "./login-view.scss";
 import ElementCreator from "../element-creator";
+import InfoView from "../info/info-view";
 
 import {
   CLASS_NAME,
@@ -7,6 +8,7 @@ import {
   TEXT_CONTENT,
   INPUT_ATTRIBUTE_NAME,
   AUTOCOMPLETE_OFF,
+  INFO_BUTTON_TEXT,
 } from "../../consts/consts";
 
 export default class LoginView extends ElementCreator {
@@ -85,10 +87,18 @@ export default class LoginView extends ElementCreator {
       textContent: TEXT_CONTENT.LOGIN_BTN,
       classNames: [CLASS_NAME.BUTTON_LOGIN],
     });
-
     const buttonElement = loginButton.getElement() as HTMLButtonElement;
     buttonElement.disabled = true;
-
     this.getElement()?.append(buttonElement);
+
+    const infoButton = document.createElement(TAG.BTN);
+    infoButton.textContent = INFO_BUTTON_TEXT;
+    infoButton.classList.add(CLASS_NAME.BUTTON_INFO);
+    infoButton.addEventListener("click", () => {
+      const infoView = new InfoView();
+      document.body.innerHTML = "";
+      document.body.append(infoView.getElement() as Node);
+    });
+    this.getElement()?.append(infoButton);
   }
 }

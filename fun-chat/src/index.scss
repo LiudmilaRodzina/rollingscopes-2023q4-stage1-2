@@ -1,11 +1,13 @@
 $color-background: rgba(220, 218, 220);
 $color-container-background: rgba(206, 212, 218);
+$color-input-background: rgb(249, 246, 242);
 $color-hover: rgba(170, 154, 170, 0.6);
 $color-active: rgba(170, 154, 170, 0.5);
 $color-text: rgba(34, 60, 80);
 $color-border: rgba(34, 60, 80, 0.3);
 $color-disabled-text: rgba(34, 60, 80, 0.7);
 $color-error: rgba(224, 42, 42);
+$box-shadow: 0.5rem 0.5rem 1.5rem rgba(189, 186, 186, 0.5);
 
 html {
   font-size: 62.5%;
@@ -27,13 +29,13 @@ body {
 
 button {
   max-width: 20rem;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   color: $color-text;
   border: 1px solid $color-border;
   border-radius: 0.2rem;
   font-size: 2.2rem;
-  margin-top: 3rem;
-  box-shadow: 0.5rem 0.5rem 1.5rem rgba(189, 186, 186, 0.5);
+  margin-top: 1rem;
+  box-shadow: $box-shadow;
 
   &:enabled {
     background-color: $color-active;

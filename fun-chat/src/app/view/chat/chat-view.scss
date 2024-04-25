@@ -19,13 +19,7 @@
   align-items: center;
   gap: 3rem;
   font-size: 2.6rem;
-  margin-top: 2rem;
-}
-.button {
-  &-info,
-  &-logout {
-    margin: 0;
-  }
+  margin-top: 1rem;
 }
 
 .chat {
@@ -38,7 +32,7 @@
   margin: 0 auto;
   padding: 4rem;
   border-radius: 0.2rem;
-  box-shadow: 1rem 1rem 5rem rgb(189, 186, 186);
+  box-shadow: $box-shadow;
   background-color: $color-background;
   margin-top: 2rem;
   border: 1px solid $color-border;
@@ -93,11 +87,11 @@
   width: fit-content;
   max-width: 70%;
   padding: 1rem;
-  box-shadow: 0.5rem 0.5rem 1.5rem rgba(189, 186, 186, 0.5);
+  box-shadow: $box-shadow;
   margin-bottom: 1rem;
   word-wrap: break-word;
   font-size: 1.4rem;
-  background-color: #f9f6f2;
+  background-color: $color-input-background;
   border: 1px solid $color-border;
 
   &--left {
@@ -136,10 +130,10 @@
   overflow: auto;
   outline: none;
   resize: none;
-  box-shadow: 0.5rem 0.5rem 1.5rem rgba(189, 186, 186, 0.5);
+  box-shadow: $box-shadow;
   border-radius: 0.2rem;
   height: 5rem;
-  background-color: #f9f6f2;
+  background-color: $color-input-background;
   border: 1px solid $color-border;
 }
 

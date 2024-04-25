@@ -84,7 +84,7 @@ export default class SendMessage {
     }
   }
 
-  updateUser(userName: string) {
+  updateUser(_userName: string) {
     const user = document.querySelector(".user-current") as HTMLElement;
     const userLogin = SessionStorageHandler.getUserData();
     user.innerText = userLogin.login;
@@ -94,7 +94,7 @@ export default class SendMessage {
     return Math.random().toString(36).substr(2, 9);
   }
 
-  showMessage(message: string, userName: string, currentUser: boolean) {
+  showMessage(message: string, _userName: string, currentUser: boolean) {
     const userLogin = SessionStorageHandler.getUserData();
     const messages = document.querySelector(".chat-field");
 
