@@ -1,5 +1,6 @@
 import "./login-view.scss";
 import ElementCreator from "../element-creator";
+
 import {
   CLASS_NAME,
   TAG,
@@ -60,7 +61,7 @@ export default class LoginView extends ElementCreator {
       TAG.INPUT,
       TEXT_CONTENT.BLANK,
       INPUT_ATTRIBUTE_NAME.LOGIN,
-      [CLASS_NAME.INPUT_FIELD],
+      [CLASS_NAME.INPUT_FIELD, "login"],
       AUTOCOMPLETE_OFF,
     );
 
@@ -75,12 +76,12 @@ export default class LoginView extends ElementCreator {
       TAG.INPUT,
       TEXT_CONTENT.BLANK,
       INPUT_ATTRIBUTE_NAME.PASSWORD,
-      [CLASS_NAME.INPUT_FIELD],
+      [CLASS_NAME.INPUT_FIELD, "password"],
       AUTOCOMPLETE_OFF,
     );
 
     const loginButton = new ElementCreator({
-      tag: TAG.BUTTON,
+      tag: TAG.BTN,
       textContent: TEXT_CONTENT.LOGIN_BTN,
       classNames: [CLASS_NAME.BUTTON_LOGIN],
     });

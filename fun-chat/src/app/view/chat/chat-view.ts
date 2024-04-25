@@ -1,10 +1,11 @@
 import "./chat-view.scss";
 import ElementCreator from "../element-creator";
-import LocalStorageHandler from "../../storage/localStorage-handler";
+import SessionStorageHandler from "../../storage/sessionStorage-handler";
 import InfoView from "../info/info-view";
+import LoginUser from "../../websocket/ws-login";
+import SendMessage from "../../websocket/ws-msg_send";
+
 import {
-  APP_NAME,
-  APP_DESCRIPTION,
   INFO_BUTTON_TEXT,
   LOGOUT_BUTTON_TEXT,
   CLASS_NAME,
@@ -15,32 +16,68 @@ import {
 export default class ChatView extends ElementCreator {
   constructor() {
     super({
-      tag: TAG.CONTAINER,
+      tag: TAG.DIV,
       classNames: [CLASS_NAME.CHAT_CONTAINER],
       textContent: "",
     });
+
+    this.addButtonsContainer();
     this.addContent();
-    this.addInfoButton();
-    this.addLogoutButton();
   }
 
   private addContent(): void {
-    const appName = document.createElement(TAG.PARAGRAPH);
-    appName.textContent = APP_NAME;
+    const chatField = document.createElement("div");
+    chatField.classList.add("chat");
 
-    const appDescription = document.createElement(TAG.SPAN);
-    appDescription.textContent = APP_DESCRIPTION;
+    const header = document.createElement("div");
+    header.classList.add("header");
 
-    const contentContainer = document.createElement(TAG.CONTAINER);
-    contentContainer.classList.add(CLASS_NAME.CONTENT_CONTAINER);
+    const messengerDot = document.createElement("div");
+    messengerDot.classList.add("dot", "dot--red");
+    const messengerUser = document.createElement("div");
+    messengerUser.classList.add("user-current");
+    header.append(messengerDot, messengerUser);
 
-    contentContainer.append(appName, appDescription);
+    const messengerMessages = document.createElement("div");
+    messengerMessages.classList.add("chat-field");
 
-    this.getElement()?.append(contentContainer);
+    const inputContainer = document.createElement("div");
+    inputContainer.classList.add("form");
+
+    const textarea = document.createElement("textarea");
+    textarea.classList.add("chat-input");
+
+    const sendButton = document.createElement("button");
+    sendButton.classList.add("button-send");
+    sendButton.textContent = "=>";
+
+    inputContainer.append(textarea, sendButton);
+    chatField.append(header, messengerMessages, inputContainer);
+
+    document.body.innerHTML = "";
+    document.body.appendChild(this.getElement() as HTMLElement);
+    document.querySelector(".chat-container")?.appendChild(chatField);
+
+    new SendMessage();
+    new LoginUser();
   }
 
-  private addInfoButton(): void {
-    const infoButton = document.createElement(TAG.BUTTON);
+  private addButtonsContainer(): void {
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.classList.add("buttons-container");
+    this.addInfoButton(buttonsContainer);
+    this.addFunChatText(buttonsContainer);
+    this.addLogoutButton(buttonsContainer);
+    this.getElement()?.appendChild(buttonsContainer);
+  }
+
+  private addFunChatText(container: HTMLDivElement): void {
+    const funChatText = document.createTextNode("Fun Chat");
+    container.appendChild(funChatText);
+  }
+
+  private addInfoButton(container: HTMLDivElement): void {
+    const infoButton = document.createElement(TAG.BTN);
     infoButton.textContent = INFO_BUTTON_TEXT;
     infoButton.classList.add(CLASS_NAME.BUTTON_INFO);
 
@@ -50,21 +87,22 @@ export default class ChatView extends ElementCreator {
       document.body.innerHTML = "";
       document.body.append(infoView.getElement() as Node);
     });
-    this.getElement()?.append(infoButton);
+
+    container.appendChild(infoButton);
   }
 
-  private addLogoutButton(): void {
-    const logoutButton = document.createElement(TAG.BUTTON);
+  private addLogoutButton(container: HTMLDivElement): void {
+    const logoutButton = document.createElement(TAG.BTN);
     logoutButton.textContent = LOGOUT_BUTTON_TEXT;
     logoutButton.classList.add(CLASS_NAME.BUTTON_LOGOUT);
 
     logoutButton.addEventListener("click", () => {
-      LocalStorageHandler.removeUserData();
+      SessionStorageHandler.removeUserData();
       const pathArray = window.location.pathname.split("/");
       const basePath = pathArray.slice(0, -1).join("/");
       window.location.href = `${window.location.origin}${basePath}/`;
     });
 
-    this.getElement()?.append(logoutButton);
+    container.appendChild(logoutButton);
   }
 }

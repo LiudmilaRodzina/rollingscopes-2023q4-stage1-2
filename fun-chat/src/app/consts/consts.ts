@@ -28,12 +28,12 @@ export const CLASS_NAME = {
 };
 
 export const TAG = {
-  CONTAINER: "div",
+  DIV: "div",
   FORM: "form",
-  BUTTON: "button",
+  BTN: "button",
   INPUT: "input",
   LABEL: "label",
-  PARAGRAPH: "p",
+  P: "p",
   SPAN: "span",
 };
 

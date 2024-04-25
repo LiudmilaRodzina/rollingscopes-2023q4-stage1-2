@@ -1,6 +1,7 @@
 import LoginView from "./view/login/login-view";
 import LoginHandler from "./verification/login-handler";
 import { BUTTON_SELECTOR, INPUT_SELECTOR } from "./consts/consts";
+import WebSocketMain from "./websocket/ws-main";
 
 export default class AppController {
   static createView(): void {
@@ -21,5 +22,7 @@ export default class AppController {
     }
 
     LoginHandler.stayLoggedInOnLoad();
+
+    new WebSocketMain();
   }
 }

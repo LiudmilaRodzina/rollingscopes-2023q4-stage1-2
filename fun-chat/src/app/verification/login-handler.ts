@@ -1,6 +1,6 @@
 import "./login-handler.scss";
 import ErrorMessage from "../types/enums";
-import LocalStorageHandler from "../storage/localStorage-handler";
+import SessionStorageHandler from "../storage/sessionStorage-handler";
 import ChatView from "../view/chat/chat-view";
 import InfoView from "../view/info/info-view";
 import {
@@ -39,7 +39,7 @@ export default class LoginHandler {
       this.loginButton.addEventListener("click", () => {
         const userData = this.getUserDataFromInputs();
         if (userData) {
-          LocalStorageHandler.saveUserData(userData);
+          SessionStorageHandler.saveUserData(userData);
         }
         LoginHandler.displayChatView();
       });
@@ -176,13 +176,21 @@ export default class LoginHandler {
   }
 
   static displayChatView(): void {
-    const chatView = new ChatView();
-    const chatElement = chatView.getElement();
+    const userLogin = SessionStorageHandler.getUserData();
+    if (userLogin) {
+      const chatView = new ChatView();
+      const chatElement = chatView.getElement();
 
-    if (chatElement) {
-      window.history.pushState(null, "", `#${HASH_VALUE.CHAT}`);
-      document.body.innerHTML = "";
-      document.body.append(chatElement);
+      if (chatElement) {
+        const user = document.querySelector(".messenger__user") as HTMLElement;
+        if (user) {
+          user.innerText = userLogin.login;
+        }
+
+        window.history.pushState(null, "", `#${HASH_VALUE.CHAT}`);
+        document.body.innerHTML = "";
+        document.body.append(chatElement);
+      }
     }
   }
 

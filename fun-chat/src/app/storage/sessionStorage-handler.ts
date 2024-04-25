@@ -1,10 +1,10 @@
-export default class LocalStorageHandler {
-  static readonly USER_DATA_KEY = "userData";
+export default class SessionStorageHandler {
+  static readonly USER_DATA_KEY = "currentUser";
 
   static saveUserData(userData: { [key: string]: string }): void {
-    if (LocalStorageHandler.validateUserData(userData)) {
-      localStorage.setItem(
-        LocalStorageHandler.USER_DATA_KEY,
+    if (SessionStorageHandler.validateUserData(userData)) {
+      sessionStorage.setItem(
+        SessionStorageHandler.USER_DATA_KEY,
         JSON.stringify(userData),
       );
     }
@@ -17,12 +17,12 @@ export default class LocalStorageHandler {
   }
 
   static removeUserData(): void {
-    localStorage.removeItem(LocalStorageHandler.USER_DATA_KEY);
+    sessionStorage.removeItem(SessionStorageHandler.USER_DATA_KEY);
   }
 
   static getUserData(): { [key: string]: string } {
     const userDataString =
-      localStorage.getItem(LocalStorageHandler.USER_DATA_KEY) || "{}";
+      sessionStorage.getItem(SessionStorageHandler.USER_DATA_KEY) || "{}";
     return JSON.parse(userDataString);
   }
 }
