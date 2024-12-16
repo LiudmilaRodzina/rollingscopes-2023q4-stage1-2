@@ -15,7 +15,6 @@ This is a web application project that retrieves and displays news from various 
   - Applied access modifiers (private, public) for better encapsulation.
 - **Webpack Configuration**: Customized Webpack setup to work seamlessly with TypeScript.
 - **ESLint Setup**:
-
   - Configured ESLint to work with TypeScript.
   - Enabled the `no-explicit-any` rule to enforce strict typing.
 
@@ -25,16 +24,31 @@ This is a web application project that retrieves and displays news from various 
 
   ```bash
   git clone --branch <news-api> --single-branch https://github.com/LiudmilaRodzina/rollingscopes-2023q4-stage1-2.git
+  ```
+
+- Navigate to the project directory:
+
+  ```bash
   cd news-api
   ```
 
 - Rename `.env.example` to `.env` and set variables with your data
 
-- Run command in your terminal `npm start`
+- Install dependencies:
+
+```bash
+ npm install
+```
+
+- Run the app:
+
+```bash
+ npm run start
+```
 
 #### Technologies Used
 
-- ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=plastic&logo=typescript&logoColor=white)
-- ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=plastic&logo=webpack&logoColor=white)
-- ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=plastic&logo=eslint&logoColor=white)
-- ![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=plastic&logo=prettier&logoColor=white)
+- [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=plastic&logo=typescript&logoColor=white)](https://www.typescriptlang.org/docs/)
+- [![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?style=plastic&logo=webpack&logoColor=white)](https://webpack.js.org/)
+- [![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=plastic&logo=eslint&logoColor=white)](https://eslint.org/docs/latest/)
+- [![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=plastic&logo=prettier&logoColor=white)](https://prettier.io/docs/en/index.html)
