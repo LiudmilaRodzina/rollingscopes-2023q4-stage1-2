@@ -23,13 +23,13 @@ This is a web application project that retrieves and displays news from various 
 - Clone the project branch:
 
   ```bash
-  git clone --branch <news-api> --single-branch https://github.com/LiudmilaRodzina/rollingscopes-2023q4-stage1-2.git
+  git clone --branch news-api --single-branch https://github.com/LiudmilaRodzina/rollingscopes-2023q4-stage1-2.git
   ```
 
 - Navigate to the project directory:
 
   ```bash
-  cd news-api
+  cd rollingscopes-2023q4-stage1-2/news-api
   ```
 
 - Rename `.env.example` to `.env` and set variables with your data
