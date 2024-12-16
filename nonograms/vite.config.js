@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: "/liudmilarodzina-JSFE2023Q4/nonograms/",
+  base: '/rollingscopes-2023q4-stage1-2/nonograms/',
 });
